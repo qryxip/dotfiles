@@ -29,6 +29,6 @@ export RPROMPT='%{${reset_color}%}${vcs_info_msg_0_}'
 zstyle ':vcs_info:*git+set-message:*' hooks git-config-user
 
 function +vi-git-config-user() {
-    hook_com[misc]+=`printf '%s(%s)' $(git config user.name) $(git config user.email)`
+    hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
 }
 
