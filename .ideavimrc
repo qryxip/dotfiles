@@ -1,0 +1,23 @@
+set number
+set relativenumber
+set hlsearch
+
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-i> <C-o>:action NextTemplateVariable<CR>
+inoremap <C-n> <C-o>:action CodeCompletion<CR>
+inoremap <C-p> <C-o>:action CodeCompletion<CR>
+inoremap <Down> <C-o>:action CodeCompletion<CR>
+inoremap <Up> <C-o>:action CodeCompletion<CR>
+
+nnoremap \f :action ReformatCode<CR>
+nnoremap \r :action RenameElement<CR>
+nnoremap <C-n> gt
+nnoremap <C-p> gT
+nnoremap <Down> gt
+nnoremap <Up> gT
+
+nnoremap <C-k> c$
+nnoremap <A-f> :action AceAction<CR>
+
+inoremap <Esc> <Esc>:action ReformatCode<CR>

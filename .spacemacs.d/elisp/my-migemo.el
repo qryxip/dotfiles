@@ -1,0 +1,12 @@
+(avy-migemo-mode 1)
+(setq migemo-dictionary (cond ((string-equal system-type "windows-nt")
+                               "C:/Applications/cmigemo-default-win64/dict/utf-8/migemo-dict")
+                              (t
+                               "/usr/share/cmigemo/utf-8/migemo-dict")))
+(setq migemo-command "cmigemo")
+(setq migemo-options '("-e" "-q" "-i" "\a"))
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-hfs-unix)
+(load-library "migemo")
+(migemo-init)

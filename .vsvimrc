@@ -1,0 +1,15 @@
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+noremap! <C-d> <Del>
+nnoremap <C-k> c$
+
+nnoremap <Down> gt
+nnoremap <Up> gT
+nnoremap <Left> <C-b>
+nnoremap <Right> <C-f>
+nnoremap <Delete> <C-d>
+
+nnoremap <C-d> <C-d>
+
+nnoremap <Space> <Nop>
+nnoremap <Space>s :w<CR>
