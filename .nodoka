@@ -61,16 +61,12 @@ key C-IC-J = Enter
 key C-IC-M = Enter
 key C-IC-I = Tab
 
-
 window IDEA /idea64\.exe/: Global
 key C-I = Tab
 key C-W = C-W
 window PYCHARM /pycharm64\.exe/: Global
 key C-I = Tab
 key C-W = C-W
-window FIREFOX /firefox\.exe/ : Global
-key C-N = C-N
-key C-P = C-P
 window GVIM /gvim\.exe/: Global
 key C-H = C-H
 key C-N = C-N
