@@ -15,12 +15,12 @@ key S-C-JISYen = S-C-BackSpace
 mod shift += !JISBackSlash
 
 # Use Muhenkan, Henkan as Esc, Alt
-key *Henkan= RAlt
+key *Henkan = RAlt
 mod alt += !!Henkan
 key *LWin = RAlt
 mod windows -= LWin
 mod alt += !!LWin
-key *Muhenkan= Esc
+key *Muhenkan = Esc
 
 # Use RCtrl and RAlt as RWin
 key *RAlt = RWin
@@ -29,12 +29,6 @@ mod windows += !!RAlt
 key *RCtrl = RWin
 mod control -= RCtrl
 mod windows += !!RCtrl
-
-# Replace LAlt with LWin
-#key *LWin= RAlt
-#key *LAlt= RWin
-#mod alt= !!LWin
-#mod windows= !!LAlt
 
 #Use C-; to toggle IME
 key C-Semicolon= A-BackQuote
@@ -59,21 +53,19 @@ key C-IC-F = Right
 # IME
 key IC-Muhenkan = Enter
 key IL-*IC-Muhenkan = Enter A-BackQuote
-key IC-JISYen= BackSpace
-key C-IC-JISYen= Esc
-key C-IC-H= BackSpace
-key C-IC-W= Esc
-key C-IC-J= Enter
-key C-IC-M= Enter
-key C-IC-I= Tab
+key IC-JISYen = BackSpace
+key C-IC-JISYen = Esc
+key C-IC-H = BackSpace
+key C-IC-W = Esc
+key C-IC-J = Enter
+key C-IC-M = Enter
+key C-IC-I = Tab
 
 
 window IDEA /idea64\.exe/: Global
-#mod alt += !Henkan
 key C-I = Tab
 key C-W = C-W
 window PYCHARM /pycharm64\.exe/: Global
-#mod alt += !Henkan
 key C-I = Tab
 key C-W = C-W
 window FIREFOX /firefox\.exe/ : Global
