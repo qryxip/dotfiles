@@ -55,28 +55,10 @@ augroup on_makefile
     autocmd BufRead,BufNewFile Makefile set noexpandtab
 augroup END
 
-augroup on_python
-    autocmd!
-"    autocmd BufRead,BufNewFile *.py set autowrite
-"    autocmd TextChanged   *.py wa|SyntasticCheck
-"    autocmd TextChangedI  *.py wa|SyntasticCheck
-"    autocmd CursorHold    *.py 
-"    autocmd CursorHoldI   *.py 
-augroup END
-
 augroup on_scala
     autocmd!
     autocmd BufRead,BufNewFile *.scala set textwidth=120
     autocmd BufRead,BufNewFile *.scala set shiftwidth=2
-augroup END
-
-augroup on_ocaml
-    autocmd!
-    autocmd BufRead,BufNewFile *.ml set textwidth=79
-    autocmd BufRead,BufNewFile *.ml set shiftwidth=2
-    autocmd BufRead,BufNewFile *.ml nnoremap <Leader>s :w<Bar>!ocamlbuild main.byte<CR>
-    autocmd BufRead,BufNewFIle *.ml set shiftwidth=2
-    autocmd BufRead,BufNewFIle *.ml set tabstop=2
 augroup END
 
 syntax on
@@ -116,14 +98,6 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_use_migemo = 1
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline = 0
-let g:lightline = {
-            \ 'colorscheme': 'wombat',
-            \ 'component': {
-            \   'readonly': '%{&readonly?"x":""}',
-            \ },
-            \ 'separator': { 'left': '', 'right': '' },
-            \ 'subseparator': { 'left': '>', 'right': '<' }
-            \ }
 if has('win64')
     set runtimepath+=~/.vim/dein.vim
     call dein#begin('~/.vim/dein')
@@ -133,7 +107,8 @@ if has('win64')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'mingw32-make'})
     call dein#add('iamcco/markdown-preview.vim')
-    call dein#add('itchyny/lightline.vim')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
     call dein#add('kana/vim-smartinput')
     call dein#add('scrooloose/nerdtree')
     call dein#add('lervag/vimtex')
@@ -271,12 +246,6 @@ elseif has('unix')
     let g:vimtex_latexmk_background = 1
     let g:vimtex_latexmk_options = '-pdfdvi'
     let g:vimtex_view_general_viewer = 'evince'
-
-"    let g:opamshare = substitute(system('opam config var share'),
-"             \'\n$', '' , '''')
-"    set rtp+=/usr/local/share/ocamlmerlin/vim
-"    source ~/evernotetoken.vim
-"    let g:evervim_defaultnotebook = '0 Inbox_emergency'
 endif
 filetype on
 filetype plugin on
