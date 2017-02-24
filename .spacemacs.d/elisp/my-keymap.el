@@ -1,7 +1,16 @@
-(defun my-keymap/evil-c$ () (interactive)
-       (let ((begin (progn (current-column) (point)))
-             (end (progn (end-of-line) (point))))
-         (evil-change begin end)))
+(defun my-keymap/evil-c$ ()
+  (interactive)
+  (let ((begin (progn (current-column) (point)))
+        (end (progn (end-of-line) (point))))
+    (evil-change begin end)))
+
+(defun my-keymap/evil-insert-c-u ()
+  (interactive)
+  (let ((begin (progn (current-column) (point)))
+        (end (progn (evil-first-non-blank) (point))))
+    (evil-change begin end)))
+
+(setq evil-want-C-i-jump t)
 
 (define-key evil-insert-state-map "\M-r" 'quickrun)
 (define-key evil-normal-state-map "\M-r" 'quickrun)
@@ -24,6 +33,7 @@
 (define-key evil-insert-state-map "\C-h" 'delete-backward-char)
 (define-key evil-insert-state-map "\C-i" 'hippie-expand)
 (define-key evil-insert-state-map "\C-j" 'newline-and-indent)
+(define-key evil-insert-state-map "\C-u" 'my-keymap/evil-insert-c-u)
 (define-key evil-insert-state-map "\C-n" '(lambda () (interactive) (company-select-next) (company-select-previous)))
 (define-key evil-insert-state-map "\C-p" '(lambda () (interactive) (company-select-previous) (company-select-next)))
 

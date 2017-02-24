@@ -24,29 +24,26 @@ values."
             ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
             ;; <M-m f e R> (Emacs style) to install them.
             ;; ----------------------------------------------------------------
-            auto-completion
-            better-defaults
             c-c++
-            themes-megapack
             emacs-lisp
-            python
-            vimscript
-
             git
-            markdown
-            rust
-            org
             haskell
-            yaml
-            latex
-
             html
             javascript
-            ;; (shell :variables
-            ;;        shell-default-height 30
-            ;;        shell-default-position 'bottom)
+            latex
+            markdown
+            org
+            python
+            rust
+            shell-scripts
+            vimscript
+            yaml
+
+            auto-completion
+            better-defaults
             spell-checking
             syntax-checking
+            themes-megapack
             version-control
             ))
          (t
