@@ -26,6 +26,8 @@
 (define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
 (define-key evil-normal-state-map (kbd "\\") 'ignore)
 (define-key evil-normal-state-map "\M-s" 'swiper)
+(define-key evil-normal-state-map "\C-[" 'save-buffer)
+(define-key evil-normal-state-map [escape] 'save-buffer)
 
 (define-key evil-insert-state-map "\C-a" 'evil-insert-line)
 (define-key evil-insert-state-map "\C-e" 'move-end-of-line)
