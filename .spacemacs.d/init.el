@@ -277,6 +277,7 @@ you should place your code here."
   (load-file "~/.spacemacs.d/elisp/my-keymap.el")
   (load-file "~/.spacemacs.d/elisp/autospace.el")
   (load-file "~/.spacemacs.d/elisp/my-migemo.el")
+  (add-hook 'rust-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-rust.el")))
 
   (set-face-background 'default "#1b1d1e")
   (set-frame-parameter nil 'alpha 100)
