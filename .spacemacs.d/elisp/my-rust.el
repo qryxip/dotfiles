@@ -1,6 +1,8 @@
 (setq rust-format-on-save t)
-(setq company-idle-delay nil)
+;;(setq company-idle-delay nil)
 
+(evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
+(evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
 (evil-define-key 'normal rust-mode-map "\C-]" 'racer-find-definition)
 (evil-define-key 'normal rust-mode-map "\M-r" 'cargo-process-run)
 (evil-define-key 'normal rust-mode-map "\M-t" 'cargo-process-test)

@@ -1,6 +1,8 @@
 (avy-migemo-mode 1)
 (setq migemo-dictionary (cond ((string-equal system-type "windows-nt")
                                "C:/Applications/cmigemo-default-win64/dict/utf-8/migemo-dict")
+                              ((file-exists-p "/etc/arch-release")
+                               "/usr/share/migemo/utf-8/migemo-dict")
                               (t
                                "/usr/share/cmigemo/utf-8/migemo-dict")))
 (setq migemo-command "cmigemo")

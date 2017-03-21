@@ -21,14 +21,43 @@ function fish_prompt
 end
 
 function ls
-  /usr/bin/ls -l $argv
+  /usr/bin/env ls -l --color=auto $argv
 end
 
 function lsa
-  /usr/bin/ls -la $argv
+  /usr/bin/env ls -la --color=auto $argv
 end
 
 function cdls
   cd $argv[1]
-  /usr/bin/ls -l
+  /usr/bin/env ls -l --color=auto
+end
+
+function cdlsa
+  cd $argv[1]
+  /usr/bin/env ls -la --color=auto
+end
+
+function v
+  /usr/bin/env nvim $argv
+end
+
+function vi
+  /usr/bin/env nvim $argv
+end
+
+function vim
+  /usr/bin/env nvim $argv
+end
+
+function e
+  /usr/bin/env emacsclient -n $argv
+end
+
+function emacs
+  /usr/bin/env emacsclient -n $argv
+end
+
+function emacs-nw
+  /usr/bin/env emacsclient -nw -a "" $argv
 end

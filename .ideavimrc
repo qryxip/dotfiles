@@ -2,13 +2,16 @@ set number
 set relativenumber
 set hlsearch
 
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
+inoremap <C-a> <C-o>I
+inoremap <C-e> <C-o>A
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 inoremap <C-i> <C-o>:action NextTemplateVariable<CR>
 inoremap <C-n> <C-o>:action CodeCompletion<CR>
 inoremap <C-p> <C-o>:action CodeCompletion<CR>
 inoremap <Down> <C-o>:action CodeCompletion<CR>
 inoremap <Up> <C-o>:action CodeCompletion<CR>
+inoremap <A-d> <C-DEL>
 
 nnoremap \f :action ReformatCode<CR>
 nnoremap \r :action RenameElement<CR>

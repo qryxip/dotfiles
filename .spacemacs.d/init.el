@@ -33,7 +33,7 @@ values."
             latex
             markdown
             org
-            python
+            (python :variables python-enable-yapf-format-on-save t)
             rust
             shell-scripts
             vimscript
@@ -53,9 +53,12 @@ values."
             c-c++
             themes-megapack
             emacs-lisp
-            python
+            (python :variables python-enable-yapf-format-on-save t)
             ocaml
+            shell-scripts
+            scala
 
+            javascript
             git
             markdown
             rust
@@ -77,6 +80,10 @@ values."
                                       tabbar
                                       minimap
                                       imenu-list
+                                      irony
+                                      company-irony
+                                      flycheck-irony
+                                      irony-eldoc
                                       swiper
                                       vline)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -145,11 +152,12 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; somehow suddenly deleted
+
    dotspacemacs-default-font '("ゆたぽん（コーディング）HeavyS"
                                :size 12
                                :weight normal
                                :width normal
-                               :powerline-scale 1)
+                               :powerline-scale 1.0)
 
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-leader-key "M-m"
@@ -251,9 +259,10 @@ values."
    ;; to aggressively delete empty line and long sequences of whitespace,
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
-   ;; (default nil)
+   ;; (def
+ault nil)
    dotspacemacs-whitespace-cleanup nil
-   ))
+   )
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -277,20 +286,23 @@ you should place your code here."
   (load-file "~/.spacemacs.d/elisp/my-keymap.el")
   (load-file "~/.spacemacs.d/elisp/autospace.el")
   (load-file "~/.spacemacs.d/elisp/my-migemo.el")
+  (load-file "~/.spacemacs.d/elisp/my-tabbar.el")
   (add-hook 'rust-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-rust.el")))
+  (add-hook 'c++-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-cc.el")))
+  (add-hook 'python-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-python.el")))
 
   (set-face-background 'default "#1b1d1e")
-  (set-frame-parameter nil 'alpha 100)
+  (set-frame-parameter nil 'alpha 97)
 
   (setq company-minimum-prefix-length 1)
   (setq company-selection-wrap-around t)
+  (setq max-specpdl-size 20000)
 
   ;(custom-set-variables '(yas-trigger-key "\C-m"))
   (auto-fill-mode -1)
 
   (setq auctex-latexmk-inherit-TeX-PDF-mode nil)
 
-  (tabbar-mode 1)
   (helm-migemo-mode 1)
 
   (setq minimap-window-location 'right)
@@ -312,8 +324,6 @@ you should place your code here."
 
   (setq auto-save-buffers-enhanced-interval 1)
   (setq auto-save-buffers-enhanced-include-regexps '(".+\\.ifoewajfioeajw$"))
-
-  (evil-define-key 'normal quickrun/mode-map "q" 'evil-window-delete)
 
   ;; org-mode
   (evil-define-key 'normal org-mode-map "\M-r" 'org-export-dispatch)

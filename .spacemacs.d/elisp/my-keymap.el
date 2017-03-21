@@ -10,7 +10,18 @@
         (end (progn (evil-first-non-blank) (point))))
     (evil-change begin end)))
 
+(defun my-keymap/delete-backward-word-10-times ()
+  (interactive)
+  (loop for i from 0 to 9 do
+        (evil-delete-backward-word)))
+
+(defun my-keymap/save-if-file-buffer ()
+  (interactive)
+  (when (not (string-match "\\*.+\\*" (buffer-name)))
+    (save-buffer)))
+
 (setq evil-want-C-i-jump t)
+(add-hook 'evil-normal-state-entry-hook 'my-keymap/save-if-file-buffer)
 
 (define-key evil-insert-state-map "\M-r" 'quickrun)
 (define-key evil-normal-state-map "\M-r" 'quickrun)
@@ -26,8 +37,6 @@
 (define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
 (define-key evil-normal-state-map (kbd "\\") 'ignore)
 (define-key evil-normal-state-map "\M-s" 'swiper)
-(define-key evil-normal-state-map "\C-[" 'save-buffer)
-(define-key evil-normal-state-map [escape] 'save-buffer)
 
 (define-key evil-insert-state-map "\C-a" 'evil-insert-line)
 (define-key evil-insert-state-map "\C-e" 'move-end-of-line)
@@ -38,21 +47,33 @@
 (define-key evil-insert-state-map "\C-u" 'my-keymap/evil-insert-c-u)
 (define-key evil-insert-state-map "\C-n" '(lambda () (interactive) (company-select-next) (company-select-previous)))
 (define-key evil-insert-state-map "\C-p" '(lambda () (interactive) (company-select-previous) (company-select-next)))
+(define-key evil-command-window-mode-map "\C-j" 'evil-ret)
 
-(add-hook 'company-mode-hook
-          '(lambda ()
-             (define-key company-active-map (kbd "<tab>") 'hippie-expand)
-             (define-key company-active-map (kbd "C-h") 'delete-backward-char)
-             (define-key company-active-map (kbd "C-i") 'hippie-expand)
-             (define-key company-active-map (kbd "C-j") 'company-complete-selection)
-             (define-key company-active-map (kbd "C-m") 'company-complete-selection)
-             (define-key company-active-map (kbd "C-n") 'company-select-next)
-             (define-key company-active-map (kbd "C-p") 'company-select-previous)
-             (define-key company-active-map (kbd "C-q") 'company-show-doc-buffer)
-             (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word)))
+(add-hook 'company-mode-hook '(lambda ()
+                               (dolist (m (list company-active-map company-search-map))
+                                 (define-key m (kbd "<tab>") 'hippie-expand)
+                                 (define-key m (kbd "C-h") 'delete-backward-char)
+                                 (define-key m (kbd "C-i") 'hippie-expand)
+                                 (define-key m (kbd "C-j") 'company-complete-selection)
+                                 (define-key m (kbd "C-m") 'company-complete-selection)
+                                 (define-key m (kbd "C-n") 'company-select-next)
+                                 (define-key m (kbd "C-p") 'company-select-previous)
+                                 (define-key m (kbd "C-q") 'company-show-doc-buffer)
+                                 (define-key m (kbd "C-w") 'evil-delete-backward-word))))
 
+(define-key helm-map [f8] 'help)
+(define-key helm-map "\C-j" 'helm-confirm-and-exit-minibuffer)
 (define-key helm-map "\C-h" 'delete-backward-char)
 (define-key helm-map "\C-w" 'evil-delete-backward-word)
+
+(define-key swiper-map "\C-j" 'ivy-done)
+(define-key swiper-map "\C-u" 'my-keymap/delete-backward-word-10-times)
+
+(evil-define-key 'normal dired-mode-map "\C-j" 'dired-find-file)
+
+(evil-define-key 'normal quickrun--mode-map [?q] 'evil-window-delete)
+;;(evil-define-key 'normal quickrun/mode-map "q" 'evil-window-delete)
+
 
 (evil-define-key 'normal neotree-mode-map "q" 'neotree-hide)
 (evil-define-key 'normal neotree-mode-map (kbd "ESC") 'evil-window-next)
@@ -65,4 +86,3 @@
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-w") 'evil-delete-backward-word)
 (global-set-key [M-kanji] 'ignore)
-
