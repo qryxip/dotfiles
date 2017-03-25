@@ -1,0 +1,5 @@
+URxvt.font: xft:ゆたぽん（コーディング）HeavyS:size=9
+URxvt.depth: 32
+URxvt.scrollBar: False
+URxvt.foreground: White
+URxvt.background: rgba:0f00/1000/1080/f950
