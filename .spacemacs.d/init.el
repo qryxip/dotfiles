@@ -292,7 +292,7 @@ you should place your code here."
   (add-hook 'python-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-python.el")))
 
   (set-face-background 'default "#1b1d1e")
-  (set-frame-parameter nil 'alpha 97)
+  ;;(set-frame-parameter nil 'alpha 97)
 
   (setq company-minimum-prefix-length 1)
   (setq company-selection-wrap-around t)
