@@ -1,0 +1,49 @@
+Config { font             = "xft:Ricty Discord:size=9:bold"
+       , bgColor          = "#202020"
+       , fgColor          = "#d0d0d0"
+       , alpha            = 255
+       , border           = FullB
+       , borderColor      = "#323232"
+       , allDesktops      = True
+       , hideOnStart      = False
+       , lowerOnStart     = True
+       , overrideRedirect = True
+       , persistent       = False
+       , pickBroadest     = True
+       , position         = Top
+       , template         = "%StdinReader%}{%cpu% %memory%  %volume% %battery%   %date% "
+       , alignSep         = "}{"
+       , sepChar          = "%"
+       , commands         = [ Run StdinReader
+                            , Run Cpu [ "--template", "CPU:<total>%"
+                                      , "--minwidth", "3"
+                                      , "--Low"     , "50"
+                                      , "--High"    , "80"
+                                      , "--low"     , "green"
+                                      , "--normal"  , "orange"
+                                      , "--high"    , "red"
+                                      ] 10
+                            , Run Memory [ "--template", "RAM:<usedratio>%"
+                                         , "--minwidth", "3"
+                                         , "--Low"     , "50"
+                                         , "--High"    , "80"
+                                         , "--low"     , "green"
+                                         , "--normal"  , "orange"
+                                         , "--high"    , "red"
+                                         ] 10
+                            , Run Com "bash" ["-c", "printf 'Volume:%3d%s' $(pamixer --get-volume) %"] "volume" 10
+                            , Run Battery [ "--template"         , "<acstatus>:<left>%"
+                                          , "--minwidth"         , "3"
+                                          , "--Low"              , "15"
+                                          , "--High"             , "80"
+                                          , "--low"              , "red"
+                                          , "--normal"           , "orange"
+                                          , "--high"             , "green"
+                                          , "--"
+                                          , "-o"                 , " Battery"
+                                          , "-O"                 , "Charging"
+                                          , "-i"                 , " Charged"
+                                          ] 50
+                            , Run Date "%a %_b %_d %_I:%M %p" "date" 10
+                            ]
+       }
