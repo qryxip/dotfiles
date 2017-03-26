@@ -1,10 +1,10 @@
-(defun my-keymap/evil-c$ ()
+(defun my-keymap/evil-normal-c$ ()
   (interactive)
   (let ((begin (progn (current-column) (point)))
         (end (progn (end-of-line) (point))))
     (evil-change begin end)))
 
-(defun my-keymap/evil-insert-c-u ()
+(defun my-keymap/evil-insert-C-u ()
   (interactive)
   (let ((begin (progn (current-column) (point)))
         (end (progn (evil-first-non-blank) (point))))
@@ -17,7 +17,8 @@
 
 (defun my-keymap/save-if-file-buffer ()
   (interactive)
-  (when (not (string-match "\\*.+\\*" (buffer-name)))
+  (when (not (or (string-match "\\*.+\\*" (buffer-name))
+                 (string-match "intero.+" (buffer-name))))
     (save-buffer)))
 
 (setq evil-want-C-i-jump t)
@@ -32,7 +33,7 @@
 
 (define-key evil-normal-state-map "\M-f" 'avy-migemo-goto-char-2)
 (define-key evil-normal-state-map "\C-h" 'evil-backward-char)
-(define-key evil-normal-state-map "\C-k" 'my-keymap/evil-c$)
+(define-key evil-normal-state-map "\C-k" 'my-keymap/evil-normal-c$)
 (define-key evil-normal-state-map "\C-n" 'tabbar-forward-tab)
 (define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
 (define-key evil-normal-state-map (kbd "\\") 'ignore)
@@ -44,10 +45,9 @@
 (define-key evil-insert-state-map "\C-h" 'delete-backward-char)
 (define-key evil-insert-state-map "\C-i" 'hippie-expand)
 (define-key evil-insert-state-map "\C-j" 'newline-and-indent)
-(define-key evil-insert-state-map "\C-u" 'my-keymap/evil-insert-c-u)
+(define-key evil-insert-state-map "\C-u" 'my-keymap/evil-insert-C-u)
 (define-key evil-insert-state-map "\C-n" '(lambda () (interactive) (company-select-next) (company-select-previous)))
 (define-key evil-insert-state-map "\C-p" '(lambda () (interactive) (company-select-previous) (company-select-next)))
-(define-key evil-command-window-mode-map "\C-j" 'evil-ret)
 
 (add-hook 'company-mode-hook '(lambda ()
                                (dolist (m (list company-active-map company-search-map))
