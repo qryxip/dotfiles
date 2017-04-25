@@ -1,5 +1,9 @@
+(defun my-rust/init ()
+  (interactive)
+  (define-key company-active-map "\C-q" 'racer-describe)
+  (define-key company-search-map "\C-q" 'racer-describe))
+
 (setq rust-format-on-save t)
-;;(setq company-idle-delay nil)
 
 (evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
 (evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
@@ -7,5 +11,6 @@
 (evil-define-key 'normal rust-mode-map "\M-r" 'cargo-process-run)
 (evil-define-key 'normal rust-mode-map "\M-t" 'cargo-process-test)
 
-(define-key company-active-map "\C-q" 'racer-describe)
-(define-key company-search-map "\C-q" 'racer-describe)
+(add-hook 'rust-mode-hook 'my-rust/init)
+
+

@@ -1,2 +1,7 @@
+(defun my-python/init ()
+  (interactive)
+  (yapf-mode 1))
+
 (setq python-enable-yapf-format-on-save t)
-(yapf-mode 1)
+
+(add-hook 'python-mode-hook 'my-python/init)

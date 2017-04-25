@@ -25,6 +25,7 @@ values."
             ;; <M-m f e R> (Emacs style) to install them.
             ;; ----------------------------------------------------------------
             c-c++
+            (extra-langs :variables qml-indent-width 2)
             emacs-lisp
             git
             haskell
@@ -51,12 +52,14 @@ values."
             auto-completion
             better-defaults
             c-c++
+            (extra-langs :variables qml-indent-width 2)
             themes-megapack
             emacs-lisp
             (python :variables python-enable-yapf-format-on-save t)
             ocaml
             shell-scripts
             scala
+            html
 
             javascript
             git
@@ -287,12 +290,17 @@ you should place your code here."
   (load-file "~/.spacemacs.d/elisp/autospace.el")
   (load-file "~/.spacemacs.d/elisp/my-migemo.el")
   (load-file "~/.spacemacs.d/elisp/my-tabbar.el")
-  (add-hook 'rust-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-rust.el")))
+  (load-file "~/.spacemacs.d/elisp/my-latex.el")
+  (load-file "~/.spacemacs.d/elisp/my-rust.el")
+  (load-file "~/.spacemacs.d/elisp/my-python.el")
+  (load-file "~/.spacemacs.d/elisp/my-haskell.el")
+  (load-file "~/.spacemacs.d/elisp/my-js2.el")
+  (load-file "~/.spacemacs.d/elisp/my-qml.el")
   (add-hook 'c++-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-cc.el")))
-  (add-hook 'python-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-python.el")))
 
   (set-face-background 'default "#1b1d1e")
   ;;(set-frame-parameter nil 'alpha 97)
+  (setq powerline-default-separator 'nil)
 
   (setq company-minimum-prefix-length 1)
   (setq company-selection-wrap-around t)
@@ -330,6 +338,9 @@ you should place your code here."
   (sp-local-pair 'org-mode "(" ")")
   (sp-local-pair 'org-mode "{" "}")
   (sp-local-pair 'org-mode "$" "$")
+
+  (evil-define-key 'normal shell-mode-map "q" 'evil-window-delete)
+  (evil-define-key 'insert shell-mode-map "q" 'evil-window-delete)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -21,21 +21,17 @@ function fish_prompt
 end
 
 function ls
-  /usr/bin/env ls -l --color=auto $argv
-end
-
-function lsa
-  /usr/bin/env ls -la --color=auto $argv
+  /usr/bin/env ls -l -h --color=auto $argv
 end
 
 function cdls
   cd $argv[1]
-  /usr/bin/env ls -l --color=auto
+  /usr/bin/env ls -l -h --color=auto
 end
 
 function cdlsa
   cd $argv[1]
-  /usr/bin/env ls -la --color=auto
+  /usr/bin/env ls -la -h --color=auto
 end
 
 function v
