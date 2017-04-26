@@ -84,6 +84,8 @@
 (evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
 (evil-define-key 'normal neotree-mode-map "\M-t" 'neotree-hide)
 
+(define-key evil-normal-state-map "\M-w" 'helm-find-files)
+
 (global-set-key [f8] 'help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-w") 'evil-delete-backward-word)
