@@ -22,7 +22,9 @@
     (when (and (member (preceding-char) (string-to-list ":!#$%&*+./<=>?@^|-~)],"))
                (not (nth 3 (syntax-ppss p)))
                (not (equal p (line-beginning-position)))
-               (not (my-haskell--behind-dot-dot?)))
+               (not (my-haskell--behind-number-dot?))
+               (not (my-haskell--behind-dot-dot?))
+               (not (my-haskell--behind-module-dot?)))
       (insert " "))
     (self-insert-command 1)))
 
@@ -94,7 +96,7 @@
 
 (defun my-haskell--behind-number? (&optional p)
   (cond (p
-         (let ((c (char-before)))
+         (let ((c (char-before p)))
            (or (equal c 32)
                (and (member c my-haskell--numbers)
                     (my-haskell--behind-number? (- p 1))))))
@@ -102,17 +104,9 @@
          (and (member c my-haskell--numbers)
               (my-haskell--behind-number? (- (point) 1))))))
 
-
 (defun my-haskell--behind-number-dot? (&optional p)
-  (cond (p
-         (let ((c (char-before)))
-           (or (equal c 32)
-               (and (member c my-haskell--numbers)
-                    (my-haskell--behind-number? (- p 1))))))
-        (t
-         (and (equal c 46)
-              (my-haskell--behind-number? (- (point) 1))))))
-
+  (and (equal (preceding-char) 46)
+       (my-haskell--behind-number? (- (point) 1))))
 
 (defun my-haskell--behind-module? (&optional p)
   (setq p (or p (point)))
@@ -130,6 +124,6 @@
                     (my-haskell--behind-module-dot? (- p 1))))))
         (t
          (and (equal (preceding-char) 46)
-              (my-haskell--behind-modue-dot? (- (point) 1))))))
+              (my-haskell--behind-module-dot? (- (point) 1))))))
 
 (add-hook 'haskell-mode-hook 'my-haskell/init)

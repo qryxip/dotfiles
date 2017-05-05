@@ -1,4 +1,7 @@
-(avy-migemo-mode 1)
+(defun my-migemo/enable-helm-migemo-mode ()
+  (interactive)
+  (helm-migemo-mode 1))
+
 (setq migemo-dictionary (cond ((string-equal system-type "windows-nt")
                                "C:/Applications/cmigemo-default-win64/dict/utf-8/migemo-dict")
                               ((file-exists-p "/etc/arch-release")
@@ -12,3 +15,6 @@
 (setq migemo-coding-system 'utf-8-hfs-unix)
 (load-library "migemo")
 (migemo-init)
+
+(avy-migemo-mode 1)
+(add-hook 'helm-mode-hook 'my-migemo/enable-helm-migemo-mode)

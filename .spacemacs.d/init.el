@@ -16,62 +16,28 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers
-   (cond ((string-equal system-type "windows-nt")
-          '(
-            ;; ----------------------------------------------------------------
-            ;; Example of useful layers you may want to use right away.
-            ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-            ;; <M-m f e R> (Emacs style) to install them.
-            ;; ----------------------------------------------------------------
-            c-c++
-            (extra-langs :variables qml-indent-width 2)
-            emacs-lisp
-            git
-            haskell
-            html
-            javascript
-            latex
-            markdown
-            org
-            (python :variables python-enable-yapf-format-on-save t)
-            rust
-            shell-scripts
-            vimscript
-            yaml
-
-            auto-completion
-            better-defaults
-            spell-checking
-            syntax-checking
-            themes-megapack
-            version-control
-            ))
-         (t
-          '(
-            auto-completion
-            better-defaults
-            c-c++
-            (extra-langs :variables qml-indent-width 2)
-            themes-megapack
-            emacs-lisp
-            (python :variables python-enable-yapf-format-on-save t)
-            ocaml
-            shell-scripts
-            scala
-            html
-
-            javascript
-            git
-            markdown
-            rust
-            org
-            haskell
-            yaml
-            (latex :variables latex-enable-folding nil)
-            spell-checking
-            syntax-checking
-            version-control)))
+   dotspacemacs-configuration-layers '(auto-completion
+                                       better-defaults
+                                       c-c++
+                                       emacs-lisp
+                                       (extra-langs :variables qml-indent-width 2)
+                                       git
+                                       haskell
+                                       html
+                                       javascript
+                                       markdown
+                                       (latex :variables latex-enable-folding nil)
+                                       org
+                                       (python :variables python-enable-yapf-format-on-save t)
+                                       rust
+                                       scala
+                                       shell-scripts
+                                       spell-checking
+                                       syntax-checking
+                                       themes-megapack
+                                       version-control
+                                       vimscript
+                                       yaml)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -309,9 +275,9 @@ you should place your code here."
   ;(custom-set-variables '(yas-trigger-key "\C-m"))
   (auto-fill-mode -1)
 
-  (setq auctex-latexmk-inherit-TeX-PDF-mode nil)
+  (linum-relative-global-mode 1)
 
-  (helm-migemo-mode 1)
+  (setq auctex-latexmk-inherit-TeX-PDF-mode nil)
 
   (setq minimap-window-location 'right)
 
@@ -326,7 +292,6 @@ you should place your code here."
   (org-babel-do-load-languages 'org-babel-load-languages '((dot . t)))
   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
   (setq org-confirm-babel-evaluate t)
-  (spacemacs/linum-relative-toggle)
 
   (fset 'evil-visual-update-x-selection 'ignore)
 

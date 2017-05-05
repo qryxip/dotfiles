@@ -24,3 +24,4 @@ nnoremap <C-k> c$
 nnoremap <A-f> :action AceAction<CR>
 
 inoremap <Esc> <Esc>:action ReformatCode<CR>
+nnoremap <Esc> :action ReformatCode<CR>

@@ -35,6 +35,13 @@
     (define-key m (kbd "C-q") 'company-show-doc-buffer)
     (define-key m (kbd "C-w") 'evil-delete-backward-word)))
 
+(defun my-keymap/remap-helm-mode ()
+  (interactive)
+  (define-key helm-map [f8] 'help)
+  (define-key helm-map "\C-j" 'helm-confirm-and-exit-minibuffer)
+  (define-key helm-map "\C-h" 'delete-backward-char)
+  (define-key helm-map "\C-w" 'evil-delete-backward-word))
+
 (setq evil-want-C-i-jump t)
 (add-hook 'evil-normal-state-entry-hook 'my-keymap/save-if-file-buffer)
 
@@ -64,11 +71,7 @@
 (define-key evil-insert-state-map "\C-p" '(lambda () (interactive) (company-select-previous) (company-select-next)))
 
 (add-hook 'company-mode-hook 'my-keymap/remap-company-mode)
-
-(define-key helm-map [f8] 'help)
-(define-key helm-map "\C-j" 'helm-confirm-and-exit-minibuffer)
-(define-key helm-map "\C-h" 'delete-backward-char)
-(define-key helm-map "\C-w" 'evil-delete-backward-word)
+(add-hook 'helm-mode-hook 'my-keymap/remap-helm-mode)
 
 (define-key swiper-map "\C-j" 'ivy-done)
 (define-key swiper-map "\C-u" 'my-keymap/delete-backward-word-10-times)
@@ -77,12 +80,12 @@
 
 (evil-define-key 'normal quickrun--mode-map "q" 'evil-window-delete)
 
-(evil-define-key 'normal neotree-mode-map "q" 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "ESC") 'evil-window-next)
-(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map "\M-t" 'neotree-hide)
+;;(evil-define-key 'normal neotree-mode-map "q" 'neotree-hide)
+;;(evil-define-key 'normal neotree-mode-map (kbd "ESC") 'evil-window-next)
+;;(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+;;(evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
+;;(evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
+;;(evil-define-key 'normal neotree-mode-map "\M-t" 'neotree-hide)
 
 (define-key evil-normal-state-map "\M-w" 'helm-find-files)
 

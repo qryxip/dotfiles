@@ -1,5 +1,8 @@
 (defun my-rust/init ()
   (interactive)
+  (when (or (string-match ".*/.cargo/.*" (pwd))
+            (string-match ".*.rustup/.*" (pwd)))
+    (read-only-mode 1))
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe))
 

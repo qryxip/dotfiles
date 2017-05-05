@@ -44,7 +44,7 @@ main = do
                }
            `additionalKeysP` [ ("M1-<Tab>", windows focusDown >> focusHook)
                              , ("M4-<Tab>", toggleWS >> focusHook)
-                             , ("M4-e"    , spawn "xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY")
+                             , ("M4-e"    , spawn "xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY" >> spawn "xcompmgr -c")
                              , ("M4-r"    , spawn "dmenu_run")
                              , ("M4-v"    , spawn "urxvt -e /bin/tmux")
                              , ("M4-<U>"  , spawn "pamixer -i 1")
