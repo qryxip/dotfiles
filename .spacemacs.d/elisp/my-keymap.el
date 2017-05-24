@@ -94,3 +94,5 @@
 (global-set-key (kbd "C-w") 'evil-delete-backward-word)
 (global-set-key [M-kanji] 'ignore)
 
+(keyboard-translate ?\C-j ?\C-m)
+

@@ -262,6 +262,7 @@ you should place your code here."
   (load-file "~/.spacemacs.d/elisp/my-haskell.el")
   (load-file "~/.spacemacs.d/elisp/my-js2.el")
   (load-file "~/.spacemacs.d/elisp/my-qml.el")
+  (load-file "~/.spacemacs.d/elisp/my-shell.el")
   (add-hook 'c++-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-cc.el")))
 
   (set-face-background 'default "#1b1d1e")
@@ -280,9 +281,6 @@ you should place your code here."
   (setq auctex-latexmk-inherit-TeX-PDF-mode nil)
 
   (setq minimap-window-location 'right)
-
-  (setq python-fill-column 79)
-  (setq python-enable-yapf-format-on-save t)
 
   (setq web-mode-markup-indent-offset 2)
 
@@ -303,9 +301,6 @@ you should place your code here."
   (sp-local-pair 'org-mode "(" ")")
   (sp-local-pair 'org-mode "{" "}")
   (sp-local-pair 'org-mode "$" "$")
-
-  (evil-define-key 'normal shell-mode-map "q" 'evil-window-delete)
-  (evil-define-key 'insert shell-mode-map "q" 'evil-window-delete)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
