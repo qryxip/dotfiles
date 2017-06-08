@@ -12,7 +12,7 @@ set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_behind '-'
 
 function fish_prompt
-  set_color green
+  set_color f92672
   printf '%s' (pwd)
   set_color normal
   printf '%s' (__fish_git_prompt)

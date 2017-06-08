@@ -1,19 +1,31 @@
-(defun my-rust/init ()
+(defun my-rust--init ()
   (interactive)
   (when (or (string-match ".*/.cargo/.*" (pwd))
             (string-match ".*.rustup/.*" (pwd)))
     (read-only-mode 1))
+  (setq rust-format-on-save t)
   (define-key company-active-map "\C-q" 'racer-describe)
-  (define-key company-search-map "\C-q" 'racer-describe))
+  (define-key company-search-map "\C-q" 'racer-describe)
+  (evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
+  (evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
+  (evil-define-key 'normal rust-mode-map "\C-]" 'racer-find-definition)
+  (evil-define-key 'normal rust-mode-map "\M-r" 'my-rust--run-main-or-bin)
+  (evil-define-key 'normal rust-mode-map "\M-t" 'my-rust--test-all-or-bin))
 
-(setq rust-format-on-save t)
+(defun my-rust--run-main-or-bin ()
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (cond ((string-match ".*/src/bin/\\(.+\\)\\.rs" file-name)
+           (cargo-process-run-bin (match-string 1 file-name)))
+          (t
+           (cargo-process-run)))))
 
-(evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
-(evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
-(evil-define-key 'normal rust-mode-map "\C-]" 'racer-find-definition)
-(evil-define-key 'normal rust-mode-map "\M-r" 'cargo-process-run)
-(evil-define-key 'normal rust-mode-map "\M-t" 'cargo-process-test)
+(defun my-rust--test-all-or-bin ()
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (cond ((string-match ".*/src/bin/\\(.+\\)\\.rs" file-name)
+           (cargo-process--start "Test" (format "cargo test --release --bin %s" (match-string 1 file-name))))
+          (t
+           (cargo-process-test)))))
 
-(add-hook 'rust-mode-hook 'my-rust/init)
-
-
+(add-hook 'rust-mode-hook 'my-rust--init)
