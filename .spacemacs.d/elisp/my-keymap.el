@@ -35,6 +35,15 @@
     (define-key m (kbd "C-q") 'company-show-doc-buffer)
     (define-key m (kbd "C-w") 'evil-delete-backward-word)))
 
+(defun my-keymap-toggle-flycheck-error-buffer ()
+  "toggle a flycheck error buffer."
+  (interactive)
+  (if (string-match-p "Flycheck errors" (format "%s" (window-list)))
+      (dolist (w (window-list))
+        (when (string-match-p "*Flycheck errors*" (buffer-name (window-buffer w)))
+          (delete-window w)))
+    (flycheck-list-errors)))
+
 (defun my-keymap/remap-helm-mode ()
   (interactive)
   (define-key helm-map [f8] 'help)
@@ -49,8 +58,8 @@
 (define-key evil-normal-state-map "\M-r" 'quickrun)
 (define-key evil-insert-state-map "\M-v" 'helm-imenu)
 (define-key evil-normal-state-map "\M-v" 'helm-imenu)
-(define-key evil-insert-state-map "\M-t" 'neotree-toggle)
-(define-key evil-normal-state-map "\M-t" 'neotree-toggle)
+(define-key evil-insert-state-map "\M-l" 'my-keymap-toggle-flycheck-error-buffer)
+(define-key evil-normal-state-map "\M-l" 'my-keymap-toggle-flycheck-error-buffer)
 
 (define-key evil-normal-state-map "\M-f" 'avy-migemo-goto-char-2)
 (define-key evil-normal-state-map "\C-h" 'evil-backward-char)
@@ -79,13 +88,6 @@
 (evil-define-key 'normal dired-mode-map "\C-j" 'dired-find-file)
 
 (evil-define-key 'normal quickrun--mode-map "q" 'evil-window-delete)
-
-;;(evil-define-key 'normal neotree-mode-map "q" 'neotree-hide)
-;;(evil-define-key 'normal neotree-mode-map (kbd "ESC") 'evil-window-next)
-;;(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
-;;(evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
-;;(evil-define-key 'normal neotree-mode-map "\C-j" 'neotree-enter)
-;;(evil-define-key 'normal neotree-mode-map "\M-t" 'neotree-hide)
 
 (define-key evil-normal-state-map "\M-w" 'helm-find-files)
 

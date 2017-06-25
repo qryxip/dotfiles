@@ -2,14 +2,12 @@
 
 if [ "$(xrandr | grep "HDMI1 connected")" ]; then
   xrandr --output HDMI1 --auto --left-of eDP1
-  bspc monitor eDP1 --remove
-  bspc monitor HDMI1 --remove
-  bspc monitor HDMI1 --reset-desktops I II III IV V VI VII VIII IX
-  bspc monitor eDP1 --reset-desktops X
+  bspc monitor HDMI1 -d I II III IV V VI VII VIII IX
+  bspc monitor eDP1 -d X
 else
   xrandr --output HDMI1 --off
   bspc monitor HDMI1 --remove
-  bspc monitor eDP1 --reset-desktops I II III IV V VI VII VIII IX X
+  bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
 fi
 
 feh --bg-fill /mnt/shared/Pictures/Wallpapers/blank/20140901.jpg
