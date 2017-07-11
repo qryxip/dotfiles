@@ -52,7 +52,9 @@
   (define-key helm-map "\C-w" 'evil-delete-backward-word))
 
 (setq evil-want-C-i-jump t)
-(add-hook 'evil-normal-state-entry-hook 'my-keymap/save-if-file-buffer)
+;;(add-hook 'evil-normal-state-entry-hook 'my-keymap/save-if-file-buffer)
+
+(define-key evil-normal-state-map [escape] 'my-keymap/save-if-file-buffer)
 
 (define-key evil-insert-state-map "\M-r" 'quickrun)
 (define-key evil-normal-state-map "\M-r" 'quickrun)
@@ -81,6 +83,7 @@
 
 (add-hook 'company-mode-hook 'my-keymap/remap-company-mode)
 (add-hook 'helm-mode-hook 'my-keymap/remap-helm-mode)
+(global-company-mode 1)
 
 (define-key swiper-map "\C-j" 'ivy-done)
 (define-key swiper-map "\C-u" 'my-keymap/delete-backward-word-10-times)
