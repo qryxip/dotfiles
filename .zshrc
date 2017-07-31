@@ -32,3 +32,4 @@ function +vi-git-config-user() {
     hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
 }
 
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/local/bin:$PATH
