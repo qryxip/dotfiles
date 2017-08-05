@@ -122,13 +122,10 @@ values."
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; somehow suddenly deleted
-
-   dotspacemacs-default-font '("ゆたぽん（コーディング）HeavyS"
-                               :size 12
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.0)
+   dotspacemacs-default-font (cond ((string-equal system-type "windows-nt")
+                                     '("Yutapon Coding Heavy Sl" :size 16 :weight normal :width normal :powerline-scale 1.0))
+                                   (t
+                                     '("ゆたぽん（コーディング）HeavyS" :size 12 :weight normal :width normal :powerline-scale 1.0)))
 
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-leader-key "M-m"

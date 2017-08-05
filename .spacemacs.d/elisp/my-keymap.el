@@ -100,4 +100,3 @@
 (global-set-key [M-kanji] 'ignore)
 
 (keyboard-translate ?\C-j ?\C-m)
-

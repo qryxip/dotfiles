@@ -4,6 +4,7 @@ keymap Global
 def key CapsLock = 0x3a
 def key Henkan = 0x79
 def key Muhenkan = 0x7b
+def key KatakanaHiragana = 0x70
 def key JISYen = 0x7d
 def key JISBackSlash = 0x73
 
@@ -14,13 +15,11 @@ key S-JISYen = S-BackSpace
 key S-C-JISYen = S-C-BackSpace
 mod shift += !JISBackSlash
 
-# Use Muhenkan, Henkan as Esc, Alt
 key *Henkan = RAlt
 mod alt += !!Henkan
-key *LWin = RAlt
-mod windows -= LWin
-mod alt += !!LWin
 key *Muhenkan = Esc
+key *KatakanaHiragana = RWin
+mod windows += !!KatakanaHiragana
 
 # Use RCtrl and RAlt as RWin
 key *RAlt = RWin
@@ -30,37 +29,30 @@ key *RCtrl = RWin
 mod control -= RCtrl
 mod windows += !!RCtrl
 
+key W-S-C = &WindowClose
+key W-R = W-BackSlash # Run Launchy.
+key W-T = &WindowMaximize
+key W-S = &WindowMaximize
+key IC-W-S-C = &WindowClose
+key IC-W-R = W-BackSlash
+key IC-W-T = &WindowMaximize
+key IC-W-S = &WindowMaximize
+
 #Use C-; to toggle IME
 key C-Semicolon= A-BackQuote
 key C-IC-Semicolon= A-BackQuote
 
-# Use C-h, C-w, C-j, C-i like Vim
-key C-H= BackSpace
-key C-W= C-BackSpace
-key C-J= Enter
-key C-M= Enter
+key C-D = Delete
+key C-H = BackSpace
+key C-W = C-BackSpace
+key C-J = Enter
+key C-M = Enter
 
 # Use Ctrl-npbf as arrow keys
 key C-N = Down
 key C-P = Up
 key C-B = Left
 key C-F = Right
-key C-IC-N = Down
-key C-IC-P = Up
-key C-IC-B = Left
-key C-IC-F = Right
-
-# IME
-key IC-Muhenkan = Enter
-key IL-*IC-Muhenkan = Enter A-BackQuote
-key IC-JISYen = BackSpace
-key C-IC-JISYen = Esc
-key C-IC-H = BackSpace
-key C-IC-W = Esc
-key C-IC-J = Enter
-key C-IC-M = Enter
-key C-IC-I = Tab
-
 window IDEA /idea64\.exe/: Global
 key C-I = Tab
 key C-W = C-W
@@ -68,6 +60,7 @@ window PYCHARM /pycharm64\.exe/: Global
 key C-I = Tab
 key C-W = C-W
 window GVIM /gvim\.exe/: Global
+key C-D = C-D
 key C-H = C-H
 key C-N = C-N
 key C-P = C-P
@@ -75,6 +68,7 @@ key C-B = C-B
 key C-F = C-F
 key C-W = C-W
 window EMACS /emacs\.exe/: Global
+key C-D = C-D
 key C-J = C-M
 key C-M = C-J
 key C-H = C-H
@@ -83,7 +77,9 @@ key C-N = C-N
 key C-P = C-P
 key C-B = C-B
 key C-F = C-F
+key C-T = S-T
 window MINTTY /mintty\.exe/: Global
+key C-D = C-D
 key C-J = C-M
 key C-M = C-J
 key C-H = C-H
