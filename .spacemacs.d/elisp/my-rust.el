@@ -6,8 +6,10 @@
   (when (or (string-match ".*/.cargo/.*" (pwd))
             (string-match ".*.rustup/.*" (pwd)))
     (read-only-mode 1))
-  (when (file-exists-p "/etc/centos-release")
-    (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"))
+  (setq racer-rust-src-path (cond ((string-equal system-type "windows-nt")
+                                   "~/.rustup/toolchains/stable-x86_64-pc-windows-gnu/lib/rustlib/src/rust/src")
+                                  (t
+                                   "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/")))
   (setq rust-format-on-save t)
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
@@ -44,7 +46,7 @@
                (with-current-buffer buffer
                  (erase-buffer))))
            (let ((problem-name (match-string 1 file-path)))
-             (term-run "snowchains" "*snowchains*" "judge" "cargo"
+             (term-run "snowchains" "*snowchains*" "judge-cargo"
                        (format "%s/%s.%s" my-rust--snowchains-dir problem-name my-rust--snowchains-ext)
                        problem-name)))
           ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
