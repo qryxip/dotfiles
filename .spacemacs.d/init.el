@@ -272,7 +272,7 @@ you should place your code here."
   (setq company-selection-wrap-around t)
   (setq max-specpdl-size 20000)
 
-  (prefer-coding-system 'utf-8-hfs-unix)
+  (prefer-coding-system 'utf-8-unix)
 
   ;(custom-set-variables '(yas-trigger-key "\C-m"))
   (auto-fill-mode -1)
