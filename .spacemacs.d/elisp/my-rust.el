@@ -24,18 +24,22 @@
                                          my-rust-insert-curly-brace
                                          my-rust-insert-bracket
                                          my-rust-insert-operator
-                                         )
+                                         my-rust-insert-alphabet
+                                         my-rust-insert-number)
                                        company-begin-commands))
   (evil-define-key 'insert rust-mode-map "," 'my-rust-insert-comma)
+  (evil-define-key 'insert rust-mode-map "|" 'my-rust-insert-bar)
   (evil-define-key 'insert rust-mode-map "'" 'my-rust-insert-single-quote)
   (evil-define-key 'insert rust-mode-map "\"" 'my-rust-insert-double-quote)
   (evil-define-key 'insert rust-mode-map "{" 'my-rust-insert-curly-brace)
   (dolist (c (string-to-list "(["))
     (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-bracket))
-  (dolist (c (string-to-list "+-*/=<>&|"))
+  (dolist (c (string-to-list "+-*/=>"))
     (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-operator))
-  (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
-    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-alphabet-or-number)))
+  (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-alphabet))
+  (dolist (c (string-to-list "0123456789"))
+    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-number)))
 
 (defun my-rust-run ()
   (interactive)
@@ -60,6 +64,20 @@
   (when (not (nth 3 (syntax-ppss (point))))
     (insert " ")))
 
+(defun my-rust-insert-bar ()
+  (interactive)
+  (cond ((and (member (preceding-char) (string-to-list "=("))
+              (not (nth 3 (syntax-ppss) (point))))
+         (insert " ||;")
+         (backward-char 2))
+        ((and (equal (preceding-char) (string-to-char " "))
+              (not (member (char-before (- (point) 1)) (string-to-list "=(")))
+              (not (nth 3 (syntax-ppss) (point))))
+         (insert "||;")
+         (backward-char 2))
+        (t
+         (self-insert-command))))
+
 (defun my-rust-insert-single-quote ()
   (interactive)
   (when (not (or (member (preceding-char) (string-to-list "& "))
@@ -83,7 +101,7 @@
 
 (defun my-rust-insert-bracket ()
   (interactive)
-  (when (and (member (preceding-char) (string-to-list "+-*/=<>&|"))
+  (when (and (member (preceding-char) (string-to-list "+-*/=&|"))
              (not (nth 3 (syntax-ppss (point)))))
     (insert " "))
   (self-insert-command 1))
@@ -95,9 +113,17 @@
     (insert " "))
   (self-insert-command 1))
 
-(defun my-rust-insert-alphabet-or-number ()
+(defun my-rust-insert-alphabet ()
   (interactive)
-  (when (and (member (preceding-char) (string-to-list "+-*/=<>&|:"))
+  (when (and (member (preceding-char) (string-to-list "+/=>:"))
+             (not (equal (char-before (- (point) 1)) (string-to-char ":")))
+             (not (nth 3 (syntax-ppss (point)))))
+    (insert " "))
+  (self-insert-command 1))
+
+(defun my-rust-insert-number ()
+  (interactive)
+  (when (and (member (preceding-char) (string-to-list "+*/=<>&|:"))
              (not (equal (char-before (- (point) 1)) (string-to-char ":")))
              (not (nth 3 (syntax-ppss (point)))))
     (insert " "))
