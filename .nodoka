@@ -38,10 +38,6 @@ key IC-W-R = W-BackSlash
 key IC-W-T = &WindowMaximize
 key IC-W-S = &WindowMaximize
 
-#Use C-; to toggle IME
-key C-Semicolon= A-BackQuote
-key C-IC-Semicolon= A-BackQuote
-
 key C-D = Delete
 key C-H = BackSpace
 key C-W = C-BackSpace

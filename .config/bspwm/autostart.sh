@@ -10,7 +10,7 @@ else
   bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
 fi
 
-feh --bg-fill /mnt/shared/Pictures/Wallpapers/girls-last-tour.jpg
+feh --bg-fill ~/wallpaper
 xrdb ~/.Xresources
 xset r rate 200 50
 xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
