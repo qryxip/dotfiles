@@ -17,7 +17,7 @@
 (set-face-attribute 'tabbar-default nil
                     :family (face-attribute 'default :family)
                     :background (face-attribute 'mode-line-inactive :background)
-                    :height 0.9)
+                    :height 1.0)
 
 (set-face-attribute 'tabbar-unselected nil
                     :background (face-attribute 'mode-line-inactive :background)

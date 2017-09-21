@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: std::cout << << std::endl;
+# key: println
+# --
+std::cout << $0 << std::endl;

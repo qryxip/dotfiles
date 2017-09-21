@@ -16,10 +16,13 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(ruby
+   dotspacemacs-configuration-layers '(
+                                       graphviz
                                        auto-completion
                                        better-defaults
-                                       c-c++
+                                       (c-c++ :variables
+                                              c-c++-default-mode-for-headers 'c++-mode
+                                              c-c++-enable-clang-support t)
                                        emacs-lisp
                                        (extra-langs :variables qml-indent-width 2)
                                        git
@@ -123,9 +126,9 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
 
    dotspacemacs-default-font (cond ((string-equal system-type "windows-nt")
-                                     '("Yutapon Coding Heavy Sl" :size 16 :weight normal :width normal :powerline-scale 1.0))
+                                     '("Yutapon Coding Heavy Sl" :size 16 :powerline-scale 1.0))
                                    (t
-                                     '("ゆたぽん（コーディング）HeavyS" :size 16 :weight normal :width normal :powerline-scale 1.0)))
+                                     '("Ricty Discord" :size 16 :weight bold :powerline-scale 1.0)))
 
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-leader-key "M-m"
@@ -250,6 +253,18 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (set-face-background 'default "#1b1d1e")
+  (set-face-background 'linum "#1b1d1e")
+  (set-face-background 'fringe "#1b1d1e")
+  (set-face-background 'mode-line "2b2d2e")
+  (set-face-background 'mode-line-inactive "#1b1d1e")
+  (set-face-background 'powerline-active1 "#1b1d1e")
+  (set-face-background 'powerline-active2 "#1b1d1e")
+  (set-face-background 'powerline-inactive1 "#1b1d1e")
+  (set-face-background 'powerline-inactive2 "#1b1d1e")
+
+  (setq powerline-default-separator 'nil)
+
   (require 'avy-migemo-e.g.swiper)
   (load-file "~/.spacemacs.d/elisp/my-keymap.el")
   (load-file "~/.spacemacs.d/elisp/autospace.el")
@@ -263,11 +278,9 @@ you should place your code here."
   (load-file "~/.spacemacs.d/elisp/my-qml.el")
   (load-file "~/.spacemacs.d/elisp/my-shell.el")
   (load-file "~/.spacemacs.d/elisp/my-org.el")
-  (add-hook 'c++-mode-hook (lambda () (load-file "~/.spacemacs.d/elisp/my-cc.el")))
+  (load-file "~/.spacemacs.d/elisp/my-c-c++.el")
 
-  (set-face-background 'default "#1b1d1e")
   ;;(set-frame-parameter nil 'alpha 97)
-  (setq powerline-default-separator 'nil)
 
   (setq company-minimum-prefix-length 1)
   (setq company-selection-wrap-around t)

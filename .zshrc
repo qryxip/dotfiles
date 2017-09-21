@@ -32,4 +32,6 @@ function +vi-git-config-user() {
     hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
 }
 
+export JAVA_HOME=/usr/lib/jvm/intellij-jdk
+export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/local/bin:$PATH

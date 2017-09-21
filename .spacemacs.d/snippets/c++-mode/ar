@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: std::array<T, N>
+# key: ar
+# --
+std::array<$0>

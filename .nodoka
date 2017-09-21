@@ -43,12 +43,12 @@ key C-H = BackSpace
 key C-W = C-BackSpace
 key C-J = Enter
 key C-M = Enter
-
-# Use Ctrl-npbf as arrow keys
 key C-N = Down
 key C-P = Up
 key C-B = Left
 key C-F = Right
+
+# Use Ctrl-npbf as arrow keys
 window IDEA /idea64\.exe/: Global
 key C-I = Tab
 key C-W = C-W
@@ -73,7 +73,6 @@ key C-N = C-N
 key C-P = C-P
 key C-B = C-B
 key C-F = C-F
-key C-T = S-T
 window MINTTY /mintty\.exe/: Global
 key C-D = C-D
 key C-J = C-M
@@ -87,3 +86,14 @@ key C-F = C-F
 window KINDLE /Kindle\.exe/: Global
 key J = Down
 key K = Up
+window MUSIKCUBE /musikcube\.exe/: Global
+key C-D = C-D
+key C-J = C-M
+key C-M = C-J
+key C-H = C-H
+key C-W = C-W
+key C-N = C-N
+key C-P = C-P
+key C-B = C-B
+key C-F = C-F
+

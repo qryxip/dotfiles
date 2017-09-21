@@ -14,6 +14,7 @@ inoremap <Up> <C-o>:action CodeCompletion<CR>
 inoremap <A-d> <C-DEL>
 
 nnoremap \f :action ReformatCode<CR>
+nnoremap \o :action OptimizeImports<CR>
 nnoremap \r :action RenameElement<CR>
 nnoremap <C-n> gt
 nnoremap <C-p> gT
@@ -23,5 +24,4 @@ nnoremap <Up> gT
 nnoremap <C-k> c$
 nnoremap <A-f> :action AceAction<CR>
 
-inoremap <Esc> <Esc>:action ReformatCode<CR>
 nnoremap <Esc> :action ReformatCode<CR>

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: for (size_t ...)
+# key: rep
+# --
+for (size_t $1 = 0; $1 < $0; ++$1)

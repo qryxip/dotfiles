@@ -17,29 +17,33 @@
   (evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
   (evil-define-key 'normal rust-mode-map "\C-]" 'racer-find-definition)
   (evil-define-key 'normal rust-mode-map "\M-r" 'my-rust-run)
-  (evil-define-key 'normal rust-mode-map "\M-t" 'cargo-process-test)
-  (setq company-begin-commands (append '(my-rust-insert-comma
-                                         my-rust-insert-single-quote
-                                         my-rust-insert-double-quote
-                                         my-rust-insert-curly-brace
-                                         my-rust-insert-bracket
-                                         my-rust-insert-operator
-                                         my-rust-insert-alphabet
-                                         my-rust-insert-number)
-                                       company-begin-commands))
-  (evil-define-key 'insert rust-mode-map "," 'my-rust-insert-comma)
-  (evil-define-key 'insert rust-mode-map "|" 'my-rust-insert-bar)
-  (evil-define-key 'insert rust-mode-map "'" 'my-rust-insert-single-quote)
-  (evil-define-key 'insert rust-mode-map "\"" 'my-rust-insert-double-quote)
-  (evil-define-key 'insert rust-mode-map "{" 'my-rust-insert-curly-brace)
-  (dolist (c (string-to-list "(["))
-    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-bracket))
-  (dolist (c (string-to-list "+-*/=>"))
-    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-operator))
-  (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-alphabet))
-  (dolist (c (string-to-list "0123456789"))
-    (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-number)))
+  (evil-define-key 'normal rust-mode-map "\M-t" 'my-rust-test)
+  (evil-define-key 'insert rust-mode-map "\C-j" 'my-rust-insert-newline)
+  (evil-define-key 'insert rust-mode-map "\C-m" 'my-rust-insert-newline)
+  (evil-define-key 'insert rust-mode-map ";" 'my-rust-insert-semicolon)
+  ;;(setq company-begin-commands (append '(my-rust-insert-comma
+  ;;                                       my-rust-insert-single-quote
+  ;;                                       my-rust-insert-double-quote
+  ;;                                       my-rust-insert-curly-brace
+  ;;                                       my-rust-insert-bracket
+  ;;                                       my-rust-insert-operator
+  ;;                                       my-rust-insert-alphabet
+  ;;                                       my-rust-insert-number)
+  ;;                                     company-begin-commands))
+  ;;(evil-define-key 'insert rust-mode-map "," 'my-rust-insert-comma)
+  ;;(evil-define-key 'insert rust-mode-map "|" 'my-rust-insert-bar)
+  ;;(evil-define-key 'insert rust-mode-map "'" 'my-rust-insert-single-quote)
+  ;;(evil-define-key 'insert rust-mode-map "\"" 'my-rust-insert-double-quote)
+  ;;(evil-define-key 'insert rust-mode-map "{" 'my-rust-insert-curly-brace)
+  ;;(dolist (c (string-to-list "(["))
+  ;;  (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-bracket))
+  ;;(dolist (c (string-to-list "+-*/=>"))
+  ;;  (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-operator))
+  ;;(dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+  ;;  (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-alphabet))
+  ;;(dolist (c (string-to-list "0123456789"))
+  ;;  (evil-define-key 'insert rust-mode-map (char-to-string c) 'my-rust-insert-number))
+  )
 
 (defun my-rust-run ()
   (interactive)
@@ -50,13 +54,36 @@
                (with-current-buffer buffer
                  (erase-buffer))))
            (let ((problem-name (match-string 1 file-path)))
-             (term-run "snowchains" "*snowchains*" "judge-cargo"
-                       (format "%s/%s.%s" my-rust--snowchains-dir problem-name my-rust--snowchains-ext)
-                       problem-name)))
+             (term-run "snowchains" "*snowchains*" "judge" problem-name)))
           ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
            (cargo-process-run-bin (match-string 1 file-path)))
           (t
            (cargo-process-run)))))
+
+(defun my-rust-test ()
+  (interactive)
+  (let ((file-path (buffer-file-name)))
+    (cond ((string-match (format "^.*/src/bin/\\(.+\\)\\.rs$") file-path)
+           (cargo-process--start "Test Bin" (concat "cargo test --bin " (match-string 1 file-path))))
+          (t
+           (cargo-process-test)))))
+
+(defun my-rust-insert-semicolon ()
+  (interactive)
+  (self-insert-command 1)
+  (when (and (eolp)
+             (not (or (nth 3 (syntax-ppss))
+                      (nth 5 (syntax-ppss)))))
+    (rust-format-buffer)))
+
+(defun my-rust-insert-newline ()
+  (interactive)
+  (when (and (eolp)
+             (member (preceding-char) (string-to-list ";,"))
+             (not (or (nth 3 (syntax-ppss))
+                      (nth 5 (syntax-ppss)))))
+    (rust-format-buffer))
+  (newline-and-indent))
 
 (defun my-rust-insert-comma ()
   (interactive)
@@ -66,17 +93,26 @@
 
 (defun my-rust-insert-bar ()
   (interactive)
-  (cond ((and (member (preceding-char) (string-to-list "=("))
-              (not (nth 3 (syntax-ppss) (point))))
+  (cond ((and (or (equal (preceding-char) (string-to-char "="))
+                  (string-equal "= move" (buffer-substring (- (point) 6) (point))))
+              (not (nth 3 (syntax-ppss (point)))))
          (insert " ||;")
          (backward-char 2))
-        ((and (equal (preceding-char) (string-to-char " "))
-              (not (member (char-before (- (point) 1)) (string-to-list "=(")))
-              (not (nth 3 (syntax-ppss) (point))))
-         (insert "||;")
-         (backward-char 2))
+        ((and (string-equal "(move" (buffer-substring (- (point) 5) (point)))
+              (not (nth 3 (syntax-ppss (point)))))
+         (insert " ||")
+         (backward-char 1))
+        ((and (equal (preceding-char) (string-to-char "("))
+              (not (nth 3 (syntax-ppss (point)))))
+         (insert "||")
+         (backward-char 1))
+        ;; ((and (equal (preceding-char) (string-to-char " "))
+        ;;       (not (member (char-before (- (point) 1)) (string-to-list "=(")))
+        ;;       (not (nth 3 (syntax-ppss (point)))))
+        ;;  (insert "||")
+        ;;  (backward-char 2))
         (t
-         (self-insert-command))))
+         (self-insert-command 1))))
 
 (defun my-rust-insert-single-quote ()
   (interactive)
@@ -101,7 +137,7 @@
 
 (defun my-rust-insert-bracket ()
   (interactive)
-  (when (and (member (preceding-char) (string-to-list "+-*/=&|"))
+  (when (and (member (preceding-char) (string-to-list "+-*/=|"))
              (not (nth 3 (syntax-ppss (point)))))
     (insert " "))
   (self-insert-command 1))
@@ -129,8 +165,6 @@
     (insert " "))
   (self-insert-command 1))
 
-(defconst my-rust--snowchains-crate "rust-contest")
-(defconst my-rust--snowchains-dir "snowchains")
-(defconst my-rust--snowchains-ext "toml")
+(defconst my-rust--snowchains-crate "contest/rust")
 
 (add-hook 'rust-mode-hook 'my-rust-init)

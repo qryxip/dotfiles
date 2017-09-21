@@ -20,6 +20,8 @@
   (when (not (or (string-match "\\*.+\\*" (buffer-name))
                  (string-match "intero:backend:.*" (buffer-name))
                  (eq major-mode 'dired-mode)))
+    (when (string-equal major-mode "c++-mode")
+      (clang-format-buffer))
     (save-buffer)))
 
 (defun my-keymap/remap-company-mode ()
