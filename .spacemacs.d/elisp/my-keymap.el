@@ -24,6 +24,14 @@
       (clang-format-buffer))
     (save-buffer)))
 
+(defun my-keymap-toggle-flycheck-error-buffer ()
+  (interactive)
+  (if (string-match-p "Flycheck errors" (format "%s" (window-list)))
+      (dolist (w (window-list))
+        (when (string-match-p "*Flycheck errors*" (buffer-name (window-buffer w)))
+          (delete-window w)))
+    (flycheck-list-errors)))
+
 (defun my-keymap/remap-company-mode ()
   (interactive)
   (dolist (m (list company-active-map company-search-map))
@@ -36,15 +44,6 @@
     (define-key m (kbd "C-p") 'company-select-previous)
     (define-key m (kbd "C-q") 'company-show-doc-buffer)
     (define-key m (kbd "C-w") 'evil-delete-backward-word)))
-
-(defun my-keymap-toggle-flycheck-error-buffer ()
-  "toggle a flycheck error buffer."
-  (interactive)
-  (if (string-match-p "Flycheck errors" (format "%s" (window-list)))
-      (dolist (w (window-list))
-        (when (string-match-p "*Flycheck errors*" (buffer-name (window-buffer w)))
-          (delete-window w)))
-    (flycheck-list-errors)))
 
 (defun my-keymap/remap-helm-mode ()
   (interactive)
@@ -64,6 +63,12 @@
 (define-key evil-normal-state-map "\M-v" 'helm-imenu)
 (define-key evil-insert-state-map "\M-l" 'my-keymap-toggle-flycheck-error-buffer)
 (define-key evil-normal-state-map "\M-l" 'my-keymap-toggle-flycheck-error-buffer)
+(define-key evil-insert-state-map "\M-g" 'magit-status)
+(define-key evil-normal-state-map "\M-g" 'magit-status)
+(define-key evil-insert-state-map "\M-z" 'kill-this-buffer)
+(define-key evil-normal-state-map "\M-z" 'kill-this-buffer)
+(define-key evil-insert-state-map "\M-c" 'delete-other-windows)
+(define-key evil-normal-state-map "\M-c" 'delete-other-windows)
 
 (define-key evil-normal-state-map "\M-f" 'avy-migemo-goto-char-2)
 (define-key evil-normal-state-map "\C-h" 'evil-backward-char)
@@ -91,7 +96,6 @@
 (define-key swiper-map "\C-u" 'my-keymap/delete-backward-word-10-times)
 
 (evil-define-key 'normal dired-mode-map "\C-j" 'dired-find-file)
-
 (evil-define-key 'normal quickrun--mode-map "q" 'evil-window-delete)
 
 (define-key evil-normal-state-map "\M-w" 'helm-find-files)

@@ -1,4 +1,4 @@
-(defun my-haskell/init ()
+(defun my-haskell-init ()
   (interactive)
   (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
     (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-non-operator))
@@ -13,18 +13,30 @@
                                          my-haskell/insert-pair
                                          my-haskell/insert-commna
                                          my-haskell/insert-dot)
-                                       company-begin-commands)))
+                                       company-begin-commands))
+  (evil-define-key 'normal haskell-mode-map "\M-r" 'my-haskell-run))
 
+(defun my-haskell-run ()
+  (interactive)
+  (cond ((string-equal (buffer-substring-no-properties 1 26) "#!/usr/bin/env runhaskell")
+         (quickrun))
+        (t
+         (let ((buffer (get-buffer "*stack-run*")))
+           (when buffer
+             (with-current-buffer buffer
+               (erase-buffer))))
+         (term-run "stack" "*stack-run*" "run"))))
 
 (defun my-haskell/insert-non-operator ()
   (interactive)
   (let ((p (point)))
     (when (and (member (preceding-char) (string-to-list ":!#$%&*+./<=>?@^|-~)],"))
-               (not (nth 3 (syntax-ppss p)))
-               (not (equal p (line-beginning-position)))
-               (not (my-haskell--behind-number-dot?))
-               (not (my-haskell--behind-dot-dot?))
-               (not (my-haskell--behind-module-dot?)))
+               (not (or (nth 3 (syntax-ppss))
+                        (nth 5 (syntax-ppss))
+                        (equal p (line-beginning-position))
+                        (my-haskell--behind-number-dot?)
+                        (my-haskell--behind-dot-dot?)
+                        (my-haskell--behind-module-dot?))))
       (insert " "))
     (self-insert-command 1)))
 
@@ -126,4 +138,4 @@
          (and (equal (preceding-char) 46)
               (my-haskell--behind-module-dot? (- (point) 1))))))
 
-(add-hook 'haskell-mode-hook 'my-haskell/init)
+(add-hook 'haskell-mode-hook 'my-haskell-init)
