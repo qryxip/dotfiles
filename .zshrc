@@ -35,3 +35,4 @@ function +vi-git-config-user() {
 export JAVA_HOME=/usr/lib/jvm/intellij-jdk
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/local/bin:$PATH
+source /usr/share/nvm/init-nvm.sh

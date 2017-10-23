@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sc.pairs(n)
+# key: scp
+# --
+sc.pairs($0)

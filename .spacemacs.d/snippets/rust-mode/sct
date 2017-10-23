@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sc.trios()
+# key: sct
+# --
+sc.trios($0)

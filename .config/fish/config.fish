@@ -1,6 +1,8 @@
 set fish_greeting
 set fish_prompt_pwd_dir_length 0
 
+alias nvm='zsh -c "nvm"'
+
 function fish_prompt
   set_color 1564a1
   printf '%s@%s' (whoami) (hostname)
