@@ -6,6 +6,7 @@
   (when (or (string-match ".*/.cargo/.*" (pwd))
             (string-match ".*.rustup/.*" (pwd)))
     (read-only-mode 1))
+  (setenv "LD_LIBRARY_PATH" (shell-command-to-string "printf $(rustup run nightly rustc --print sysroot)/lib"))
   (setq racer-rust-src-path (cond ((string-equal system-type "windows-nt")
                                    "~/.rustup/toolchains/stable-x86_64-pc-windows-gnu/lib/rustlib/src/rust/src")
                                   (t
@@ -68,6 +69,8 @@
              (term-run "snowchains" "*snowchains*" "submit" problem-name)))
           ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
            (cargo-process-run-bin (match-string 1 file-path)))
+          ((string-match "^.*/examples/\\(.+\\).rs$" file-path)
+           (cargo-process-run-example (match-string 1 file-path)))
           (t
            (cargo-process-run)))))
 

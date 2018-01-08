@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: printor
+# key: printor
+# --
+match solve($0) {
+    Some(x) => println!("{}", x),
+    None => println!("$1"),
+}

@@ -29,10 +29,12 @@ export RPROMPT='%{${reset_color}%}${vcs_info_msg_0_}'
 zstyle ':vcs_info:*git+set-message:*' hooks git-config-user
 
 function +vi-git-config-user() {
-    hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
+  hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
 }
 
 export JAVA_HOME=/usr/lib/jvm/intellij-jdk
 export _JAVA_AWT_WM_NONREPARENTING=1
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/local/bin:$PATH
+export QT_QPA_PLATFORMTHEME=kde
+export LD_LIBRARY_PATH=$(rustup run nightly rustc --print sysroot)/lib
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/venv/bin:$HOME/local/bin:$PATH
 source /usr/share/nvm/init-nvm.sh

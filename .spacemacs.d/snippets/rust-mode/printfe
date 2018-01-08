@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: printfe
+# key: printfe
+# --
+let stdout = io::stdout();
+let mut stdout = BufWriter::new(stdout.lock());
+for x in solve($0).into_iter() {
+    writeln!(stdout, "{}", x).unwrap();
+}
+stdout.flush().unwrap();

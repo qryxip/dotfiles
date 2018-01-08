@@ -13,6 +13,7 @@ fi
 feh --bg-fill ~/wallpaper
 xrdb ~/.Xresources
 xset r rate 200 50
+xset -b
 xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
 xcompmgr -c &
 killall yabar
@@ -21,3 +22,5 @@ sleep 0.2
 bspc config bottom_padding 0
 bspc config left_padding 0
 bspc config right_padding 0
+
+compton -b --config ~/.config/compton/compton.conf

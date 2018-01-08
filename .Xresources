@@ -1,5 +1,5 @@
 Xft.dpi: 120
-URxvt.font: xft:Ricty Diminished Discord:size=9:weight=130:bitmap=true
+URxvt.font: xft:Ricty Diminished Discord:size=9:weight=130
 URxvt.depth: 32
 URxvt.scrollBar: False
 URxvt.foreground: White

@@ -1,12 +1,11 @@
 set fish_greeting
 set fish_prompt_pwd_dir_length 0
-
-alias nvm='zsh -c "nvm"'
+export LD_LIBRARY_PATH=(rustup run nightly rustc --print sysroot)/lib
 
 function fish_prompt
-  set_color 1564a1
+  set_color 5fff87 # 84
   printf '%s@%s' (whoami) (hostname)
-  set_color f92672
+  set_color ff0087 # 198
   printf ' %s' (prompt_pwd)
   set_color normal
   printf ' $ '
@@ -24,10 +23,7 @@ function en
   /usr/bin/env emacsclient -nw -a '' $argv
 end
 
-function emacs
-  /usr/bin/env emacsclient -n $argv
+function r
+  ranger $argv
 end
 
-function emacs-nw
-  /usr/bin/env emacsclient -nw -a "" $argv
-end
