@@ -36,5 +36,5 @@ export JAVA_HOME=/usr/lib/jvm/intellij-jdk
 export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME=kde
 export LD_LIBRARY_PATH=$(rustup run nightly rustc --print sysroot)/lib
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/venv/bin:$HOME/local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/venv/bin:$HOME/local/bin:$PATH
 source /usr/share/nvm/init-nvm.sh
