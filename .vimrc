@@ -67,6 +67,7 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_underbar_completion = 1
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#force_omni_input_patterns = {}
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 let g:seiya_auto_enable = !has('gui_running')
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
