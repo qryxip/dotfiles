@@ -1,17 +1,6 @@
-(require 'cargo)
-(require 'term-run)
-
-(defun my-rust-init ()
-  (interactive)
-  (when (or (string-match ".*/.cargo/.*" (pwd))
-            (string-match ".*.rustup/.*" (pwd)))
-    (read-only-mode 1))
-  (setenv "LD_LIBRARY_PATH" (shell-command-to-string "printf $(rustup run nightly rustc --print sysroot)/lib"))
-  (setq racer-rust-src-path (cond ((string-equal system-type "windows-nt")
-                                   "~/.rustup/toolchains/stable-x86_64-pc-windows-gnu/lib/rustlib/src/rust/src")
-                                  (t
-                                   "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/")))
-  (setq rust-format-on-save t)
+(with-eval-after-load 'rust-mode
+  (setenv "LD_LIBRARY_PATH" (shell-command-to-string "printf '%s' $(rustup run nightly rustc --print sysroot)/lib"))
+  (setq racer-rust-src-path (shell-command-to-string "printf '%s/lib/rustlib/src/rust/src' $(rustc --print sysroot)"))
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
   (evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
@@ -32,7 +21,13 @@
                                          my-rust-insert-equal
                                          my-rust-insert-bar
                                          my-rust-insert-curly-brace)
-                                       company-begin-commands))
+                                       company-begin-commands)))
+
+(defun my-rust-init ()
+  (interactive)
+  (when (or (string-match ".*/.cargo/.*" (pwd))
+            (string-match ".*.rustup/.*" (pwd)))
+    (read-only-mode 1))
   ;;(setq company-begin-commands (append '(my-rust-insert-comma
   ;;                                       my-rust-insert-single-quote
   ;;                                       my-rust-insert-double-quote
@@ -196,7 +191,7 @@
 
 (defun my-rust-insert-single-quote ()
   (interactive)
-  (when (not (or (member (preceding-char) (string-to-list "&([< "))
+  (when (not (or (member (preceding-char) (string-to-list "br&([< "))
                  (nth 3 (syntax-ppss))
                  (nth 5 (syntax-ppss))))
     (insert " "))
@@ -204,7 +199,7 @@
 
 (defun my-rust-insert-double-quote ()
   (interactive)
-  (when (not (or (member (preceding-char) (string-to-list "([ "))
+  (when (not (or (member (preceding-char) (string-to-list "br([ "))
                  (nth 3 (syntax-ppss))
                  (nth 5 (syntax-ppss))))
     (insert " "))

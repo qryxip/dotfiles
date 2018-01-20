@@ -19,7 +19,11 @@ function fish_prompt
 end
 
 function ll
-  /usr/bin/env exa -l $argv
+  if [ -e /c/Windows ]
+    /usr/bin/env ls -l $argv
+  else
+    /usr/bin/env exa -l $argv
+  end
 end
 
 function e
@@ -30,10 +34,6 @@ function en
   /usr/bin/env emacsclient -nw -a '' $argv
 end
 
-function p
-  /usr/bin/env peco $argv
-end
-
 function r
-  ranger $argv
+  /usr/bin/env ranger $argv
 end
