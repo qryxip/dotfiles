@@ -1,9 +1,10 @@
 .DEFAULT: update
-.PHONY: update archlinux
+.PHONY: update linux archlinux
 
-update: common archlinux
+update: linux archlinux
 
-common:
+linux:
+ifeq ($(shell uname), Linux)
 	mkdir -p ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger
 	if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
@@ -21,14 +22,17 @@ common:
 	ln -sf $(shell pwd)/.config/cmus/rc ~/.config/cmus
 	ln -sf $(shell pwd)/.config/fish/config.fish ~/.config/fish/
 	ln -sf $(shell pwd)/.config/ranger/rc.conf ~/.config/ranger/
+endif
 
 archlinux:
-ifeq ($(wildcard /etc/arch-release),/etc/arch-release)
+ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	mkdir -p ~/.config/cmus
 	sudo mkdir -p /usr/local/share/kbd/keymaps
 	sudo mkdir -p /usr/local/share/xkeysnail
 	sudo pacman -S --needed python-pip
 	if [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
+	ln -sf $(shell pwd)/archlinux/HOME/xkb.sh ~/
+	ln -sf $(shell pwd)/archlinux/HOME/.xkb ~/
 	ln -sf $(shell pwd)/archlinux/HOME/.config/bspwm ~/.config/
 	ln -sf $(shell pwd)/archlinux/HOME/.config/libskk ~/.config/
 	ln -sf $(shell pwd)/archlinux/HOME/.config/sxhkd ~/.config/

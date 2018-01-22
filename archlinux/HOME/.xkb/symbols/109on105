@@ -1,0 +1,5 @@
+partial modifier_keys
+xkb_symbols "backslash_to_shift" {
+    replace key <AB11> {[ Shift_R ]};
+    replace key <RTSH> {[ Delete ]};
+};
