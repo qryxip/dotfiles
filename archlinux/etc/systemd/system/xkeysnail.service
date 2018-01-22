@@ -1,0 +1,14 @@
+[Unit]
+Description=xkeysnail
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/xkeysnail /usr/local/share/xkeysnail/config.py
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitBurst=0
+Environment=DISPLAY=:0.0
+
+[Install]
+WantedBy=default.target
