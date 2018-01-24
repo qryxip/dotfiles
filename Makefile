@@ -25,7 +25,6 @@ ifeq ($(shell uname), Linux)
 endif
 
 archlinux:
-<<<<<<< HEAD
 ifeq ($(wildcard /etc/arch-release),/etc/arch-release)
 	mkdir -p ~/.config/cmus
 	sudo mkdir -p /usr/local/share/kbd/keymaps
