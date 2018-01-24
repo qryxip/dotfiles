@@ -1,9 +1,13 @@
 .DEFAULT: update
-.PHONY: update archlinux
+.PHONY: update linux archlinux
 
-update: common archlinux
+update: linux archlinux
 
-common:
+linux:
+ifeq ($(shell uname), Linux)
+	mkdir -p ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger
+	if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
+	if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
 	ln -sf $(shell pwd)/.eslintrc ~/
 	ln -sf $(shell pwd)/.gvimrc ~/
 	ln -sf $(shell pwd)/.ideavimrc ~/
@@ -15,15 +19,17 @@ common:
 	ln -sf $(shell pwd)/.spacemacs.d ~/
 	ln -sf $(shell pwd)/.vim/snippets ~/.vim/
 	ln -sf $(shell pwd)/.config/nvim ~/.config/
-	mkdir -p ~/.config/cmus ~/.config/fish ~/.config/ranger
 	ln -sf $(shell pwd)/.config/cmus/rc ~/.config/cmus
 	ln -sf $(shell pwd)/.config/fish/config.fish ~/.config/fish/
 	ln -sf $(shell pwd)/.config/ranger/rc.conf ~/.config/ranger/
-	if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
-	if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
+endif
 
 archlinux:
+<<<<<<< HEAD
 ifeq ($(wildcard /etc/arch-release),/etc/arch-release)
+	mkdir -p ~/.config/cmus
+	sudo mkdir -p /usr/local/share/kbd/keymaps
+	sudo mkdir -p /usr/local/share/xkeysnail
 	sudo pacman -S --needed archlinux-keyring
 	sudo pacman -S --needed dosfstools efibootmgr ntfs-3g
 	sudo pacman -S --needed  expac jshon wget
@@ -35,10 +41,14 @@ ifeq ($(wildcard /etc/arch-release),/etc/arch-release)
 	  makepkg && \
 	  echo "todo: sudo pacman -U"; \
 	fi
+	sudo pacman -S --needed python-pip
+	if [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
 	sudo pacman -S --needed openssh
 	sudo pacman -S --needed xf86-video-intel
 	sudo pacman -S --needed mesa lightdm bspwm sxhkd
 	sudo systemctl enable lightdm.service
+	ln -sf $(shell pwd)/archlinux/HOME/xkb.sh ~/
+	ln -sf $(shell pwd)/archlinux/HOME/.xkb ~/
 	ln -sf $(shell pwd)/archlinux/HOME/.config/bspwm ~/.config/
 	ln -sf $(shell pwd)/archlinux/HOME/.config/libskk ~/.config/
 	ln -sf $(shell pwd)/archlinux/HOME/.config/sxhkd ~/.config/
@@ -46,5 +56,7 @@ ifeq ($(wildcard /etc/arch-release),/etc/arch-release)
 	ln -sf $(shell pwd)/archlinux/HOME/.config/cmus/rc ~/.config/cmus/
 	sudo cp archlinux/etc/locale.conf /etc/
 	sudo cp archlinux/etc/vconsole.conf /etc/
+	sudo cp archlinux/etc/systemd/system/xkeysnail.service /etc/systemd/system/
 	sudo cp archlinux/usr/local/share/kbd/keymaps/personal.map /usr/local/share/kbd/keymaps/
+	sudo cp archlinux/usr/local/share/xkeysnail/config.py /usr/local/share/xkeysnail/
 endif

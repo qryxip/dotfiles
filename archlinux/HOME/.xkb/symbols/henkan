@@ -1,0 +1,8 @@
+hidden partial modifier_keys
+xkb_symbols "escape" {
+    key <HENK> { type[Group1]="TWO_LEVEL", [ Escape, Escape ] };
+};
+
+xkb_symbols "alt" {
+    key <HENK> { [ Alt_R, Meta_R ] };
+};

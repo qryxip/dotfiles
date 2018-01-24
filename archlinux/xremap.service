@@ -1,0 +1,15 @@
+[Unit]
+Description=xremap
+
+[Service]
+KillMode=process
+ExecStart=/home/ryo/.local/bin/xremap /home/ryo/.config/xremap/main.rb
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitBurst=0
+
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target

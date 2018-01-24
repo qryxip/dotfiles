@@ -1,0 +1,13 @@
+hidden partial modifier_keys
+xkb_symbols "rwin" {
+    key <CAPS> { [ Control_L ] };
+    key <LCTL> { [ Super_L ] };
+    key <LWIN> { [ Alt_L ] };
+    key <RCTL> { [ Super_R ] };
+    key <RALT> { [ Super_R ] };
+    key <HKTG> { [ Super_R ] };
+    key <AE13> { [ BackSpace ] };
+    modifier_map Control { Control_L, Control_R };
+    modifier_map Mod1 { Alt_L, Alt_R };
+    modifier_map Mod4 { Super_L, Super_R };
+};

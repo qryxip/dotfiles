@@ -1,0 +1,10 @@
+xkb_keymap {
+    xkb_keycodes  { include "evdev+aliases(qwerty)" };
+    xkb_types     { include "complete" };
+    xkb_compat    { include "complete" };
+    xkb_symbols   {
+        include "pc+us+inet(evdev)"
+        include "henkan(alt)+muhenkan(escape)+109on105(backslash_to_shift)+rwin(rwin)"
+    };
+    xkb_geometry  { include "pc(pc105)" };
+};
