@@ -19,12 +19,6 @@ ifeq ($(shell uname), Linux)
 	@ln -sf $(shell pwd)/.vim/snippets ~/.vim/
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	@if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
-	@if [ ! -d ~/venv ]; then \
-	  echo 'Creating ~/venv ...' && \
-	  python3 -m venv ~/venv && \
-	  ~/venv/bin/pip3 install -U ranger-fm && \
-	  ranger --copy-config=all; \
-	fi
 endif
 
 archlinux: linux
@@ -60,15 +54,15 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	fi
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g
 	@sudo pacman -S --needed --noconfirm networkmanager openssh
-	@sudo pacman -S --needed --noconfirm fish tmux tree jq
+	@sudo pacman -S --needed --noconfirm fish tmux tree jq vim emacs
 	@sudo pacman -S --needed --noconfirm python-pip jdk9-openjdk gradle
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm xf86-video-intel mesa xorg
 	@sudo pacman -S --needed --noconfirm lightdm lightdm-gtk-greeter light-locker bspwm sxhkd
 	@sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pavucontrol pamixer
 	@sudo pacman -S --needed --noconfirm fcitx-skk skk-jisyo fcitx-configtool
-	@sudo pacman -S --needed --noconfirm feh w3m xcompmgr
-	@sudo pacman -S --needed --noconfirm rxvt-unicode firefox keepassxc qpdfview
+	@sudo pacman -S --needed --noconfirm feh w3m xcompmgr xsel
+	@sudo pacman -S --needed --noconfirm rxvt-unicode firefox chromium keepassxc qpdfview
 	@sudo pacman -S --needed --noconfirm awesome-terminal-fonts otf-ipafont
 	@if [ ! -f /usr/share/fonts/OTF/ipaexm.ttf ]; then packer -S otf-ipaexfont; fi
 	@if [ ! -f /usr/share/fonts/TTF/GenShinGothic-Regular.ttf ]; then packer -S ttf-genshin-gothic; fi
@@ -77,5 +71,13 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
 	@if [ ! -f /usr/bin/cmigemo ]; then packer -S cmigemo-git; fi
 	@if [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
+	@if [ ! -d ~/venv ]; then \
+	  echo 'Creating ~/venv ...' && \
+	  /usr/bin/python3 -m venv ~/venv && \
+	  ~/venv/bin/pip3 install ranger-fm tw2.pygmentize && \
+	  ranger --copy-config=all; \
+	fi
+	@echo 'Enabling systemd units...'
+	@sudo systemctl enable ntpd.service
 	@sudo systemctl enable lightdm.service
 endif

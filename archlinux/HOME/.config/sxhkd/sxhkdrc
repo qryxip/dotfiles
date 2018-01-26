@@ -2,6 +2,9 @@ super + Return
 	urxvt -e /usr/bin/tmux
 
 super + r
+	j4-dmenu-desktop
+
+super + shift r
 	dmenu_run
 
 super + e
