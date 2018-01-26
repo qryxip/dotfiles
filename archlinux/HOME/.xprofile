@@ -1,0 +1,11 @@
+export LANG=ja_JP.UTF-8
+export LANGUAGE=ja_JP.UTF-8
+export GTK_THEME=Numix
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export XDG_CONFIG_HOME="$HOME/.config"
+xset r rate 200 50
+xset -b
+light-locker --lock-on-suspend &
+fcitx-autostart

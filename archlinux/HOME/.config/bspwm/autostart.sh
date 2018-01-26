@@ -10,6 +10,7 @@ else
   bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
 fi
 
+xbacklight = 100
 feh --bg-fill ~/wallpaper
 xrdb ~/.Xresources
 xset r rate 200 50

@@ -403,3 +403,17 @@ you should place your code here."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ace-link ace-jump-helm-line ac-ispell yasnippet which-key undo-tree org-plus-contrib minimap json-mode js2-mode hydra graphviz-dot-mode evil-unimpaired f s dash diff-hl company-statistics company coffee-mode auctex async aggressive-indent adaptive-wrap ace-window avy monokai-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
