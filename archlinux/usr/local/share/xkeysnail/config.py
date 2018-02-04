@@ -24,5 +24,15 @@ xkeysnail.transform.define_keymap(re.compile('Firefox|Chromium'), {
     K('C-m'): Key.ENTER,
 }, 'Firefox and Chromium')
 
+xkeysnail.transform.define_keymap(re.compile('FocusProxy'), {
+    K('C-n'): Key.DOWN,
+    K('C-p'): Key.UP,
+    K('C-b'): Key.LEFT,
+    K('C-f'): Key.RIGHT,
+    K('C-j'): Key.ENTER,
+    K('C-m'): Key.ENTER,
+    K('C-h'): Key.BACKSPACE,
+}, 'App using FocusProxy (i.e. IntelliJ IDEA)')
+
 subprocess.check_call(['xset', 'r', 'rate', '200', '50'])
 subprocess.check_call(['xset', '-b'])

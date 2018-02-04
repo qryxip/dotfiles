@@ -13,10 +13,11 @@ fi
 xbacklight = 100
 feh --bg-fill ~/wallpaper
 xrdb ~/.Xresources
-xset r rate 200 50
-xset -b
-xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
-xcompmgr -c &
+if ! ps cax | grep xkeysnail > /dev/null; then
+  xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
+  xset r rate 200 50
+  xset -b
+fi
 killall yabar
 yabar &
 sleep 0.2

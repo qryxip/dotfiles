@@ -9,8 +9,8 @@ inoremap <C-b> <Left>
 inoremap <C-i> <C-o>:action NextTemplateVariable<CR>
 inoremap <C-n> <C-o>:action CodeCompletion<CR>
 inoremap <C-p> <C-o>:action CodeCompletion<CR>
-inoremap <Down> <C-o>:action CodeCompletion<CR>
-inoremap <Up> <C-o>:action CodeCompletion<CR>
+"inoremap <Down> <C-o>:action CodeCompletion<CR>
+"inoremap <Up> <C-o>:action CodeCompletion<CR>
 inoremap <A-d> <C-DEL>
 
 nnoremap \f :action ReformatCode<CR>
@@ -20,6 +20,8 @@ nnoremap <C-n> gt
 nnoremap <C-p> gT
 nnoremap <Down> gt
 nnoremap <Up> gT
+nnoremap <Left> <C-b>
+nnoremap <Right> <C-f>
 
 nnoremap <C-k> c$
 nnoremap <A-f> :action AceAction<CR>
