@@ -1,10 +1,9 @@
 .DEFAULT: update
-.PHONY: update unix archlinux
+.PHONY: update common linux archlinux
 
 update: archlinux
 
-unix:
-ifeq ($(shell uname), Linux)
+common:
 	@echo 'Making directories...'
 	@mkdir -p ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
@@ -19,13 +18,9 @@ ifeq ($(shell uname), Linux)
 	@ln -sf $(shell pwd)/.vim/snippets ~/.vim/
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	@if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
-endif
 
-archlinux: unix
-ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
-	@echo 'Making directories...'
-	@mkdir -p ~/.config/cmus
-	@sudo mkdir -p /usr/local/share/kbd/keymaps /usr/local/share/xkeysnail
+linux: common
+ifeq ($(shell uname), Linux)
 	@echo 'Creating symlinks...'
 	@for name in xkb.sh .xprofile .xkb; do \
 	  ln -sf $$(pwd)/archlinux/HOME/$$name ~/; \
@@ -33,7 +28,12 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@for name in bspwm compton libskk sxhkd yabar; do \
 	  ln -sf $$(pwd)/archlinux/HOME/.config/$$name ~/.config/; \
 	done
-	@ln -sf $(shell pwd)/archlinux/HOME/.config/cmus/rc ~/.config/cmus/
+endif
+
+archlinux: linux
+ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
+	@echo 'Making directories...'
+	@sudo mkdir -p /usr/local/share/kbd/keymaps /usr/local/share/xkeysnail
 	@echo 'Copying files...'
 	@sudo cp archlinux/etc/locale.conf /etc/
 	@sudo cp archlinux/etc/vconsole.conf /etc/
@@ -70,6 +70,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@if [ ! -f /usr/share/fonts/TTF/GenShinGothic-Regular.ttf ]; then packer -S ttf-genshin-gothic; fi
 	@if [ ! -f /usr/share/fonts/TTF/FiraMono-Regular.ttf ]; then packer -S fira-code; fi
 	@if [ ! -f /usr/share/nvm/init-nvm.sh ]; then packer -S nvm; fi
+	@if [ ! -f /usr/bin/envchain ]; then packer -S envchain; fi
 	@if [ ! -f /usr/bin/cmus ]; then packer -S cmus-git; fi
 	@if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
 	@if [ ! -f /usr/bin/cmigemo ]; then packer -S cmigemo-git; fi
