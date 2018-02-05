@@ -1,11 +1,11 @@
 .DEFAULT: update
-.PHONY: update common linux archlinux
+.PHONY: update common linux archlinux toolchains envchain
 
-update: archlinux
+update: toolchains
 
 common:
 	@echo 'Making directories...'
-	@mkdir -p ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+	@mkdir -p ~/scripts ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
 	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d .Xresources; do \
 	  ln -sf $$(pwd)/$$name ~/; \
@@ -16,17 +16,22 @@ common:
 	@ln -sf $(shell pwd)/.config/ranger/rc.conf ~/.config/ranger/
 	@ln -sf $(shell pwd)/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
 	@ln -sf $(shell pwd)/.vim/snippets ~/.vim/
+	@ln -sf $(shell pwd)/common/HOME/scripts/pub ~/scripts/
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	@if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
+	@if [ ! -f ~/.config/fish/functions/fisher.fish ]; then \
+	  echo 'Installing fisherman...' && \
+	  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher; \
+	fi
 
 linux: common
 ifeq ($(shell uname), Linux)
 	@echo 'Creating symlinks...'
 	@for name in xkb.sh .xprofile .xkb; do \
-	  ln -sf $$(pwd)/archlinux/HOME/$$name ~/; \
+	  ln -sf $$(pwd)/linux/HOME/$$name ~/; \
 	done
 	@for name in bspwm compton libskk sxhkd yabar; do \
-	  ln -sf $$(pwd)/archlinux/HOME/.config/$$name ~/.config/; \
+	  ln -sf $$(pwd)/linux/HOME/.config/$$name ~/.config/; \
 	done
 endif
 
@@ -45,16 +50,15 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@if [ ! -f /usr/bin/packer ]; then \
 	  echo 'Installing packer...' && \
 	  sudo pacman -S --needed --noconfirm expac jshon wget && \
-	  mkdir -p ~/packages/packer && \
-	  cd ~/packages/packer && \
-	  wget "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer" && \
-	  mv "PKGBUILD?h=packer" PKGBUILD && \
+	  mkdir -p /tmp/packer && \
+	  cd ~/tmp/packer && \
+	  wget "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer" -O PKGBUILD && \
 	  makepkg && \
 	  echo "todo: sudo pacman -U" && \
 	  exit 1; \
 	fi
-	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs
-	@sudo pacman -S --needed --noconfirm networkmanager openssh
+	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs arch-install-scripts
+	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
 	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip vim emacs
 	@sudo pacman -S --needed --noconfirm python-pip jdk9-openjdk gradle
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
@@ -63,22 +67,24 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pavucontrol pamixer
 	@sudo pacman -S --needed --noconfirm fcitx-skk skk-jisyo fcitx-configtool
 	@sudo pacman -S --needed --noconfirm feh w3m compton xcompmgr xorg-xkbcomp xsel
-	@sudo pacman -S --needed --noconfirm rxvt-unicode firefox chromium keepassxc qpdfview
+	@sudo pacman -S --needed --noconfirm rxvt-unicode firefox chromium keepassxc seahorse qpdfview
 	@sudo pacman -S --needed --noconfirm numix-gtk-theme
 	@sudo pacman -S --needed --noconfirm awesome-terminal-fonts otf-ipafont
 	@if [ ! -f /usr/share/fonts/OTF/ipaexm.ttf ]; then packer -S otf-ipaexfont; fi
 	@if [ ! -f /usr/share/fonts/TTF/GenShinGothic-Regular.ttf ]; then packer -S ttf-genshin-gothic; fi
 	@if [ ! -f /usr/share/fonts/TTF/FiraMono-Regular.ttf ]; then packer -S fira-code; fi
 	@if [ ! -f /usr/share/nvm/init-nvm.sh ]; then packer -S nvm; fi
-	@if [ ! -f /usr/bin/envchain ]; then packer -S envchain; fi
-	@if [ ! -f /usr/bin/cmus ]; then packer -S cmus-git; fi
-	@if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
 	@if [ ! -f /usr/bin/cmigemo ]; then packer -S cmigemo-git; fi
-	@if [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
-	@if [ ! -f ~/.config/fish/functions/fisher.fish ]; then \
-	  echo 'Installing fisherman...' && \
-	  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher; \
-	fi
+	@if [ ! -f /usr/bin/cmus ]; then packer -S cmus-git; fi
+	@if [ ! -f /usr/bin/envchain ]; then packer -S envchain; fi
+	@if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
+	@echo 'Enabling systemd units...'
+	@sudo systemctl enable ntpd.service
+	@sudo systemctl enable lightdm.service
+endif
+
+toolchains: archlinux:
+	@if [ $$(uname) = Linux ] && [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
 	@if [ ! -d ~/venv ]; then \
 	  echo 'Creating ~/venv ...' && \
 	  /usr/bin/python3 -m venv ~/venv && \
@@ -92,7 +98,6 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	  ~/.cargo/bin/cargo +stable install exa cargo-edit cargo-install && \
 	  ~/.cargo/bin/cargo +nigthly install rustfmt-nightly; \
 	fi
-	@echo 'Enabling systemd units...'
-	@sudo systemctl enable ntpd.service
-	@sudo systemctl enable lightdm.service
-endif
+
+envchain:
+	envchain --set tus TUS_STUDENT_NUMBER TUS_PASSWORD TUS_VPN_URL

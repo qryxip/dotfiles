@@ -1,0 +1,2 @@
+#!/bin/sh
+envchain tus sh -c 'echo $TUS_PASSWORD | sudo openconnect $TUS_VPN_URL --user=$TUS_STUDENT_NUMBER@ed.tus.ac.jp'
