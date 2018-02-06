@@ -11,15 +11,16 @@ else
 fi
 
 xbacklight = 100
-feh --bg-fill ~/wallpaper
+feh --bg-fill --randomize /mnt/hdd/Pictures/wallpapers
 xrdb ~/.Xresources
 if ! ps cax | grep xkeysnail > /dev/null; then
   xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
   xset r rate 200 50
   xset -b
 fi
-killall yabar
-yabar &
+if ! ps cax | grep yabar > /dev/null; then
+  yabar &
+fi
 sleep 0.2
 bspc config bottom_padding 0
 bspc config left_padding 0
