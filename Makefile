@@ -8,14 +8,14 @@ common:
 	@mkdir -p ~/scripts ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
 	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d .Xresources; do \
-	  ln -sf $$(pwd)/$$name ~/; \
+	  ln -sf $$(pwd)/common/HOME/$$name ~/; \
 	done
-	@ln -sf $(shell pwd)/.config/nvim ~/.config/
-	@ln -sf $(shell pwd)/.config/cmus/rc ~/.config/cmus
-	@ln -sf $(shell pwd)/.config/fish/config.fish ~/.config/fish/
-	@ln -sf $(shell pwd)/.config/ranger/rc.conf ~/.config/ranger/
-	@ln -sf $(shell pwd)/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
-	@ln -sf $(shell pwd)/.vim/snippets ~/.vim/
+	@ln -sf $(shell pwd)/common/HOME/.config/nvim ~/.config/
+	@ln -sf $(shell pwd)/common/HOME/.config/cmus/rc ~/.config/cmus
+	@ln -sf $(shell pwd)/common/HOME/.config/fish/config.fish ~/.config/fish/
+	@ln -sf $(shell pwd)/common/HOME/.config/ranger/rc.conf ~/.config/ranger/
+	@ln -sf $(shell pwd)/common/HOME/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
+	@ln -sf $(shell pwd)/common/HOME/.vim/snippets ~/.vim/
 	@ln -sf $(shell pwd)/common/HOME/scripts/pub ~/scripts/
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	@if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
@@ -83,7 +83,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo systemctl enable lightdm.service
 endif
 
-toolchains: archlinux:
+toolchains: archlinux
 	@if [ $$(uname) = Linux ] && [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
 	@if [ ! -d ~/venv ]; then \
 	  echo 'Creating ~/venv ...' && \
@@ -95,9 +95,12 @@ toolchains: archlinux:
 	  echo 'Installing rustup...' && \
 	  wget https://sh.rustup.rs -o /tmp/rustup-init && \
 	  sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable && \
+	  ~/.cargo/bin/rustup install nightly && \
+	  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable && \
 	  ~/.cargo/bin/cargo +stable install exa cargo-edit cargo-install && \
 	  ~/.cargo/bin/cargo +nigthly install rustfmt-nightly; \
 	fi
 
 envchain:
-	envchain --set tus TUS_STUDENT_NUMBER TUS_PASSWORD TUS_VPN_URL
+	@envchain --set tus TUS_STUDENT_NUMBER TUS_PASSWORD TUS_VPN_URL
+	@envchain --set wi2-300 WI2_300_USERNAME WI2_300_PASSWORD
