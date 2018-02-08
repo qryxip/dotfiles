@@ -7,7 +7,7 @@ common:
 	@echo 'Making directories...'
 	@mkdir -p ~/scripts ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
-	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d .Xresources; do \
+	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d; do \
 	  ln -sf $$(pwd)/common/HOME/$$name ~/; \
 	done
 	@ln -sf $(shell pwd)/common/HOME/.config/nvim ~/.config/
@@ -21,18 +21,19 @@ common:
 	@if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
 	@if [ ! -f ~/.config/fish/functions/fisher.fish ]; then \
 	  echo 'Installing fisherman...' && \
-	  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher; \
+	  curl https://git.io/fisher -Lo ~/.config/fish/functions/fisher.fish --create-dirs; \
 	fi
 
 linux: common
 ifeq ($(shell uname), Linux)
 	@echo 'Creating symlinks...'
-	@for name in xkb.sh .xprofile .xkb; do \
+	@for name in xkb.sh .xprofile .Xresources .xkb; do \
 	  ln -sf $$(pwd)/linux/HOME/$$name ~/; \
 	done
 	@for name in bspwm compton libskk sxhkd yabar; do \
 	  ln -sf $$(pwd)/linux/HOME/.config/$$name ~/.config/; \
 	done
+	@ln -sf $$(pwd)/linux/HOME/.local/share/applications/cmus.desktop ~/.local/share/applications/
 endif
 
 archlinux: linux
@@ -60,7 +61,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
 	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip vim emacs
-	@sudo pacman -S --needed --noconfirm python-pip jdk9-openjdk gradle
+	@sudo pacman -S --needed --noconfirm go python-pip jdk9-openjdk gradle
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm xf86-video-intel mesa xorg
 	@sudo pacman -S --needed --noconfirm lightdm lightdm-gtk-greeter light-locker bspwm sxhkd
@@ -84,7 +85,12 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 endif
 
 toolchains: archlinux
-	@if [ $$(uname) = Linux ] && [ ! -f /usr/bin/xkeysnail ]; then sudo /usr/bin/pip3 install xkeysnail; fi
+	@if [ $$(uname) = Linux ] && [ ! -f /usr/bin/xkeysnail ]; then \
+	  echo 'Setting up xkeysnail...' && \
+	  sudo touch /root/.Xauthority && \
+	  sudo /usr/bin/pip3 install xkeysnail && \
+	  sudo systemctl enable xkeysnail.service; \
+	fi
 	@if [ ! -d ~/venv ]; then \
 	  echo 'Creating ~/venv ...' && \
 	  /usr/bin/python3 -m venv ~/venv && \

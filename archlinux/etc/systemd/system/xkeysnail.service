@@ -3,12 +3,13 @@ Description=xkeysnail
 
 [Service]
 KillMode=process
-ExecStart=/usr/bin/xkeysnail /usr/local/share/xkeysnail/config.py
+ExecStart=/bin/sh -c '/usr/bin/xkeysnail /usr/local/share/xkeysnail/config.py > /dev/null'
 Type=simple
 Restart=always
 RestartSec=1
 StartLimitBurst=0
-Environment=DISPLAY=:0.0
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/root/.Xauthority
 
 [Install]
 WantedBy=default.target

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Cmus
+Comment=Cmus on rxvt-unicode
+Exec=urxvt -e cmus
+Terminal=false
