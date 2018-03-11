@@ -31,9 +31,4 @@ function +vi-git-config-user() {
   hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
 }
 
-export JAVA_HOME=/usr/lib/jvm/intellij-jdk
-export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORMTHEME=kde
-export LD_LIBRARY_PATH=$(rustup run nightly rustc --print sysroot)/lib
 source ~/.profile
-source /usr/share/nvm/init-nvm.sh

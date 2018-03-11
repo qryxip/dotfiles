@@ -7,24 +7,23 @@ echo $'\n# pip3 (System)'
 sudo /usr/bin/pip3 install xkeysnail --upgrade
 
 echo $'\n# pip3 (~/venv)'
-py_packages_to_update=`pip3 list -o --format=legacy | awk '{print $1}'`
-if [ -n "$py_packages_to_update" ]; then
-  echo $py_packages_to_update | xargs pip3 install -U
+packages=`pip3 list -o --format=legacy | awk '{print $1}'`
+if [ -n "$packages" ]; then
+  echo $packages | xargs pip3 install -U
 else
   echo 'No package to update'
 fi
 
 echo $'\n# Cargo (nightly)'
-cargo +nightly install-update rustfmt-nightly
+cargo +nightly install-update clippy rustfmt-nightly
 
 echo $'\n# Cargo (stable)'
-cargo install-update -a
+cargo +stable install-update -a
 
 echo $'\n# npm (LTS)'
-source /usr/share/nvm/init-nvm.sh
-nvm use --lts
-if [ -n "$(npm outdated)" ]; then
-  npm update -g
-else
+if [ -z "$(npm update -g)" ]; then
   echo 'No package to update'
 fi
+
+echo $'\n# GHQ'
+ghq get https://github.com/syl20bnr/spacemacs -u

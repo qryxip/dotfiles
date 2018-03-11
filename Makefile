@@ -4,10 +4,14 @@
 update: toolchains
 
 common:
+	@if [ "`whoami`" = root ]; then \
+	  echo "Don't run this as root." && \
+	  exit 1; \
+	fi
 	@echo 'Making directories...'
 	@mkdir -p ~/scripts ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
-	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d; do \
+	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d; do \
 	  ln -sf $$(pwd)/common/HOME/$$name ~/; \
 	done
 	@ln -sf $(shell pwd)/common/HOME/.config/nvim ~/.config/
@@ -18,7 +22,6 @@ common:
 	@ln -sf $(shell pwd)/common/HOME/.vim/snippets ~/.vim/
 	@ln -sf $(shell pwd)/common/HOME/scripts/pub ~/scripts/
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
-	@if [ ! -d ~/.emacs.d ]; then git clone 'https://github.com/syl20bnr/spacemacs' ~/.emacs.d; fi
 	@if [ ! -f ~/.config/fish/functions/fisher.fish ]; then \
 	  echo 'Installing fisherman...' && \
 	  curl https://git.io/fisher -Lo ~/.config/fish/functions/fisher.fish --create-dirs; \
@@ -60,8 +63,8 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	fi
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
-	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip vim emacs
-	@sudo pacman -S --needed --noconfirm go python-pip jdk9-openjdk gradle
+	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip tig vim emacs
+	@sudo pacman -S --needed --noconfirm go python-pip jdk9-openjdk gradle opam
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm xf86-video-intel mesa xorg
 	@sudo pacman -S --needed --noconfirm lightdm lightdm-gtk-greeter light-locker bspwm sxhkd
@@ -78,6 +81,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@if [ ! -f /usr/bin/cmigemo ]; then packer -S cmigemo-git; fi
 	@if [ ! -f /usr/bin/cmus ]; then packer -S cmus-git; fi
 	@if [ ! -f /usr/bin/envchain ]; then packer -S envchain; fi
+	@if [ ! -f /usr/bin/stack ]; then packer -S stack; fi
 	@if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
 	@echo 'Enabling systemd units...'
 	@sudo systemctl enable ntpd.service
@@ -94,7 +98,7 @@ toolchains: archlinux
 	@if [ ! -d ~/venv ]; then \
 	  echo 'Creating ~/venv ...' && \
 	  /usr/bin/python3 -m venv ~/venv && \
-	  ~/venv/bin/pip3 install ranger-fm tw2.pygmentize && \
+	  ~/venv/bin/pip3 install ranger-fm tw2.pygmentize ptpython && \
 	  ranger --copy-config=all; \
 	fi
 	@if [ ! -f ~/.cargo/bin/rustup ]; then \
@@ -103,8 +107,18 @@ toolchains: archlinux
 	  sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable && \
 	  ~/.cargo/bin/rustup install nightly && \
 	  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable && \
-	  ~/.cargo/bin/cargo +stable install exa cargo-edit cargo-install && \
-	  ~/.cargo/bin/cargo +nigthly install rustfmt-nightly; \
+	  ~/.cargo/bin/cargo +stable install exa fselect tokei cargo-edit cargo-install && \
+	  ~/.cargo/bin/cargo +nigthly install clippy rustfmt-nightly; \
+	fi
+	@if [ ! -f ~/go/bin/ghq ]; then \
+	  go get github.com/motemen/ghq && \
+	  ~/go/bin/ghq get https://github.com/syl20bnr/spacemacs -u && \
+	  ~/go/bin/ghq get https://github.com/KKPMW/dircolors-moonshine/dircolors.moonshine -u && \
+	  ln -s ~/.ghq/github.com/syl20bnr/spacemacs ~/.emacs.d; \
+	fi
+	@if [ -f /usr/bin/opam ]; then \
+	  echo 'todo' && \
+	  exit 1; \
 	fi
 
 envchain:

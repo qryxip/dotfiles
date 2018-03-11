@@ -6,34 +6,37 @@ function fish_prompt
   set last_status $status
   set_color 5fff87 # 84
   printf '%s@%s' (whoami) (hostname)
+  if [ -n "$RANGER_LEVEL" ]
+    printf ' (ranger)'
+  end
   set_color normal
   printf ' ['
   set_color ff0087 # 198
   printf '%s' (prompt_pwd)
   set_color normal
   printf ']'
-  if [ $last_status -ne 0 ]
+  if [ "$last_status" -ne 0 ]
     printf ' (%s)' $last_status
   end
   printf ' $ '
 end
 
 function ll
-  if [ -e /c/Windows ]
-    /usr/bin/env ls -l $argv
+  if [ -d /c/Windows ]
+    ls -l $argv
   else
-    /usr/bin/env exa -l $argv
+    /usr/bin/env ll $argv
   end
 end
 
 function e
-  /usr/bin/env emacsclient -n $argv
+  emacsclient -n $argv
 end
 
 function en
-  /usr/bin/env emacsclient -nw -a '' $argv
+  emacsclient -nw -a '' $argv
 end
 
 function r
-  /usr/bin/env ranger $argv
+  ranger $argv
 end

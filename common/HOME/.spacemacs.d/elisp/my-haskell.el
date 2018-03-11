@@ -18,7 +18,7 @@
 
 (defun my-haskell-run ()
   (interactive)
-  (cond ((string-equal (buffer-substring-no-properties 1 26) "#!/usr/bin/env runhaskell")
+  (cond ((string-equal (buffer-substring-no-properties 1 22) "#!/usr/bin/env runghc")
          (quickrun))
         (t
          (let ((buffer (get-buffer "*stack-run*")))

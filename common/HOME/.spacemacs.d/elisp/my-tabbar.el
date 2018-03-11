@@ -2,9 +2,10 @@
 
 (defun my-tabbar-buffer-groups ()
   (list (cond ((or (string-match "\\*.+" (buffer-name))
-                   (string-match "intero:backend:.*" (buffer-name))) "Emacs Buffer")
-              ((eq major-mode 'dired-mode) "Dired Buffer")
-              (t "User Buffer"))))
+                   (string-match "intero:backend:.*" (buffer-name))) "emacs")
+              ((string-match "magit\\(-[a-z]+\\)?: .*" (buffer-name)) "magit")
+              ((eq major-mode 'dired-mode) "dired")
+              (t "user"))))
 
 (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups)
 
