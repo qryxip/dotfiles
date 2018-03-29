@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: printyn
-# key: printyn
-# --
-println!("{}", if solve($0) { "$1" } else { "$2" });

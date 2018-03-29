@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: map_err(Into::into)
+# key: meinto
+# --
+map_err(Into::into)
