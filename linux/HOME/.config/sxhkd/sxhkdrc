@@ -1,5 +1,5 @@
 super + Return
-	urxvt -e /usr/bin/tmux
+	alacritty -e /usr/bin/tmux
 
 super + r
 	j4-dmenu-desktop

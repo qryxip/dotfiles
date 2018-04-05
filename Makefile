@@ -9,12 +9,13 @@ common:
 	  exit 1; \
 	fi
 	@echo 'Making directories...'
-	@mkdir -p ~/scripts ~/.vim ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+	@mkdir -p ~/scripts ~/.vim ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
 	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d; do \
 	  ln -sf $$(pwd)/common/HOME/$$name ~/; \
 	done
 	@ln -sf $(shell pwd)/common/HOME/.config/nvim ~/.config/
+	@ln -sf $(shell pwd)/common/HOME/.config/alacritty/alacritty.yml ~/.config/alacritty/
 	@ln -sf $(shell pwd)/common/HOME/.config/cmus/rc ~/.config/cmus
 	@ln -sf $(shell pwd)/common/HOME/.config/fish/config.fish ~/.config/fish/
 	@ln -sf $(shell pwd)/common/HOME/.config/ranger/rc.conf ~/.config/ranger/
@@ -66,6 +67,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip tig vim emacs
 	@sudo pacman -S --needed --noconfirm go python-pip jdk9-openjdk gradle opam
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
+	@sudo pacman -S --needed --noconfirm cmake freetype2 fontconfig pkg-config xclip
 	@sudo pacman -S --needed --noconfirm xf86-video-intel mesa xorg
 	@sudo pacman -S --needed --noconfirm lightdm lightdm-gtk-greeter light-locker bspwm sxhkd
 	@sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pavucontrol pamixer
@@ -108,6 +110,7 @@ toolchains: archlinux
 	  ~/.cargo/bin/rustup install nightly && \
 	  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable && \
 	  ~/.cargo/bin/cargo +stable install exa fselect tokei cargo-edit cargo-install && \
+	  ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty
 	  ~/.cargo/bin/cargo +nigthly install clippy rustfmt-nightly; \
 	fi
 	@if [ ! -f ~/go/bin/ghq ]; then \

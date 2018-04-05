@@ -15,15 +15,20 @@ else
 fi
 
 echo $'\n# Cargo (nightly)'
-cargo +nightly install-update clippy rustfmt-nightly
+apps='clippy rustfmt-nightly'
+if cargo +nightly install-update $apps -l | grep Yes > /dev/null; then
+  rustup update nightly
+  cargo +nightly install-update $apps
+fi
 
 echo $'\n# Cargo (stable)'
-cargo +stable install-update -a
+cargo +stable install-update -ag
 
 echo $'\n# npm (LTS)'
 if [ -z "$(npm update -g)" ]; then
   echo 'No package to update'
 fi
 
-echo $'\n# GHQ'
+echo $'\n# Go'
+go get -u all
 ghq get https://github.com/syl20bnr/spacemacs -u
