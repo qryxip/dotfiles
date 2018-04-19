@@ -61,7 +61,7 @@
                (with-current-buffer buffer
                  (erase-buffer))))
            (let ((problem-name (match-string 1 file-path)))
-             (term-run "snowchains" "*snowchains*" "submit" problem-name)))
+             (term-run "snowchains" "*snowchains*" "submit" problem-name "-l" "rust")))
           ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
            (cargo-process-run-bin (match-string 1 file-path)))
           ((string-match "^.*/examples/\\(.+\\).rs$" file-path)
@@ -78,7 +78,7 @@
                (with-current-buffer buffer
                  (erase-buffer))))
            (let ((problem-name (match-string 1 file-path)))
-             (term-run "snowchains" "*snowchains*" "judge" problem-name)))
+             (term-run "snowchains" "*snowchains*" "judge" problem-name "-l" "rust")))
           ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
            (cargo-process--start "Test Bin" (concat "cargo test --bin " (match-string 1 file-path))))
           (t
@@ -199,7 +199,7 @@
 
 (defun my-rust-insert-double-quote ()
   (interactive)
-  (when (not (or (member (preceding-char) (string-to-list "br([ "))
+  (when (not (or (member (preceding-char) (string-to-list "br#([ "))
                  (nth 3 (syntax-ppss))
                  (nth 5 (syntax-ppss))))
     (insert " "))
@@ -266,6 +266,6 @@
     (insert " "))
   (self-insert-command 1))
 
-(defconst my-rust--snowchains-crate "contest/rust")
+(defconst my-rust--snowchains-crate "contest/rs")
 
 (add-hook 'rust-mode-hook 'my-rust-init)

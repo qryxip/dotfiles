@@ -61,7 +61,7 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Yutapon Coding Heavy Sl # should be "Menlo" or something on macOS.
+    family: Ricty Diminished Discord # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Regular
 

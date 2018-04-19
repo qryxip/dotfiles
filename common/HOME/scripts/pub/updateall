@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo '# Pacman (+AUR)'
 packer -Syu
 
@@ -14,14 +16,13 @@ else
   echo 'No package to update'
 fi
 
-echo $'\n# Cargo (nightly)'
+echo $'\n# Cargo'
 apps='clippy rustfmt-nightly'
-if cargo +nightly install-update $apps -l | grep Yes > /dev/null; then
+if cargo install-update $apps -l | grep Yes > /dev/null; then
   rustup update nightly
-  cargo +nightly install-update $apps
+  cargo +nightly install-update -f $apps
 fi
-
-echo $'\n# Cargo (stable)'
+rustup update stable
 cargo +stable install-update -ag
 
 echo $'\n# npm (LTS)'

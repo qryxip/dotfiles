@@ -65,7 +65,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
 	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip tig vim emacs
-	@sudo pacman -S --needed --noconfirm go python-pip jdk9-openjdk gradle opam
+	@sudo pacman -S --needed --noconfirm go python-pip ruby jdk9-openjdk gradle opam
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm cmake freetype2 fontconfig pkg-config xclip
 	@sudo pacman -S --needed --noconfirm xf86-video-intel mesa xorg
@@ -102,6 +102,10 @@ toolchains: archlinux
 	  /usr/bin/python3 -m venv ~/venv && \
 	  ~/venv/bin/pip3 install ranger-fm tw2.pygmentize ptpython && \
 	  ranger --copy-config=all; \
+	fi
+	@if [ ! -d ~/.gem/ruby/ ]; then \
+	  echo 'Installing gems...' && \
+	  /usr/bin/gem install travis; \
 	fi
 	@if [ ! -f ~/.cargo/bin/rustup ]; then \
 	  echo 'Installing rustup...' && \
