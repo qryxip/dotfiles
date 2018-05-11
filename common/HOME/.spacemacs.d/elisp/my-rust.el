@@ -1,5 +1,5 @@
 (with-eval-after-load 'rust-mode
-  (setenv "LD_LIBRARY_PATH" (shell-command-to-string "printf '%s' $(rustup run nightly rustc --print sysroot)/lib"))
+  (setenv "LD_LIBRARY_PATH" (shell-command-to-string "printf '%s' $(rustup run nightly-2018-04-29 rustc --print sysroot)/lib"))
   (setq racer-rust-src-path (shell-command-to-string "printf '%s/lib/rustlib/src/rust/src' $(rustc --print sysroot)"))
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
@@ -80,7 +80,7 @@
            (let ((problem-name (match-string 1 file-path)))
              (term-run "snowchains" "*snowchains*" "judge" problem-name "-l" "rust")))
           ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
-           (cargo-process--start "Test Bin" (concat "cargo test --bin " (match-string 1 file-path))))
+           (cargo-process--start "Test Bin" (concat "test --bin " (match-string 1 file-path))))
           (t
            (cargo-process-test)))))
 

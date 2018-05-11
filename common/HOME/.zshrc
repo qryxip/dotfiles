@@ -32,3 +32,6 @@ function +vi-git-config-user() {
 }
 
 source ~/.profile
+
+# added by travis gem
+[ -f /home/ryo/.travis/travis.sh ] && source /home/ryo/.travis/travis.sh

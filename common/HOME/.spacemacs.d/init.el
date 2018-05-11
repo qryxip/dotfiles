@@ -167,7 +167,7 @@ values."
    dotspacemacs-default-font (cond ((string-equal system-type "windows-nt")
                                      '("Yutapon Coding Heavy Sl" :size 16 :powerline-scale 1.0))
                                    (t
-                                     '("Ricty Diminished Discord" :size 16 :weight bold :powerline-scale 1.0)))
+                                     '("Cica" :size 16 :weight bold :powerline-scale 1.0)))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).

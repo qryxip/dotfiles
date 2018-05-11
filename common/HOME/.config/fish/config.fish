@@ -1,6 +1,6 @@
 set fish_greeting
 set fish_prompt_pwd_dir_length 0
-export LD_LIBRARY_PATH=(rustup run nightly rustc --print sysroot)/lib
+export LD_LIBRARY_PATH=(rustup run nightly-2018-04-29 rustc --print sysroot)/lib
 
 function fish_prompt
   set last_status $status

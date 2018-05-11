@@ -77,6 +77,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm numix-gtk-theme
 	@sudo pacman -S --needed --noconfirm awesome-terminal-fonts otf-ipafont
 	@if [ ! -f /usr/share/fonts/OTF/ipaexm.ttf ]; then packer -S otf-ipaexfont; fi
+	@if [ ! -f /usr/share/fonts/TTF/Cica-Regular.ttf ]; then packer -S ttf-cica; fi
 	@if [ ! -f /usr/share/fonts/TTF/GenShinGothic-Regular.ttf ]; then packer -S ttf-genshin-gothic; fi
 	@if [ ! -f /usr/share/fonts/TTF/FiraMono-Regular.ttf ]; then packer -S fira-code; fi
 	@if [ ! -f /usr/share/nvm/init-nvm.sh ]; then packer -S nvm; fi
@@ -85,6 +86,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@if [ ! -f /usr/bin/envchain ]; then packer -S envchain; fi
 	@if [ ! -f /usr/bin/stack ]; then packer -S stack; fi
 	@if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
+	@if [ ! -f /usr/bin/simple-mtpfs ]; then packer -S simple-mtpfs; fi
 	@echo 'Enabling systemd units...'
 	@sudo systemctl enable ntpd.service
 	@sudo systemctl enable lightdm.service
