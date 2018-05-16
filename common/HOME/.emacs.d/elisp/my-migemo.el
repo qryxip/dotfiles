@@ -1,0 +1,22 @@
+(defun my-migemo-enable-helm-migemo-mode ()
+  (interactive)
+  (helm-migemo-mode 1))
+
+(setq migemo-dictionary (cond ((string-equal system-type "windows-nt")
+                               "c:/local/cmigemo/dict/utf-8/migemo-dict")
+                              ((file-exists-p "/etc/arch-release")
+                               "/usr/share/migemo/utf-8/migemo-dict")
+                              ((file-exists-p "/etc/centos-release")
+                               "~/.local/share/migemo/utf-8/migemo-dict")
+                              (t
+                               "/usr/share/cmigemo/utf-8/migemo-dict")))
+(setq migemo-command "cmigemo")
+(setq migemo-options '("-e" "-q" "-i" "\a"))
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+(load-library "migemo")
+(migemo-init)
+
+(avy-migemo-mode 1)
+(add-hook 'helm-mode-hook 'my-migemo-enable-helm-migemo-mode)

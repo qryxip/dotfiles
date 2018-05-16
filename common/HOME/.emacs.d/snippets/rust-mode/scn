@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sc.next()
+# key: scn
+# --
+sc.next()$0

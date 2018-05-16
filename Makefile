@@ -9,11 +9,14 @@ common:
 	  exit 1; \
 	fi
 	@echo 'Making directories...'
-	@mkdir -p ~/scripts ~/.vim ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+	@mkdir -p ~/scripts ~/.vim ~/.emacs.d ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
-	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc .spacemacs.d; do \
+	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc; do \
 	  ln -sf $$(pwd)/common/HOME/$$name ~/; \
 	done
+	@ln -sf $(shell pwd)/common/HOME/.emacs.d/init.el ~/.emacs.d/
+	@ln -sf $(shell pwd)/common/HOME/.emacs.d/elisp ~/.emacs.d/
+	@ln -sf $(shell pwd)/common/HOME/.emacs.d/snippets ~/.emacs.d/
 	@ln -sf $(shell pwd)/common/HOME/.config/nvim ~/.config/
 	@ln -sf $(shell pwd)/common/HOME/.config/alacritty/alacritty.yml ~/.config/alacritty/
 	@ln -sf $(shell pwd)/common/HOME/.config/cmus/rc ~/.config/cmus
@@ -121,9 +124,7 @@ toolchains: archlinux
 	fi
 	@if [ ! -f ~/go/bin/ghq ]; then \
 	  go get github.com/motemen/ghq && \
-	  ~/go/bin/ghq get https://github.com/syl20bnr/spacemacs -u && \
 	  ~/go/bin/ghq get https://github.com/KKPMW/dircolors-moonshine/dircolors.moonshine -u && \
-	  ln -s ~/.ghq/github.com/syl20bnr/spacemacs ~/.emacs.d; \
 	fi
 	@if [ -f /usr/bin/opam ]; then \
 	  echo 'todo' && \

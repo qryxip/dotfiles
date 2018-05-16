@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: unimplemented!()
+# key: ui
+# --
+unimplemented!($0)

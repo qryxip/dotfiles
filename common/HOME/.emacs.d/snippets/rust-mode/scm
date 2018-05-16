@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sc.mat(m, n)
+# key: scm
+# --
+sc.mat($0)

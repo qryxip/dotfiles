@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: unreachable!()
+# key: ur
+# --
+unreachable!($0)

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sc.strings_as_mat(h, f)
+# key: scs
+# --
+sc.strings_as_mat($0)
