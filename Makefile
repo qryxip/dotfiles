@@ -116,11 +116,12 @@ toolchains: archlinux
 	  echo 'Installing rustup...' && \
 	  wget https://sh.rustup.rs -o /tmp/rustup-init && \
 	  sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable && \
-	  ~/.cargo/bin/rustup install nightly && \
+	  ~/.cargo/bin/rustup install nightly-2018-05-19 && \
 	  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable && \
-	  ~/.cargo/bin/cargo +stable install exa fselect tokei cargo-edit cargo-install && \
-	  ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty
-	  ~/.cargo/bin/cargo +nigthly install clippy rustfmt-nightly; \
+	  ~/.cargo/bin/cargo +stable install racer cargo-edit cargo-license cargo-script cargo-update exa fselect tokei && \
+	  ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty && \
+	  ~/.cargo/bin/cargo +stable install --git https://github.com/wariuni/daily-scripts && \
+	  ~/.cargo/bin/cargo +nigthly-2018-05-19 install clippy rustfmt-nightly cargo-src; \
 	fi
 	@if [ ! -f ~/go/bin/ghq ]; then \
 	  go get github.com/motemen/ghq && \

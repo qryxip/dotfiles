@@ -23,11 +23,7 @@ fi
 
 echo $'\n# Go'
 go get -u all
-ghq get https://github.com/syl20bnr/spacemacs -u
 
-# clippy          2018-05-11
-# rustfmt-nightly 2018-04-29
-# cargo-src       2018-04-29
 echo $'\n# Cargo'
 if cargo install-update clippy rustfmt-nightly cargo-src -l | grep Yes; then
   exit 1

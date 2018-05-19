@@ -214,7 +214,6 @@
 (defconst my-rust--snowchains-crate "contest/rs")
 
 (with-eval-after-load 'rust-mode
-  (rust-enable-format-on-save)
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
   (evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
@@ -252,6 +251,7 @@
     (read-only-mode 1))
   (racer-mode 1)
   (smartparens-mode 1)
-  (rainbow-delimiters-mode 1))
+  (rainbow-delimiters-mode 1)
+  (rust-enable-format-on-save))
 
 (add-hook 'rust-mode-hook 'my-rust-init)
