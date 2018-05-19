@@ -12,19 +12,19 @@ common:
 	@mkdir -p ~/scripts ~/.vim ~/.emacs.d ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
 	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc; do \
-	  ln -sf $$(pwd)/common/HOME/$$name ~/; \
+	  ln -sf $$(pwd)/common/home/$$name ~/; \
 	done
-	@ln -sf $(shell pwd)/common/HOME/.emacs.d/init.el ~/.emacs.d/
-	@ln -sf $(shell pwd)/common/HOME/.emacs.d/elisp ~/.emacs.d/
-	@ln -sf $(shell pwd)/common/HOME/.emacs.d/snippets ~/.emacs.d/
-	@ln -sf $(shell pwd)/common/HOME/.config/nvim ~/.config/
-	@ln -sf $(shell pwd)/common/HOME/.config/alacritty/alacritty.yml ~/.config/alacritty/
-	@ln -sf $(shell pwd)/common/HOME/.config/cmus/rc ~/.config/cmus
-	@ln -sf $(shell pwd)/common/HOME/.config/fish/config.fish ~/.config/fish/
-	@ln -sf $(shell pwd)/common/HOME/.config/ranger/rc.conf ~/.config/ranger/
-	@ln -sf $(shell pwd)/common/HOME/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
-	@ln -sf $(shell pwd)/common/HOME/.vim/snippets ~/.vim/
-	@ln -sf $(shell pwd)/common/HOME/scripts/pub ~/scripts/
+	@ln -sf $(shell pwd)/common/home/.emacs.d/init.el ~/.emacs.d/
+	@ln -sf $(shell pwd)/common/home/.emacs.d/elisp ~/.emacs.d/
+	@ln -sf $(shell pwd)/common/home/.emacs.d/snippets ~/.emacs.d/
+	@ln -sf $(shell pwd)/common/home/.config/nvim ~/.config/
+	@ln -sf $(shell pwd)/common/home/.config/alacritty/alacritty.yml ~/.config/alacritty/
+	@ln -sf $(shell pwd)/common/home/.config/cmus/rc ~/.config/cmus
+	@ln -sf $(shell pwd)/common/home/.config/fish/config.fish ~/.config/fish/
+	@ln -sf $(shell pwd)/common/home/.config/ranger/rc.conf ~/.config/ranger/
+	@ln -sf $(shell pwd)/common/home/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
+	@ln -sf $(shell pwd)/common/home/.vim/snippets ~/.vim/
+	@ln -sf $(shell pwd)/common/home/scripts/pub ~/scripts/
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	@if [ ! -f ~/.config/fish/functions/fisher.fish ]; then \
 	  echo 'Installing fisherman...' && \
@@ -35,12 +35,12 @@ linux: common
 ifeq ($(shell uname), Linux)
 	@echo 'Creating symlinks...'
 	@for name in xkb.sh .xprofile .Xresources .xkb; do \
-	  ln -sf $$(pwd)/linux/HOME/$$name ~/; \
+	  ln -sf $$(pwd)/linux/home/$$name ~/; \
 	done
 	@for name in bspwm compton libskk sxhkd yabar; do \
-	  ln -sf $$(pwd)/linux/HOME/.config/$$name ~/.config/; \
+	  ln -sf $$(pwd)/linux/home/.config/$$name ~/.config/; \
 	done
-	@ln -sf $$(pwd)/linux/HOME/.local/share/applications/cmus.desktop ~/.local/share/applications/
+	@ln -sf $$(pwd)/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
 endif
 
 archlinux: linux
