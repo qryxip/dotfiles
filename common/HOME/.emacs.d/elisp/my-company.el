@@ -8,7 +8,7 @@
   (company-select-previous)
   (company-select-next))
 
-(with-eval-after-load 'company-mode
+(with-eval-after-load 'company
   (setq company-minimum-prefix-length 1)
   (setq company-selection-wrap-around t)
   (push 'company-lsp company-backends)

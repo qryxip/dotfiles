@@ -65,7 +65,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	  echo "todo: sudo pacman -U" && \
 	  exit 1; \
 	fi
-	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs arch-install-scripts
+	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs udisks2 fdiskie arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
 	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip tig vim emacs
 	@sudo pacman -S --needed --noconfirm go python-pip ruby jdk9-openjdk gradle opam
