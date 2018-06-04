@@ -9,7 +9,7 @@ common:
 	  exit 1; \
 	fi
 	@echo 'Making directories...'
-	@mkdir -p ~/scripts ~/.vim ~/.emacs.d ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+	@mkdir -p ~/.vim ~/.emacs.d ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 	@echo 'Creating symlinks...'
 	@for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc; do \
 	  ln -sf $$(pwd)/common/home/$$name ~/; \
@@ -24,7 +24,7 @@ common:
 	@ln -sf $(shell pwd)/common/home/.config/ranger/rc.conf ~/.config/ranger/
 	@ln -sf $(shell pwd)/common/home/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
 	@ln -sf $(shell pwd)/common/home/.vim/snippets ~/.vim/
-	@ln -sf $(shell pwd)/common/home/scripts/pub ~/scripts/
+	@if [ ! -d ~/scripts ]; then git clone 'https://github.com/wariuni/scripts' ~/scripts; fi
 	@if [ ! -d ~/.vim/dein.vim ]; then git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim; fi
 	@if [ ! -f ~/.config/fish/functions/fisher.fish ]; then \
 	  echo 'Installing fisherman...' && \
@@ -55,19 +55,9 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo cp archlinux/usr/local/share/xkeysnail/config.py /usr/local/share/xkeysnail/
 	@echo 'Installing packages...'
 	@sudo pacman -S --needed --noconfirm archlinux-keyring gnome-keyring
-	@if [ ! -f /usr/bin/packer ]; then \
-	  echo 'Installing packer...' && \
-	  sudo pacman -S --needed --noconfirm expac jshon wget && \
-	  mkdir -p /tmp/packer && \
-	  cd ~/tmp/packer && \
-	  wget "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer" -O PKGBUILD && \
-	  makepkg && \
-	  echo "todo: sudo pacman -U" && \
-	  exit 1; \
-	fi
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs udisks2 fdiskie arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
-	@sudo pacman -S --needed --noconfirm fish tmux tree jq p7zip tig vim emacs
+	@sudo pacman -S --needed --noconfirm fish tmux wget tree jq p7zip tig vim emacs
 	@sudo pacman -S --needed --noconfirm go python-pip ruby jdk9-openjdk gradle opam
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm cmake freetype2 fontconfig pkg-config xclip
@@ -79,6 +69,15 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm rxvt-unicode firefox chromium keepassxc seahorse qpdfview
 	@sudo pacman -S --needed --noconfirm numix-gtk-theme
 	@sudo pacman -S --needed --noconfirm awesome-terminal-fonts otf-ipafont
+	@if [ ! -f /usr/bin/packer ]; then \
+	  echo 'Installing packer...' && \
+	  mkdir -p /tmp/packer && \
+	  cd ~/tmp/packer && \
+	  wget 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer' -O PKGBUILD && \
+	  makepkg -s && \
+	  sudo pacman -U `find -maxdepth 1 -name 'packer-*.pkg.tar.xz'` && \
+	  rm -rf ~/tmp/packer;
+	fi
 	@if [ ! -f /usr/share/fonts/OTF/ipaexm.ttf ]; then packer -S otf-ipaexfont; fi
 	@if [ ! -f /usr/share/fonts/TTF/Cica-Regular.ttf ]; then packer -S ttf-cica; fi
 	@if [ ! -f /usr/share/fonts/TTF/GenShinGothic-Regular.ttf ]; then packer -S ttf-genshin-gothic; fi
@@ -116,21 +115,21 @@ toolchains: archlinux
 	  echo 'Installing rustup...' && \
 	  wget https://sh.rustup.rs -o /tmp/rustup-init && \
 	  sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable && \
+	  ~/.cargo/bin/rustup install 1.15.1 && \
 	  ~/.cargo/bin/rustup install nightly-2018-05-19 && \
 	  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable && \
 	  ~/.cargo/bin/cargo +stable install racer cargo-edit cargo-license cargo-script cargo-update exa fselect tokei && \
 	  ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty && \
-	  ~/.cargo/bin/cargo +stable install --git https://github.com/wariuni/daily-scripts && \
 	  ~/.cargo/bin/cargo +nigthly-2018-05-19 install clippy rustfmt-nightly cargo-src; \
 	fi
 	@if [ ! -f ~/go/bin/ghq ]; then \
 	  go get github.com/motemen/ghq && \
 	  ~/go/bin/ghq get https://github.com/KKPMW/dircolors-moonshine/dircolors.moonshine -u && \
 	fi
-	@if [ -f /usr/bin/opam ]; then \
-	  echo 'todo' && \
-	  exit 1; \
-	fi
+	# @if [ -f /usr/bin/opam ]; then \
+	#   echo 'todo' && \
+	#   exit 1; \
+	# fi
 
 envchain:
 	@envchain --set tus TUS_STUDENT_NUMBER TUS_PASSWORD TUS_VPN_URL

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: impl From<$1> for $2 { ... }
+# key: from
+# --
+impl From<$1> for $2 {
+    fn from(from: $1) -> Self {
+        $0
+    }
+}

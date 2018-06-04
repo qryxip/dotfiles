@@ -246,8 +246,9 @@
 
 (defun my-rust-init ()
   (interactive)
-  (when (or (string-match ".*/.cargo/.*" (pwd))
-            (string-match ".*.rustup/.*" (pwd)))
+  (when (or (string-match ".*/.cargo/.*" (buffer-file-name))
+            (string-match ".*.rustup/.*" (buffer-file-name))
+            (string-match ".*/\\.ghq/.*" (buffer-file-name)))
     (read-only-mode 1))
   (racer-mode 1)
   (smartparens-mode 1)

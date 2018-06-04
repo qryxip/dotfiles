@@ -16,6 +16,7 @@
 (el-get-bundle! evil)
 (el-get-bundle! evil-cleverparens)
 (el-get-bundle! evil-commentary)
+(el-get-bundle! evil-magit)
 (el-get-bundle! evil-snipe)
 (el-get-bundle! evil-surround)
 
@@ -34,9 +35,6 @@
 (el-get-bundle! which-key)
 (el-get-bundle! yasnippet)
 (el-get-bundle! flycheck
-  :type github
-  :pkgname "flycheck/flycheck"
-  :checkout "32cb1369e9db63e6b8c2176ea7907d98b66ac3f2"
   (add-to-list 'display-buffer-alist
                `(,(rx bos "*Flycheck errors*" eos)
                  (display-buffer-reuse-window display-buffer-in-side-window)
@@ -116,6 +114,8 @@
 
 (smartparens-global-mode 1)
 (show-smartparens-global-mode)
+
+(setq-default truncate-lines t)
 
 (global-flycheck-mode 1)
 (setq flycheck-pos-tip-timeout 0)

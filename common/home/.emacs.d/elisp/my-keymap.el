@@ -65,7 +65,8 @@
 (define-key evil-normal-state-map "\C-k" 'my-keymap-evil-normal-c$)
 (define-key evil-normal-state-map "\C-n" 'tabbar-forward-tab)
 (define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
-(define-key evil-normal-state-map (kbd "\\") 'ignore)
+;; evil-leader
+;; (define-key evil-normal-state-map "\\c" 'toggle-truncate-lines)
 
 (define-key evil-insert-state-map "\C-a" 'evil-insert-line)
 (define-key evil-insert-state-map "\C-e" 'move-end-of-line)
