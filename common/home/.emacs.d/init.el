@@ -129,7 +129,7 @@
 
 (setq web-mode-markup-indent-offset 2)
 
-(set-face-attribute 'default nil :family "Cica" :height 95 :weight 'bold)
+(set-face-attribute 'default nil :family "Cica" :height 90 :weight 'bold)
 
 (setq whitespace-style '(face trailing tabs tab-mark))
 (global-whitespace-mode 1)

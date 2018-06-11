@@ -57,7 +57,8 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm archlinux-keyring gnome-keyring
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs udisks2 fdiskie arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
-	@sudo pacman -S --needed --noconfirm fish tmux wget tree jq p7zip tig vim emacs
+	@sudo pacman -S --needed --noconfirm fish tmux tig vim emacs
+	@sudo pacman -S --needed --noconfirm wget tree jq p7zip sysstat
 	@sudo pacman -S --needed --noconfirm go python-pip ruby jdk9-openjdk gradle opam
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm cmake freetype2 fontconfig pkg-config xclip
