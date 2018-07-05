@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: #[cfg(test)] mod tests {}
+# key: tests
+# --
+#[cfg(test)]
+mod tests {
+    $0
+}

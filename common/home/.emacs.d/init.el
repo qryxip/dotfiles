@@ -79,6 +79,12 @@
 
 (el-get-bundle! web-mode)
 
+;; (el-get-bundle! auctex)
+;; (el-get-bundle! auctex-latexmk)
+;; (el-get-bundle! company-auctex)
+(el-get-bundle! reftex
+  :location built-in)
+
 (el-get-bundle! bind-key)
 (el-get-bundle! dash)
 (el-get-bundle! drag-stuff)
@@ -99,6 +105,7 @@
 (setq inhibit-startup-message t)
 (setq make-backup-files nil)
 
+(set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8-unix)
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)

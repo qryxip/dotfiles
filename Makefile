@@ -58,7 +58,7 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs udisks2 fdiskie arch-install-scripts
 	@sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
 	@sudo pacman -S --needed --noconfirm fish tmux tig vim emacs
-	@sudo pacman -S --needed --noconfirm wget tree jq p7zip sysstat
+	@sudo pacman -S --needed --noconfirm wget tree jq p7zip sysstat htop enca
 	@sudo pacman -S --needed --noconfirm go python-pip ruby jdk9-openjdk gradle opam
 	@sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
 	@sudo pacman -S --needed --noconfirm cmake freetype2 fontconfig pkg-config xclip
@@ -119,7 +119,7 @@ toolchains: archlinux
 	  ~/.cargo/bin/rustup install 1.15.1 && \
 	  ~/.cargo/bin/rustup install nightly-2018-05-19 && \
 	  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable && \
-	  ~/.cargo/bin/cargo +stable install racer cargo-edit cargo-license cargo-script cargo-update exa fselect tokei && \
+	  ~/.cargo/bin/cargo +stable install racer cargo-edit cargo-license cargo-script cargo-outdated cargo-update exa fselect tokei && \
 	  ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty && \
 	  ~/.cargo/bin/cargo +nigthly-2018-05-19 install clippy rustfmt-nightly cargo-src; \
 	fi

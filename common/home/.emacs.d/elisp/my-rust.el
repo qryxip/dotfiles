@@ -186,6 +186,18 @@
     (insert " "))
   (self-insert-command 1))
 
+(defun my-rust-insert-ret ()
+  (interactive)
+  (let ((p (and (not (nth 3 (syntax-ppss)))
+                (or (and (eq (preceding-char) (string-to-char "("))
+                         (eq (char-before (+ 1 (point))) (string-to-char ")")))
+                    (and (eq (preceding-char) (string-to-char "["))
+                         (eq (char-before (+ 1 (point))) (string-to-char "]")))
+                    (and (eq (preceding-char) (string-to-char "{"))
+                         (eq (char-before (+ 1 (point))) (string-to-char "}")))))))
+    (newline-and-indent)
+    (when p
+      (evil-open-above 1))))
 
 
 (defun my-rust-insert-operator ()
@@ -216,6 +228,8 @@
 (with-eval-after-load 'rust-mode
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
+  (evil-define-key 'insert rust-mode-map "\C-j" 'my-rust-insert-ret)
+  (evil-define-key 'insert rust-mode-map "\C-m" 'my-rust-insert-ret)
   (evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
   (evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
   (evil-define-key 'normal rust-mode-map "\C-]" 'racer-find-definition)
