@@ -12,6 +12,7 @@ xset r rate 200 50
 xset -b
 light-locker --lock-on-suspend &
 if [ -x /usr/bin/xkeysnail ]; then
-  xhost +SI:localuser:root
+  xhost +SI:localuser:xkeysnail
+  systemctl --user start xkeysnail
 fi
 fcitx-autostart

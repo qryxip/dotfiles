@@ -59,6 +59,7 @@
 (el-get-bundle! magit)
 (el-get-bundle! migemo)
 (el-get-bundle! swiper)
+(el-get-bundle! wgrep)
 
 (el-get-bundle! monokai-theme
   (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)

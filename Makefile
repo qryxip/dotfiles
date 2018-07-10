@@ -41,18 +41,17 @@ ifeq ($(shell uname), Linux)
 	  ln -sf $$(pwd)/linux/home/.config/$$name ~/.config/; \
 	done
 	@ln -sf $$(pwd)/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
+	@cp $$(pwd)/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
 endif
 
 archlinux: linux
 ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 	@echo 'Making directories...'
-	@sudo mkdir -p /usr/local/share/kbd/keymaps /usr/local/share/xkeysnail
+	@sudo mkdir -p /usr/local/share/kbd/keymaps
 	@echo 'Copying files...'
 	@sudo cp archlinux/etc/locale.conf /etc/
 	@sudo cp archlinux/etc/vconsole.conf /etc/
-	@sudo cp archlinux/etc/systemd/system/xkeysnail.service /etc/systemd/system/
 	@sudo cp archlinux/usr/local/share/kbd/keymaps/personal.map /usr/local/share/kbd/keymaps/
-	@sudo cp archlinux/usr/local/share/xkeysnail/config.py /usr/local/share/xkeysnail/
 	@echo 'Installing packages...'
 	@sudo pacman -S --needed --noconfirm archlinux-keyring gnome-keyring
 	@sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs udisks2 fdiskie arch-install-scripts
@@ -96,12 +95,6 @@ ifeq ($(wildcard /etc/arch-release), /etc/arch-release)
 endif
 
 toolchains: archlinux
-	@if [ $$(uname) = Linux ] && [ ! -f /usr/bin/xkeysnail ]; then \
-	  echo 'Setting up xkeysnail...' && \
-	  sudo touch /root/.Xauthority && \
-	  sudo /usr/bin/pip3 install xkeysnail && \
-	  sudo systemctl enable xkeysnail.service; \
-	fi
 	@if [ ! -d ~/venv ]; then \
 	  echo 'Creating ~/venv ...' && \
 	  /usr/bin/python3 -m venv ~/venv && \
@@ -127,6 +120,8 @@ toolchains: archlinux
 	  go get github.com/motemen/ghq && \
 	  ~/go/bin/ghq get https://github.com/KKPMW/dircolors-moonshine/dircolors.moonshine -u && \
 	fi
+	@sh $$(pwd)/setup-venvs.sh
+	@sh $$(pwd)/setup-xkeysnail.sh
 	# @if [ -f /usr/bin/opam ]; then \
 	#   echo 'todo' && \
 	#   exit 1; \
