@@ -226,6 +226,7 @@
 (defconst my-rust--snowchains-crate "contest/rs")
 
 (with-eval-after-load 'rust-mode
+  (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
   (evil-define-key 'insert rust-mode-map "\C-j" 'my-rust-insert-ret)
