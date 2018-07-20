@@ -17,15 +17,26 @@ if [ "`whoami`" = root ]; then
   exit 1
 fi
 
-wd=$(realpath $(dirname $0))
-
 if [ -f /etc/arch-release ]; then
   sudo mkdir -p /usr/local/share/kbd/keymaps
   echo "${bold}Created /usr/local/share/kbd/keymaps${ansi_reset}"
 
-  sudo cp $wd/archlinux/etc/locale.conf /etc/
-  sudo cp $wd/archlinux/etc/vconsole.conf /etc/
-  sudo cp $wd/archlinux/usr/local/share/kbd/keymaps/personal.map /usr/local/share/kbd/keymaps/
+  # https://qiita.com/miy4/items/dd0e2aec388138f803c5
+  if cat /etc/passwd | grep xkeysnail > /dev/null; then
+    echo "${bold}User 'xkeysnail' already exists.${ansi_reset}"
+  else
+    sudo groupadd uniput
+    sudo useradd -G input,uinput -s /sbin/nologin xkeysnail
+    echo "${bold}Added user 'xkeysnail' and group 'uinput'.${ansi_reset}"
+  fi
+
+  base=$(realpath $(dirname $0))
+  sudo cp $base/archlinux/usr/local/share/kbd/keymaps/personal.map /usr/local/share/kbd/keymaps/
+  sudo cp $base/archlinux/etc/locale.conf /etc/
+  sudo cp $base/archlinux/etc/vconsole.conf /etc/
+  sudo cp $base/archlinux/etc/udev/rules.d/40-udev-xkeysnail.rules /etc/udev/rules.d/
+  sudo cp $base/archlinux/etc/modules-load.d/uinput.conf /etc/modules-load.d/
+  sudo cp $base/archlinux/etc/sudoers.d/10-installer  /etc/sudoers.d/
   echo "${bold}Copied files.${ansi_reset}"
 
   echo -e "\n${bold}Installing packages...${ansi_reset}"
@@ -50,7 +61,8 @@ if [ -f /etc/arch-release ]; then
     echo -e "\n${bold}Packer already installed.${ansi_reset}"
   else
     echo -e "\n${bold}Installing packer...${ansi_reset}"
-    mkdir -p /tmp/install_packer
+    mkdir /tmp/install_packer
+    wd=`pwd`
     cd /tmp/install_packer
     wget 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer' -O PKGBUILD
     makepkg -s
@@ -59,23 +71,38 @@ if [ -f /etc/arch-release ]; then
     rm -rf /tmp/install_packer
   fi
 
-  echo -e "\n${bold}Installing AUR packages...${ansi_reset}"
-  if [ ! -f /usr/share/fonts/OTF/ipaexm.ttf ]; then packer -S otf-ipaexfont; fi
-  if [ ! -f /usr/share/fonts/TTF/Cica-Regular.ttf ]; then packer -S ttf-cica; fi
-  if [ ! -f /usr/share/fonts/TTF/GenShinGothic-Regular.ttf ]; then packer -S ttf-genshin-gothic; fi
-  if [ ! -f /usr/share/fonts/TTF/FiraMono-Regular.ttf ]; then packer -S fira-code; fi
-  if [ ! -f /usr/share/nvm/init-nvm.sh ]; then packer -S nvm; fi
-  if [ ! -f /usr/bin/cmigemo ]; then packer -S cmigemo-git; fi
-  if [ ! -f /usr/bin/cmus ]; then packer -S cmus-git; fi
-  if [ ! -f /usr/bin/envchain ]; then packer -S envchain; fi
-  if [ ! -f /usr/bin/stack ]; then packer -S stack; fi
-  if [ ! -f /usr/bin/yabar ]; then packer -S yabar-git; fi
-  if [ ! -f /usr/bin/simple-mtpfs ]; then packer -S simple-mtpfs; fi
+  packages=$(bash -c '
+    PACKAGES="
+      cmigemo-git
+      cmus-git
+      dropbox
+      envchain
+      intellij-jdk
+      j4-dmenu-desktop
+      nkf
+      nvm
+      otf-ipaexfont
+      peco
+      simple-mtpfs
+      ttf-cica
+      ttf-genshin-gothic
+      ttf-myricam
+      yabar-git
+    "
+    comm -23 <(printf "%s\n" $PACKAGES | sort) <(pacman -Qqm | sort)
+  ')
+  if [ -z "$packages" ]; then
+    echo -e "\n${bold}No AUR packages to install.${ansi_reset}"
+  else
+    echo -e "\n${bold}Installing AUR packages...${ansi_reset}"
+    packer -S --noconfirm $packages
+  fi
 
+  echo ''
   sudo systemctl enable ntpd
   sudo systemctl enable lightdm
   sudo systemctl enable bluetooth
-  echo -e "\n${bold}Enabled systemd units.${ansi_reset}"
+  echo "${bold}Enabled systemd units.${ansi_reset}"
 else
   echo '${yellow}This OS is not Arch Linux.${ansi_reset}'
 fi

@@ -1,7 +1,7 @@
-.DEFAULT: update
-.PHONY: update common linux archlinux toolchains envchain
+.DEFAULT: all
+.PHONY: all common linux archlinux toolchains envchain
 
-update: toolchains
+all: toolchains
 
 common:
 	sh $$(pwd)/setup-common.sh
@@ -17,10 +17,6 @@ toolchains: archlinux
 	@sh $$(pwd)/setup-venvs.sh
 	@sh $$(pwd)/setup-gems.sh
 	@sh $$(pwd)/setup-rustup.sh
-	# @if [ -f /usr/bin/opam ]; then \
-	#   echo 'todo' && \
-	#   exit 1; \
-	# fi
 
 envchain:
 	@sh $$(pwd)/setup-envchain.sh

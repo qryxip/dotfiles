@@ -17,18 +17,18 @@ if [ "`whoami`" = root ]; then
   exit 1
 fi
 
-wd=$(realpath $(dirname $0))
+base=$(realpath $(dirname $0))
 
 if [ "$(uname)" = Linux ]; then
   echo "${bold}Creating symlinks...${ansi_reset}"
   for name in xkb.sh .xprofile .Xresources .xkb; do
-    ln -sf $wd/linux/home/$name ~/
+    ln -sf $base/linux/home/$name ~/
   done
   for name in bspwm compton libskk sxhkd yabar; do
-    ln -sf $wd/linux/home/.config/$name ~/.config/
+    ln -sf $base/linux/home/.config/$name ~/.config/
   done
-  ln -sf $wd/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
-  cp $wd/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
+  ln -sf $base/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
+  cp $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
 else
   echo "${yellow}This OS is not Linux.${ansi_reset}"
 fi
