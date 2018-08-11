@@ -21,4 +21,5 @@ else
   echo "${bold}Installing xkeysnail...${ansi_reset}"
   sudo /usr/bin/python3 -m venv /opt/xkeysnail
   sudo /opt/xkeysnail/bin/pip3 install xkeysnail
+  cp $(realpath $(dirname $0))/linux/opt/xkeysnail/config.py /opt/xkeysnail/
 fi
