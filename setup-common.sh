@@ -46,7 +46,7 @@ fi
 if [ -d ~/.vim/dein.vim/.git ]; then
   echo "${bold}Shougo/dein.vim already cloned.${ansi_reset}"
 else
-  git clone 'https://github.comm/Shougo/dein.vim' ~/.vim/dein.vim
+  git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim
 fi
 
 if [ -f ~/.config/fish/functions/fisher.fish ]; then
