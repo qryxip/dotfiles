@@ -21,6 +21,8 @@ base=$(realpath $(dirname $0))
 
 if [ "$(uname)" = Linux ]; then
   echo "${bold}Creating symlinks...${ansi_reset}"
+  mkdir -p ~/.config/systemd/user ~/.local/share/applications
+  sudo mkdir -p /etc/X11/xorg.conf.d
   for name in xkb.sh .xprofile .Xresources .xkb; do
     ln -sf $base/linux/home/$name ~/
   done
@@ -29,6 +31,8 @@ if [ "$(uname)" = Linux ]; then
   done
   ln -sf $base/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
   cp $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
+  sudo cp ./linux/etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
+  sudo cp ./linux/etc/X11/xorg.conf.d/50-mouse.conf /etc/X11/xorg.conf.d/
 else
   echo "${yellow}This OS is not Linux.${ansi_reset}"
 fi

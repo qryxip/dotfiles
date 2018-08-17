@@ -61,12 +61,22 @@
 (el-get-bundle! swiper)
 (el-get-bundle! wgrep)
 
-(el-get-bundle! monokai-theme
-  (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
-         (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
-         (set-face-background 'default "#1b1d1e")
-         (set-face-background 'linum "#1b1d1e")
-         (set-face-background 'fringe "#1b1d1e")))
+;; (el-get-bundle! monokai-theme
+;;   (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
+;;          (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
+;;          (dolist (face '("default" "linum" "fringe"))
+;;            (set-face-foreground (intern face) "#ebdbb2")
+;;            (set-face-background (intern face) "#282828"))))
+(face-attribute 'default :foreground)
+
+(el-get-bundle autothemer)
+
+(el-get-bundle! gruvbox-theme
+  (add-to-list 'custom-theme-load-path default-directory)
+  (load-theme 'gruvbox-dark-medium t)
+  (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
+  (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
+  )
 
 (el-get-bundle! toml-mode)
 (el-get-bundle! markdown-mode)

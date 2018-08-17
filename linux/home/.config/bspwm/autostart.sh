@@ -15,14 +15,24 @@ fi
 xbacklight = 100
 feh --bg-fill ~/wallpaper
 xrdb ~/.Xresources
+
 if ! ps cax | grep xkeysnail > /dev/null; then
   xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
   xset r rate 200 50
   xset -b
 fi
+
 if ! ps cax | grep yabar > /dev/null; then
   yabar &
 fi
+
+# device=`xinput list | sed -n 's/^⎜\s\+↳\sSynPS\/2\sSynaptics\sTouchPad\s\+id=\([0-9]\+\).*/\1/gp'`
+# if [ -n "$device" ]; then
+#   property=`xinput list-props 14 | sed -n 's/^\s\+libinput\sTapping\sEnabled\s(\([0-9]\+\)).*/\1/gp'`
+#   if [ -n "$property" ]; then
+#     xinput set-prop $device $property 1
+#   fi
+# fi
 
 sleep 0.2
 

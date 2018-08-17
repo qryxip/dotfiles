@@ -25,7 +25,7 @@ if [ -f /etc/arch-release ]; then
   if cat /etc/passwd | grep xkeysnail > /dev/null; then
     echo "${bold}User 'xkeysnail' already exists.${ansi_reset}"
   else
-    sudo groupadd uniput
+    sudo groupadd uinput || true
     sudo useradd -G input,uinput -s /sbin/nologin xkeysnail
     echo "${bold}Added user 'xkeysnail' and group 'uinput'.${ansi_reset}"
   fi
@@ -40,22 +40,29 @@ if [ -f /etc/arch-release ]; then
   echo "${bold}Copied files.${ansi_reset}"
 
   echo -e "\n${bold}Installing packages...${ansi_reset}"
-  sudo pacman -S --needed --noconfirm archlinux-keyring gnome-keyring
-  sudo pacman -S --needed --noconfirm dosfstools efibootmgr ntfs-3g encfs udisks2 arch-install-scripts
-  sudo pacman -S --needed --noconfirm networkmanager openssh openconnect
-  sudo pacman -S --needed --noconfirm fish tmux tig vim emacs
-  sudo pacman -S --needed --noconfirm wget tree jq p7zip sysstat htop enca
-  sudo pacman -S --needed --noconfirm go python-pip ruby jdk9-openjdk gradle opam
-  sudo pacman -S --needed --noconfirm texlive-most texlive-langjapanese poppler-data
-  sudo pacman -S --needed --noconfirm cmake freetype2 fontconfig pkg-config xclip
-  sudo pacman -S --needed --noconfirm xf86-video-intel mesa xorg
-  sudo pacman -S --needed --noconfirm lightdm lightdm-gtk-greeter light-locker bspwm sxhkd
-  sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer bluez bluez-utils
-  sudo pacman -S --needed --noconfirm fcitx-skk skk-jisyo fcitx-configtool
-  sudo pacman -S --needed --noconfirm feh w3m compton xcompmgr xorg-xkbcomp xsel
-  sudo pacman -S --needed --noconfirm rxvt-unicode firefox chromium keepassxc seahorse qpdfview
-  sudo pacman -S --needed --noconfirm numix-gtk-theme
-  sudo pacman -S --needed --noconfirm awesome-terminal-fonts otf-ipafont
+  sudo pacman -S --needed --noconfirm \
+    archlinux-keyring gnome-keyring \
+    dosfstools efibootmgr ntfs-3g encfs udisks2 \
+    arch-install-scripts dialog \
+    wpa_supplicant wpa_actiond networkmanager openssh openconnect \
+    ntp \
+    zsh fish tmux \
+    vim emacs \
+    tig ripgrep wget tree jq p7zip enca \
+    sysstat htop \
+    go python-pip ruby jdk10-openjdk gradle opam \
+    texlive-most texlive-langjapanese poppler-data \
+    cmake freetype2 fontconfig pkg-config xclip \
+    xf86-video-intel mesa xorg \
+    lightdm lightdm-gtk-greeter light-locker bspwm sxhkd \
+    pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer alsamixer bluez bluez-utils \
+    fcitx-skk skk-jisyo fcitx-configtool \
+    feh w3m compton xcompmgr xorg-xkbcomp xsel \
+    rxvt-unicode \
+    firefox chromium \
+    keepassxc seahorse qpdfview \
+    numix-gtk-theme \
+    awesome-terminal-fonts otf-ipafont
 
   if [ -f /usr/bin/packer ]; then
     echo -e "\n${bold}Packer already installed.${ansi_reset}"

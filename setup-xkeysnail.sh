@@ -19,7 +19,7 @@ if [ -d /opt/xkeysnail ]; then
   echo "${bold}xkeysnail is already installed.${ansi_reset}"
 else
   echo "${bold}Installing xkeysnail...${ansi_reset}"
-  sudo /usr/bin/python3 -m venv /opt/xkeysnail
-  sudo /opt/xkeysnail/bin/pip3 install xkeysnail
-  cp $(realpath $(dirname $0))/linux/opt/xkeysnail/config.py /opt/xkeysnail/
+  sudo /usr/bin/python3.7 -m venv /opt/xkeysnail
+  sudo /opt/xkeysnail/bin/pip3.7 install xkeysnail
+  sudo cp $(realpath $(dirname $0))/linux/opt/xkeysnail/config.py /opt/xkeysnail/
 fi
