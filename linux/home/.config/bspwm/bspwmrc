@@ -26,5 +26,4 @@ bspc rule -a Screenkey manage=off
 
 #bspc rule -a astroblasto state=floating
 
-yabar &
 alacritty -e /usr/bin/tmux &

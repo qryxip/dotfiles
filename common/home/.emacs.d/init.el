@@ -79,6 +79,7 @@
   )
 
 (el-get-bundle! toml-mode)
+(el-get-bundle! yaml-mode)
 (el-get-bundle! markdown-mode)
 
 (el-get-bundle! rust-mode)
@@ -87,6 +88,9 @@
 (el-get-bundle! racer)
 (el-get-bundle! flycheck-rust
   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(el-get-bundle! intero
+  (add-hook 'haskell-mode-hook 'intero-mode))
 
 (el-get-bundle! web-mode)
 
@@ -147,7 +151,7 @@
 
 (setq web-mode-markup-indent-offset 2)
 
-(set-face-attribute 'default nil :family "Cica" :height 90 :weight 'bold)
+(set-face-attribute 'default nil :family "Cica" :height 85 :weight 'bold)
 
 (setq whitespace-style '(face trailing tabs tab-mark))
 (global-whitespace-mode 1)

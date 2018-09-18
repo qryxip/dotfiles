@@ -22,8 +22,8 @@ if ! ps cax | grep xkeysnail > /dev/null; then
   xset -b
 fi
 
-if ! ps cax | grep yabar > /dev/null; then
-  yabar &
+if ! ps cax | grep polybar > /dev/null; then
+  polybar main &
 fi
 
 # device=`xinput list | sed -n 's/^⎜\s\+↳\sSynPS\/2\sSynaptics\sTouchPad\s\+id=\([0-9]\+\).*/\1/gp'`

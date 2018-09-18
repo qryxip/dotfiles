@@ -15,6 +15,8 @@ if [ "`whoami`" = root ]; then
   exit 1
 fi
 
+envchain --set github GITHUB_TOKEN \
+                      GITHUB_TOKEN_TRAVIS
 envchain --set tus TUS_STUDENT_NUMBER \
                    TUS_PASSWORD \
                    TUS_VPN_URL

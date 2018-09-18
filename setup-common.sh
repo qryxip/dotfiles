@@ -23,7 +23,7 @@ echo "${bold}Creating directories...${ansi_reset}"
 mkdir -p ~/.vim ~/.emacs.d ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 
 echo "${bold}Creating symlinks...${ansi_reset}"
-for name in .eslintrc .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc; do
+for name in .eslintrc .gitconfig .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc; do
   ln -sf $base/common/home/$name ~/
 done
 ln -sf $base/common/home/.emacs.d/init.el ~/.emacs.d/

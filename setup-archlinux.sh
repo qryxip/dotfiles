@@ -48,14 +48,14 @@ if [ -f /etc/arch-release ]; then
     ntp \
     zsh fish tmux \
     vim emacs \
-    tig ripgrep wget tree jq p7zip enca \
+    tig hub ripgrep wget tree jq p7zip enca \
     sysstat htop \
     go python-pip ruby jdk10-openjdk gradle opam \
     texlive-most texlive-langjapanese poppler-data \
     cmake freetype2 fontconfig pkg-config xclip \
     xf86-video-intel mesa xorg \
     lightdm lightdm-gtk-greeter light-locker bspwm sxhkd \
-    pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer alsamixer bluez bluez-utils \
+    pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer gnome-alsamixer bluez bluez-utils \
     fcitx-skk skk-jisyo fcitx-configtool \
     feh w3m compton xcompmgr xorg-xkbcomp xsel \
     rxvt-unicode \
@@ -64,18 +64,18 @@ if [ -f /etc/arch-release ]; then
     numix-gtk-theme \
     awesome-terminal-fonts otf-ipafont
 
-  if [ -f /usr/bin/packer ]; then
-    echo -e "\n${bold}Packer already installed.${ansi_reset}"
+  if [ -x /usr/bin/yay ]; then
+    echo -e "\n${bold}yay already installed.${ansi_reset}"
   else
-    echo -e "\n${bold}Installing packer...${ansi_reset}"
-    mkdir /tmp/install_packer
+    echo -e "\n${bold}Installing yay...${ansi_reset}"
+    mkdir /tmp/yay_installation
     wd=`pwd`
-    cd /tmp/install_packer
-    wget 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer' -O PKGBUILD
-    makepkg -s
-    sudo pacman -U `find -maxdepth 1 -name 'packer-*.pkg.tar.xz'`
+    cd /tmp/yay_installation
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
     cd $wd
-    rm -rf /tmp/install_packer
+    rm -rf /tmp/yay_installation
   fi
 
   packages=$(bash -c '
@@ -84,17 +84,19 @@ if [ -f /etc/arch-release ]; then
       cmus-git
       dropbox
       envchain
+      gitflow-avh
       intellij-jdk
       j4-dmenu-desktop
       nkf
       nvm
       otf-ipaexfont
       peco
+      polybar
+      pyenv
       simple-mtpfs
-      ttf-cica
+      ttf-cica-git
       ttf-genshin-gothic
       ttf-myricam
-      yabar-git
     "
     comm -23 <(printf "%s\n" $PACKAGES | sort) <(pacman -Qqm | sort)
   ')
@@ -102,7 +104,7 @@ if [ -f /etc/arch-release ]; then
     echo -e "\n${bold}No AUR packages to install.${ansi_reset}"
   else
     echo -e "\n${bold}Installing AUR packages...${ansi_reset}"
-    packer -S --noconfirm $packages
+    yay -S --noconfirm $packages
   fi
 
   echo ''
