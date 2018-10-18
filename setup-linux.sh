@@ -23,10 +23,10 @@ if [ "$(uname)" = Linux ]; then
   echo "${bold}Creating symlinks...${ansi_reset}"
   mkdir -p ~/.config/systemd/user ~/.local/share/applications
   sudo mkdir -p /etc/X11/xorg.conf.d
-  for name in xkb.sh .xprofile .Xresources .xkb; do
+  for name in xkb.sh .rtorrent.rc .xprofile .Xresources .xkb; do
     ln -sf $base/linux/home/$name ~/
   done
-  for name in bspwm compton libskk sxhkd yabar; do
+  for name in bspwm compton libskk polybar sxhkd yabar; do
     ln -sf $base/linux/home/.config/$name ~/.config/
   done
   ln -sf $base/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/

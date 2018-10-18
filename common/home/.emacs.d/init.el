@@ -16,9 +16,11 @@
 (el-get-bundle! evil)
 (el-get-bundle! evil-cleverparens)
 (el-get-bundle! evil-commentary)
-(el-get-bundle! evil-magit)
 (el-get-bundle! evil-snipe)
 (el-get-bundle! evil-surround)
+
+;; broken
+;; (el-get-bundle! evil-magit)
 
 (el-get-bundle! company)
 (el-get-bundle! company-lsp)
@@ -28,6 +30,7 @@
 (el-get-bundle! linum-relative)
 (el-get-bundle! lsp-mode)
 (el-get-bundle! lsp-ui)
+(el-get-bundle! eglot)
 (el-get-bundle! powerline)
 (el-get-bundle! rainbow-delimiters)
 (el-get-bundle! smartparens)
@@ -56,38 +59,42 @@
 
 (el-get-bundle! avy)
 (el-get-bundle! avy-migemo)
-(el-get-bundle! magit)
+;; (el-get-bundle! magit)
 (el-get-bundle! migemo)
 (el-get-bundle! swiper)
 (el-get-bundle! wgrep)
 
-;; (el-get-bundle! monokai-theme
-;;   (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
-;;          (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
-;;          (dolist (face '("default" "linum" "fringe"))
-;;            (set-face-foreground (intern face) "#ebdbb2")
-;;            (set-face-background (intern face) "#282828"))))
+(el-get-bundle! monokai-theme
+  (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
+         (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
+         (dolist (face '("default" "linum" "fringe"))
+           (set-face-foreground (intern face) "#ebdbb2")
+           (set-face-background (intern face) "#282828"))))
 (face-attribute 'default :foreground)
 
 (el-get-bundle autothemer)
 
-(el-get-bundle! gruvbox-theme
-  (add-to-list 'custom-theme-load-path default-directory)
-  (load-theme 'gruvbox-dark-medium t)
-  (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
-  (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
-  )
+;; (el-get-bundle! gruvbox-theme
+;;   (add-to-list 'custom-theme-load-path default-directory)
+;;   (load-theme 'gruvbox-dark-medium t)
+;;   (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
+;;   (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
+;;   )
+
+(el-get-bundle! graphql)
 
 (el-get-bundle! toml-mode)
 (el-get-bundle! yaml-mode)
 (el-get-bundle! markdown-mode)
 
-(el-get-bundle! rust-mode)
-(el-get-bundle! cargo)
-(el-get-bundle! lsp-rust)
 (el-get-bundle! racer)
-(el-get-bundle! flycheck-rust
-  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(el-get-bundle! lsp-rust)
+(el-get-bundle! rustic)
+
+;; (el-get-bundle! rust-mode
+;; (el-get-bundle! cargo)
+;; (el-get-bundle! flycheck-rust
+;;   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (el-get-bundle! intero
   (add-hook 'haskell-mode-hook 'intero-mode))
@@ -245,5 +252,7 @@
                                         (powerline-fill nil (powerline-width rhs))
                                         (powerline-render rhs)))))))
 
-(unless (server-running-p)
-  (server-start))
+;; ????????????????????????????????
+;; (unless (server-running-p)
+;;   (server-start))
+(server-start)

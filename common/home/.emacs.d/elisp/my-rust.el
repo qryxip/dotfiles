@@ -225,36 +225,40 @@
 
 (defconst my-rust--snowchains-crate "contest/rs")
 
-(with-eval-after-load 'rust-mode
-  (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
+(with-eval-after-load 'rustic
+  (setq-default rustic-rls-pkg 'eglot)
+  (setq-default rustic-format-on-save nil)
+  (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
+  ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
-  (evil-define-key 'insert rust-mode-map "\C-j" 'my-rust-insert-ret)
-  (evil-define-key 'insert rust-mode-map "\C-m" 'my-rust-insert-ret)
-  (evil-define-key 'insert rust-mode-map "\C-q" 'racer-describe)
-  (evil-define-key 'normal rust-mode-map "\C-q" 'racer-describe)
-  (evil-define-key 'normal rust-mode-map "\C-]" 'racer-find-definition)
-  (evil-define-key 'normal rust-mode-map "\M-r" 'my-rust-run)
-  (evil-define-key 'normal rust-mode-map "\M-t" 'my-rust-test)
-  (evil-define-key 'insert rust-mode-map "," 'my-rust-insert-comma)
-  (evil-define-key 'insert rust-mode-map ":" 'my-rust-insert-colon)
-  (evil-define-key 'insert rust-mode-map ";" 'my-rust-insert-semicolon)
-  (evil-define-key 'insert rust-mode-map "=" 'my-rust-insert-equal)
-  (evil-define-key 'insert rust-mode-map "|" 'my-rust-insert-bar)
-  (evil-define-key 'insert rust-mode-map ">" 'my-rust-insert-gt)
-  (evil-define-key 'insert rust-mode-map "'" 'my-rust-insert-single-quote)
-  (evil-define-key 'insert rust-mode-map "\"" 'my-rust-insert-double-quote)
-  (evil-define-key 'insert rust-mode-map "{" 'my-rust-insert-curly-brace)
+  (evil-define-key 'insert rustic-mode-map "\C-j" 'my-rust-insert-ret)
+  (evil-define-key 'insert rustic-mode-map "\C-m" 'my-rust-insert-ret)
+  (evil-define-key 'insert rustic-mode-map "\C-q" 'racer-describe)
+  (evil-define-key 'normal rustic-mode-map "\C-q" 'racer-describe)
+  (evil-define-key 'normal rustic-mode-map "\C-]" 'racer-find-definition)
+  (evil-define-key 'normal rustic-mode-map "\M-r" 'my-rust-run)
+  (evil-define-key 'normal rustic-mode-map "\M-t" 'my-rust-test)
+  (evil-define-key 'insert rustic-mode-map "," 'my-rust-insert-comma)
+  (evil-define-key 'insert rustic-mode-map ":" 'my-rust-insert-colon)
+  (evil-define-key 'insert rustic-mode-map ";" 'my-rust-insert-semicolon)
+  (evil-define-key 'insert rustic-mode-map "=" 'my-rust-insert-equal)
+  (evil-define-key 'insert rustic-mode-map "|" 'my-rust-insert-bar)
+  (evil-define-key 'insert rustic-mode-map ">" 'my-rust-insert-gt)
+  (evil-define-key 'insert rustic-mode-map "'" 'my-rust-insert-single-quote)
+  (evil-define-key 'insert rustic-mode-map "\"" 'my-rust-insert-double-quote)
+  (evil-define-key 'insert rustic-mode-map "{" 'my-rust-insert-curly-brace)
   (setq company-begin-commands (append '(my-rust-insert-colon
                                          my-rust-insert-equal
                                          my-rust-insert-bar
                                          my-rust-insert-curly-brace)
                                        company-begin-commands))
-  (require 'lsp-mode))
+  ;; (require 'lsp-mode)
+  )
 
-(with-eval-after-load 'lsp-mode
-  (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls-preview"))
-  (require 'lsp-rust))
+;; (with-eval-after-load 'lsp-mode
+;;   (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls-preview"))
+;;   (require 'lsp-rust))
 
 (with-eval-after-load 'smartparens
   (require 'smartparens-rust))
@@ -265,9 +269,10 @@
             (string-match ".*.rustup/.*" (buffer-file-name))
             (string-match ".*/\\.ghq/.*" (buffer-file-name)))
     (read-only-mode 1))
-  (racer-mode 1)
+  ;; (racer-mode 1)
   (smartparens-mode 1)
   (rainbow-delimiters-mode 1)
   (rust-enable-format-on-save))
 
-(add-hook 'rust-mode-hook 'my-rust-init)
+(add-hook 'rust-mode-hook 'rustic-mode)
+(add-hook 'rustic-mode-hook 'my-rust-init)

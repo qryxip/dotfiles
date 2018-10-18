@@ -26,7 +26,7 @@ else
   ~/.cargo/bin/rustup install 1.15.1 nightly
   ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable
   ~/.cargo/bin/rustup component add clippy-preview rustfmt-preview --toolchain nightly
-  ~/.cargo/bin/cargo +stable install cargo-edit cargo-license cargo-script cargo-outdated cargo-update exa fselect tokei
+  ~/.cargo/bin/cargo +stable install cargo-edit cargo-generate cargo-license cargo-script cargo-outdated cargo-update exa fselect tokei
   ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty
   ~/.cargo/bin/cargo +nightly install racer
 fi

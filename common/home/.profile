@@ -2,6 +2,7 @@ export JAVA_HOME=/usr/lib/jvm/intellij-jdk
 export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME=kde
 export XDG_CONFIG_HOME=$HOME/.config
+export EDITOR=/usr/bin/vim
 
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/venvs/http/bin:$PATH
@@ -26,3 +27,5 @@ if [ $p = 1 -a -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
   nvm use --lts
 fi
+
+eval `opam env`

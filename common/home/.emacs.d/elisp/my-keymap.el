@@ -22,6 +22,8 @@
                  (eq major-mode 'dired-mode)))
     (when (string-equal major-mode "c++-mode")
       (clang-format-buffer))
+    (when (string-equal major-mode "rustic-mode")
+      (rust-format-buffer))
     (save-buffer)))
 
 (defun my-keymap-toggle-flycheck-error-buffer ()

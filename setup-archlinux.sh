@@ -44,21 +44,23 @@ if [ -f /etc/arch-release ]; then
     archlinux-keyring gnome-keyring \
     dosfstools efibootmgr ntfs-3g encfs udisks2 \
     arch-install-scripts dialog \
-    wpa_supplicant wpa_actiond networkmanager openssh openconnect \
+    wpa_supplicant wpa_actiond dhclient networkmanager openssh openconnect \
+    wget rtorrent \
     ntp \
     zsh fish tmux \
     vim emacs \
-    tig hub ripgrep wget tree jq p7zip enca \
+    tig hub ripgrep fd tree jq p7zip unarchiver enca \
     sysstat htop \
     go python-pip ruby jdk10-openjdk gradle opam \
     texlive-most texlive-langjapanese poppler-data \
+    ttf-junicode otf-latinmodern-math \
     cmake freetype2 fontconfig pkg-config xclip \
     xf86-video-intel mesa xorg \
     lightdm lightdm-gtk-greeter light-locker bspwm sxhkd \
-    pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer gnome-alsamixer bluez bluez-utils \
+    libmpd libmpdclient pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer gnome-alsamixer playerctl bluez bluez-utils \
     fcitx-skk skk-jisyo fcitx-configtool \
-    feh w3m compton xcompmgr xorg-xkbcomp xsel \
-    rxvt-unicode \
+    feh gmic w3m compton xcompmgr xorg-xkbcomp xsel \
+    rxvt-unicode rofi \
     firefox chromium \
     keepassxc seahorse qpdfview \
     numix-gtk-theme \
@@ -87,13 +89,16 @@ if [ -f /etc/arch-release ]; then
       gitflow-avh
       intellij-jdk
       j4-dmenu-desktop
+      nerds-fonts-complete
       nkf
       nvm
       otf-ipaexfont
       peco
       polybar
+      powershell
       pyenv
       simple-mtpfs
+      spotify
       ttf-cica-git
       ttf-genshin-gothic
       ttf-myricam
