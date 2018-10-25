@@ -27,6 +27,7 @@ for name in .eslintrc .gitconfig .gvimrc .ideavimrc .latexmkrc .profile .tern-co
   ln -sf $base/common/home/$name ~/
 done
 ln -sf $base/common/home/.emacs.d/init.el ~/.emacs.d/
+ln -sf $base/common/home/.emacs.d/el ~/.emacs.d/
 ln -sf $base/common/home/.emacs.d/elisp ~/.emacs.d/
 ln -sf $base/common/home/.emacs.d/snippets ~/.emacs.d/
 ln -sf $base/common/home/.config/nvim ~/.config/

@@ -1,3 +1,7 @@
+(use-package racer)
+(use-package lsp-rust)
+(use-package rustic)
+
 (defun my-rust-run ()
   (interactive)
   (let ((file-path (buffer-file-name)))

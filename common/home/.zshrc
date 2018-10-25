@@ -1,4 +1,5 @@
 export PROMPT='%F{green}%~%f $ '
+# export PROMPT=$'[\e[38;5;198m%~\e[0m] \e[1m$\e[0m '
 
 setopt auto_cd
 setopt auto_list

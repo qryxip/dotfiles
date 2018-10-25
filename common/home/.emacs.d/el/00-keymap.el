@@ -34,13 +34,6 @@
           (delete-window w)))
     (flycheck-list-errors)))
 
-(defun my-keymap-remap-helm-mode ()
-  (interactive)
-  (define-key helm-map [f8] 'help)
-  (define-key helm-map "\C-j" 'helm-confirm-and-exit-minibuffer)
-  (define-key helm-map "\C-h" 'delete-backward-char)
-  (define-key helm-map "\C-w" 'evil-delete-backward-word))
-
 (define-key evil-normal-state-map [escape] 'my-keymap-save-if-file-buffer)
 
 (define-key evil-insert-state-map "\M-r" 'quickrun)
@@ -100,6 +93,4 @@
 (evil-define-key 'normal dired-mode-map "\C-j" 'dired-find-file)
 (evil-define-key 'normal quickrun--mode-map "q" 'evil-window-delete)
 
-(keyboard-translate ?\C-j ?\C-m)
-
-(add-hook 'helm-mode-hook 'my-keymap-remap-helm-mode)
+;; (keyboard-translate ?\C-j ?\C-m)

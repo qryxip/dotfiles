@@ -1,5 +1,5 @@
 Xft.dpi: 120
-URxvt.font: xft:Cica:size=8:weight=150
+URxvt.font: xft:Cica:size=9:weight=120
 URxvt.depth: 32
 URxvt.scrollBar: False
 URxvt.foreground: White

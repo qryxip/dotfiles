@@ -28,14 +28,6 @@ function ll
   end
 end
 
-function e
-  emacsclient -n $argv
-end
-
-function en
-  emacsclient -nw -a '' $argv
-end
-
 function r
   ranger $argv
 end

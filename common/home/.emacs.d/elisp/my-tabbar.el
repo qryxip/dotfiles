@@ -28,8 +28,7 @@
   (set-face-attribute 'tabbar-selected nil
                       :family (face-attribute 'default :family)
                       :foreground (face-attribute 'mode-line :foreground)
-                      :background (face-attribute 'mode-line :background)
-                      :box nil)
-  )
+                      :background "#505050"
+                      :box nil))
 
 (tabbar-mode 1)
