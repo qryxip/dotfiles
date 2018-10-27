@@ -1,3 +1,6 @@
+(use-package intero
+  :config (add-hook 'haskell-mode-hook 'intero-mode))
+
 (defun my-haskell-init ()
   (interactive)
   (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))

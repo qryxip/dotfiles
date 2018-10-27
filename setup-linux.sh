@@ -30,6 +30,7 @@ if [ "$(uname)" = Linux ]; then
     ln -sf $base/linux/home/.config/$name ~/.config/
   done
   ln -sf $base/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
+  ln -sf $base/linux/home/.local/share/applications/firefox.desktop ~/.local/share/applications/
   cp $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
   sudo cp ./linux/etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
   sudo cp ./linux/etc/X11/xorg.conf.d/50-mouse.conf /etc/X11/xorg.conf.d/

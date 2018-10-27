@@ -29,7 +29,3 @@ if [ $p = 1 -a -f /usr/share/nvm/init-nvm.sh ]; then
 fi
 
 eval `opam env`
-
-if ! pidof emacs > /dev/null; then
-  emacs --daemon || true &
-fi

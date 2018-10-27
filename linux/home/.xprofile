@@ -1,5 +1,3 @@
-export LANG=ja_JP.UTF-8
-export LANGUAGE=ja_JP.UTF-8
 export GTK_THEME=Numix
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -16,3 +14,8 @@ if [ -x /opt/xkeysnail/bin/xkeysnail ]; then
   systemctl --user start xkeysnail
 fi
 fcitx-autostart
+if which emacs > /dev/null 2>&1; then
+  if ! pidof emacs > /dev/null; then
+    SHELL=/bin/bash LANG=ja_JP.UTF-8 LANGUAGE=ja_JP.UTF-8 emacs --daemon || true &
+  fi
+fi

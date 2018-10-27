@@ -1,5 +1,16 @@
 ;; (package-initialize)
 
+(setq inhibit-startup-message t)
+(setq make-backup-files nil)
+
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8-unix)
+(setq coding-system-for-read 'utf-8
+      coding-system-for-write 'utf-8
+      indent-tabs-mode nil)
+
+(setq straight-use-package-by-default t)
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -13,14 +24,11 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(setq straight-use-package-by-default t)
-
 (straight-use-package 'use-package)
 
-(use-package init-loader
-  :init (setq-default init-loader-show-log-after-init nil))
-
-(use-package evil)
+(use-package evil
+  :custom (evil-want-C-i-jump t)
+  :config (evil-mode 1))
 (use-package evil-cleverparens)
 (use-package evil-commentary)
 (use-package evil-snipe)
@@ -36,15 +44,20 @@
             (define-key helm-map "\C-h" 'delete-backward-char)
             (define-key helm-map "\C-w" 'evil-delete-backward-word)))
 (use-package helm-gtags)
-(use-package linum-relative)
+(use-package linum-relative
+  :custom (linum-relative-current-symbol "")
+  :config (linum-relative-global-mode t))
 (use-package lsp-mode)
 (use-package lsp-ui)
 (use-package eglot)
-(use-package powerline)
 (use-package rainbow-delimiters)
-(use-package smartparens)
+(use-package smartparens
+  :config (progn
+            (smartparens-global-mode 1)
+            (show-smartparens-global-mode)))
 (use-package tabbar)
-(use-package which-key)
+(use-package which-key
+  :config (which-key-mode 1))
 (use-package yasnippet)
 (use-package flycheck
   :config (add-to-list 'display-buffer-alist
@@ -54,17 +67,17 @@
                          (reusable-frames . visible)
                          (window-height . 0.33))))
 (use-package flycheck-status-emoji
-  :init (custom-set-variables
-         '(flycheck-status-emoji-indicator-running ?⭯)
-         '(flycheck-status-emoji-indicator-finished-ok ?✓)
-         '(flycheck-status-emoji-indicator-finished-error ?✗)
-         '(flycheck-status-emoji-indicator-finished-warning ?⚠)
-         '(flycheck-status-emoji-indicator-finished-info ?ℹ)
-         '(flycheck-status-emoji-indicator-not-checked (string-to-char "?"))
-         '(flycheck-status-emoji-indicator-no-checker (string-to-char "?"))
-         '(flycheck-status-emoji-indicator-errored ?E)
-         '(flycheck-status-emoji-indicator-interrupted ?❗)
-         '(flycheck-status-emoji-indicator-suspicious ?❗))
+  :custom
+  (flycheck-status-emoji-indicator-running ?⭯)
+  (flycheck-status-emoji-indicator-finished-ok ?✓)
+  (flycheck-status-emoji-indicator-finished-error ?✗)
+  (flycheck-status-emoji-indicator-finished-warning ?⚠)
+  (flycheck-status-emoji-indicator-finished-info ?ℹ)
+  (flycheck-status-emoji-indicator-not-checked (string-to-char "?"))
+  (flycheck-status-emoji-indicator-no-checker (string-to-char "?"))
+  (flycheck-status-emoji-indicator-errored ?E)
+  (flycheck-status-emoji-indicator-interrupted ?❗)
+  (flycheck-status-emoji-indicator-suspicious ?❗)
   :config (flycheck-status-emoji-mode 1))
 
 (use-package magit)
@@ -85,22 +98,6 @@
                  (face-attribute 'default :foreground)))
 (use-package autothemer)
 
-(use-package graphql)
-
-(use-package toml-mode)
-(use-package yaml-mode)
-(use-package markdown-mode)
-
-(use-package irony)
-(use-package company-irony)
-(use-package flycheck-irony)
-(use-package clang-format)
-
-(use-package intero
-  :config (add-hook 'haskell-mode-hook 'intero-mode))
-
-(use-package web-mode)
-
 (use-package bind-key)
 (use-package dash)
 (use-package drag-stuff)
@@ -118,26 +115,6 @@
 (use-package s)
 (use-package smex)
 
-(setq inhibit-startup-message t)
-(setq make-backup-files nil)
-
-(set-language-environment "UTF-8")
-(prefer-coding-system 'utf-8-unix)
-(setq coding-system-for-read 'utf-8)
-(setq coding-system-for-write 'utf-8)
-(setq-default indent-tabs-mode nil)
-
-(evil-mode 1)
-(setq evil-want-C-i-jump t)
-
-(linum-relative-global-mode t)
-(setq linum-relative-current-symbol "")
-
-(which-key-mode 1)
-
-(smartparens-global-mode 1)
-(show-smartparens-global-mode)
-
 (setq-default truncate-lines t)
 
 (global-flycheck-mode 1)
@@ -150,7 +127,6 @@
 (setq helm-buffers-fuzzy-matching t
       helm-M-x-fuzzy-match t)
 
-(setq web-mode-markup-indent-offset 2)
 
 (set-face-attribute 'default nil :family "Cica" :height 85 :weight 'bold)
 
@@ -166,31 +142,26 @@
       evil-replace-state-cursor '(box "black")
       evil-operator-state-cursor '(box "black"))
 
-(init-loader-load (expand-file-name "el" user-emacs-directory))
-
-(add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
-(load "my-company")
-(load "my-tabbar")
-(load "my-migemo")
-
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode -1)
 
-(defun my-powerline--create-face (name fg bg weight)
+(use-package powerline)
+
+(defun init--create-face (name fg bg weight)
   (make-face name)
   (set-face-attribute name nil :foreground fg :background bg :box nil :weight weight :inherit 'mode-line))
 
 (with-eval-after-load 'powerline
   (set-face-attribute 'mode-line nil :background (face-attribute 'default :background) :height (face-attribute 'default :height) :box "#808080")
   (set-face-attribute 'mode-line-buffer-id nil :foreground "#99ff33")
-  (my-powerline--create-face 'mode-line-non-utf-8-unix "white" "red" 'bold)
-  (my-powerline--create-face 'mode-line-evil-normal "black" "#66ff33" 'bold)
-  (my-powerline--create-face 'mode-line-evil-insert "black" "#4fdeff" 'bold)
-  (my-powerline--create-face 'mode-line-evil-visual "black" "yellow" 'bold)
-  (my-powerline--create-face 'mode-line-evil-motion "black" "black" 'bold)
-  (my-powerline--create-face 'mode-line-evil-replace "black" "black" 'bold)
-  (my-powerline--create-face 'mode-line-evil-operator "black" "black" 'bold)
+  (init--create-face 'mode-line-non-utf-8-unix "white" "red" 'bold)
+  (init--create-face 'mode-line-evil-normal "black" "#66ff33" 'bold)
+  (init--create-face 'mode-line-evil-insert "black" "#4fdeff" 'bold)
+  (init--create-face 'mode-line-evil-visual "black" "yellow" 'bold)
+  (init--create-face 'mode-line-evil-motion "black" "black" 'bold)
+  (init--create-face 'mode-line-evil-replace "black" "black" 'bold)
+  (init--create-face 'mode-line-evil-operator "black" "black" 'bold)
   (setq-default mode-line-format
                 '("%e" (:eval (let* ((active (powerline-selected-window-active))
                                      (mode-line-buffer-id (if active 'mode-line-buffer-id 'mode-line-buffer-id-inactive))
@@ -234,6 +205,25 @@
                                 (concat (powerline-render lhs)
                                         (powerline-fill nil (powerline-width rhs))
                                         (powerline-render rhs)))))))
+
+(use-package irony)
+(use-package company-irony)
+(use-package flycheck-irony)
+(use-package clang-format)
+
+(use-package web-mode
+  :custom (web-mode-markup-indent-offset 2))
+
+(use-package graphql)
+
+(use-package toml-mode)
+(use-package yaml-mode)
+(use-package markdown-mode)
+
+(use-package init-loader
+  :init (setq-default init-loader-show-log-after-init nil))
+
+(init-loader-load (expand-file-name "el" user-emacs-directory))
 
 ;; (unless (server-running-p)
 ;;   (server-start))
