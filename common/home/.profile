@@ -28,4 +28,6 @@ if [ $p = 1 -a -f /usr/share/nvm/init-nvm.sh ]; then
   nvm use --lts
 fi
 
-eval `opam env`
+if which opam > /dev/null; then
+  eval `opam env`
+fi

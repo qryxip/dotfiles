@@ -50,6 +50,12 @@ else
   git clone 'https://github.com/Shougo/dein.vim' ~/.vim/dein.vim
 fi
 
+if [ ! -d ~/.zplug -a -f /usr/bin/zsh ]; then
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+else
+  echo "${bold}zplug already installed.${ansi_reset}"
+fi
+
 if [ -f ~/.config/fish/functions/fisher.fish ]; then
   echo "${bold}fisherman already installed.${ansi_reset}"
 else
