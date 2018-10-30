@@ -26,8 +26,9 @@ fi
 if [ $p = 1 -a -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
   nvm use --lts
+  export PATH=$HOME/.textlint/node_modules/.bin:$PATH
 fi
 
-if which opam > /dev/null; then
+if which opam > /dev/null 2>&1; then
   eval `opam env`
 fi

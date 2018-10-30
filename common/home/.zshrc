@@ -15,6 +15,7 @@ setopt auto_list
 setopt auto_menu
 setopt correct
 setopt hist_ignore_dups
+setopt interactivecomments
 setopt list_packed
 setopt list_types
 setopt magic_equal_subst
@@ -62,5 +63,6 @@ function check-zplug() {
 
 source ~/.profile
 
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+if [ -f ~/.travis/travis.sh ]; then
+  source ~/.travis/travis.sh
+fi

@@ -6,8 +6,7 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8-unix)
 (setq coding-system-for-read 'utf-8
-      coding-system-for-write 'utf-8
-      indent-tabs-mode nil)
+      coding-system-for-write 'utf-8)
 
 (setq straight-use-package-by-default t)
 
@@ -31,6 +30,7 @@
   :config (evil-mode 1))
 (use-package evil-cleverparens)
 (use-package evil-commentary)
+(use-package evil-matchit)
 (use-package evil-snipe)
 (use-package evil-surround)
 
@@ -224,6 +224,3 @@
   :init (setq-default init-loader-show-log-after-init nil))
 
 (init-loader-load (expand-file-name "el" user-emacs-directory))
-
-;; (unless (server-running-p)
-;;   (server-start))

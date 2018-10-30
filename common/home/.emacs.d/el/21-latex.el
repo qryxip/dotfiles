@@ -1,3 +1,8 @@
+(use-package reftex)
+;; (straight-use-package 'auctex)
+;; (use-package auctex-latexmk)
+;; (use-package company-auctex)
+
 (defun my-latex-run ()
   (interactive)
   ;; (let ((TeX-save-query nil))
