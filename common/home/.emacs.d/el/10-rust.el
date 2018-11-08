@@ -2,6 +2,15 @@
 (use-package lsp-rust)
 (use-package rustic)
 
+(sp-with-modes '(rustic-mode)
+  (sp-local-pair "'" "'"
+                 :unless '(sp-in-comment-p sp-in-string-quotes-p sp-in-rust-lifetime-context)
+                 :post-handlers'(:rem sp-escape-quotes-after-insert))
+  (sp-local-pair "<" ">"
+                 :when '(sp-rust-filter-angle-brackets)
+                 :skip-match 'sp-rust-skip-match-angle-bracket))
+(add-to-list 'sp-sexp-suffix (list #'rustic-mode 'regexp ""))
+
 (defun my-rust-run ()
   (interactive)
   (let ((file-path (buffer-file-name)))

@@ -51,6 +51,7 @@ if [ -f /etc/arch-release ]; then
     vim emacs \
     tig hub ripgrep fd tree jq p7zip unarchiver enca \
     sysstat htop \
+    perf kcov \
     go python-pip ruby jdk10-openjdk gradle opam \
     texlive-most texlive-langjapanese poppler-data \
     ttf-junicode otf-latinmodern-math \

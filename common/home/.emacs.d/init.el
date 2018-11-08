@@ -8,6 +8,8 @@
 (setq coding-system-for-read 'utf-8
       coding-system-for-write 'utf-8)
 
+(setq-default indent-tabs-mode nil)
+
 (setq straight-use-package-by-default t)
 
 (defvar bootstrap-version)
@@ -44,9 +46,6 @@
             (define-key helm-map "\C-h" 'delete-backward-char)
             (define-key helm-map "\C-w" 'evil-delete-backward-word)))
 (use-package helm-gtags)
-(use-package linum-relative
-  :custom (linum-relative-current-symbol "")
-  :config (linum-relative-global-mode t))
 (use-package lsp-mode)
 (use-package lsp-ui)
 (use-package eglot)
@@ -59,6 +58,7 @@
 (use-package which-key
   :config (which-key-mode 1))
 (use-package yasnippet)
+
 (use-package flycheck
   :config (add-to-list 'display-buffer-alist
                        `(,(rx bos "*Flycheck errors*" eos)
@@ -80,6 +80,27 @@
   (flycheck-status-emoji-indicator-suspicious ?❗)
   :config (flycheck-status-emoji-mode 1))
 
+(flycheck-define-checker textlint
+  "textlint"
+  :command ("textlint" "--format" "unix" source-inplace)
+  :error-patterns
+  ((error line-start (file-name) ":" line ":" column ": "
+          (message (one-or-more (not (any "["))))
+          "[Error/"
+          (id (one-or-more not-newline)
+              (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+          "]"
+          line-end)
+   (warning line-start (file-name) ":" line ":" column ": "
+            (message (one-or-more (not (any "["))))
+            "[Warning/"
+            (id (one-or-more not-newline)
+                (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+            "]"
+            line-end))
+  :modes (text-mode markdown-mode latex-mode))
+(add-to-list 'flycheck-checkers 'textlint)
+
 (use-package magit)
 (use-package evil-magit)
 (use-package migemo)
@@ -92,7 +113,7 @@
 (use-package monokai-theme
   :config (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
                  (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
-                 (dolist (face '("default" "linum" "fringe"))
+                 (dolist (face '("default" "fringe"))
                    (set-face-foreground (intern face) "#ebdbb2")
                    (set-face-background (intern face) "#282828"))
                  (face-attribute 'default :foreground)))
@@ -127,7 +148,6 @@
 (setq helm-buffers-fuzzy-matching t
       helm-M-x-fuzzy-match t)
 
-
 (set-face-attribute 'default nil :family "Cica" :height 85 :weight 'bold)
 
 (setq whitespace-style '(face trailing tabs tab-mark))
@@ -146,6 +166,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode -1)
 
+(use-package crosshairs)
 (use-package powerline)
 
 (defun init--create-face (name fg bg weight)
@@ -205,6 +226,10 @@
                                 (concat (powerline-render lhs)
                                         (powerline-fill nil (powerline-width rhs))
                                         (powerline-render rhs)))))))
+
+
+(setq-default display-line-numbers-type 'relative)
+(global-display-line-numbers-mode 1)
 
 (use-package irony)
 (use-package company-irony)
