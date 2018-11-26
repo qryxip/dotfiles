@@ -9,6 +9,7 @@
       coding-system-for-write 'utf-8)
 
 (setq-default indent-tabs-mode nil)
+(setq-default scroll-conservatively 1)
 
 (setq straight-use-package-by-default t)
 
@@ -135,6 +136,7 @@
 (use-package projectile)
 (use-package s)
 (use-package smex)
+(use-package term-run)
 
 (setq-default truncate-lines t)
 

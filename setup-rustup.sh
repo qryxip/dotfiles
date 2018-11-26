@@ -24,9 +24,26 @@ else
   wget https://sh.rustup.rs -O /tmp/rustup-init
   sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable
   ~/.cargo/bin/rustup install 1.15.1 nightly
-  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview --toolchain stable
+  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview clippy-preview rustfmt-preview --toolchain stable
   ~/.cargo/bin/rustup component add clippy-preview rustfmt-preview --toolchain nightly
-  ~/.cargo/bin/cargo +stable install cargo-edit cargo-generate cargo-license cargo-script cargo-outdated cargo-update exa fselect tokei
-  ~/.cargo/bin/cargo +stable install --git https://github.com/jwilm/alacritty
+  ~/.cargo/bin/cargo +stable install \
+                     cargo-asm \
+                     cargo-bloat \
+                     cargo-clone \
+                     cargo-count \
+                     cargo-edit \
+                     cargo-generate \
+                     cargo-license \
+                     cargo-outdated \
+                     cargo-profiler \
+                     cargo-script \
+                     cargo-tree\
+                     cargo-update \
+                     exa \
+                     diesel_cli \
+                     fselect \
+                     tokei
+  # ~/.cargo/bin/cargo +stable install cargo-local-registry
+  # ~/.cargo/bin/cargo +nightly install cargo-modules
   ~/.cargo/bin/cargo +nightly install racer
 fi

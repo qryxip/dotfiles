@@ -14,34 +14,40 @@
 (defun my-rust-run ()
   (interactive)
   (let ((file-path (buffer-file-name)))
-    (cond ((string-match (format "^.*/%s/src/bin/\\(.+\\)\\.rs$" my-rust--snowchains-crate) file-path)
+    (cond ((string-match "/contest/rs/src/bin/\\(.+\\)\\.rs\\'" file-path)
            (let ((buffer (get-buffer "*snowchains*")))
              (when buffer
                (with-current-buffer buffer
+                 (read-only-mode 0)
                  (erase-buffer))))
            (let ((problem-name (match-string 1 file-path)))
              (term-run "snowchains" "*snowchains*" "submit" problem-name "-l" "rust")))
-          ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
-           (cargo-process-run-bin (match-string 1 file-path)))
-          ((string-match "^.*/examples/\\(.+\\).rs$" file-path)
-           (cargo-process-run-example (match-string 1 file-path)))
+          ((string-match "/src/bin/\\(.+\\)\\.rs\\'" file-path)
+           (my-rust--cargo-command (list "cargo" "run" "--bin" (match-string 1 file-path))))
+          ((string-match "/examples/\\(.+\\)\\.rs\\'" file-path)
+           (my-rust--cargo-command (list "cargo" "run" "--example" (match-string 1 file-path))))
           (t
-           (cargo-process-run)))))
+           (rustic-cargo-run)))))
 
 (defun my-rust-test ()
   (interactive)
   (let ((file-path (buffer-file-name)))
-    (cond ((string-match (format "^.*/%s/src/bin/\\(.+\\)\\.rs$" my-rust--snowchains-crate) file-path)
+    (cond ((string-match "/contest/rs/src/bin/\\(.+\\)\\.rs\\'" file-path)
            (let ((buffer (get-buffer "*snowchains*")))
              (when buffer
                (with-current-buffer buffer
+                 (read-only-mode 0)
                  (erase-buffer))))
            (let ((problem-name (match-string 1 file-path)))
              (term-run "snowchains" "*snowchains*" "judge" problem-name "-l" "rust")))
-          ((string-match "^.*/src/bin/\\(.+\\)\\.rs$" file-path)
-           (cargo-process--start "Test Bin" (concat "test --bin " (match-string 1 file-path))))
+          ((string-match "/src/bin/\\(.+\\)\\.rs\\'" file-path)
+           (my-rust--cargo-command (list "cargo" "test" "--bin" (match-string 1 file-path))))
           (t
-           (cargo-process-test)))))
+           (rustic-cargo-test)))))
+
+(defun my-rust--cargo-command (args)
+  (rustic-compilation-process-live)
+  (rustic-compilation-start args))
 
 (defun my-rust-insert-comma ()
   (interactive)
@@ -235,8 +241,6 @@
              (not (nth 3 (syntax-ppss (point)))))
     (insert " "))
   (self-insert-command 1))
-
-(defconst my-rust--snowchains-crate "contest/rs")
 
 (with-eval-after-load 'rustic
   (setq-default rustic-rls-pkg 'eglot)

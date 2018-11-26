@@ -1,2 +1,5 @@
 [url "git@github.com:"]
   pushInsteadOf = https://github.com
+[user]
+	name = Ryo Yamashita
+	email = wariuni@gmail.com

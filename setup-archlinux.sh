@@ -49,19 +49,20 @@ if [ -f /etc/arch-release ]; then
     ntp \
     zsh fish tmux \
     vim emacs \
-    tig hub ripgrep fd tree jq p7zip unarchiver enca \
+    tig hub ripgrep fd bat tree jq p7zip unarchiver enca \
     sysstat htop \
-    perf kcov \
+    perf valgrind kcov \
     go python-pip ruby jdk10-openjdk gradle opam \
     texlive-most texlive-langjapanese poppler-data \
     ttf-junicode otf-latinmodern-math \
     cmake freetype2 fontconfig pkg-config xclip \
+    postgresql mariadb \
     xf86-video-intel mesa xorg \
     lightdm lightdm-gtk-greeter light-locker bspwm sxhkd \
     libmpd libmpdclient pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer gnome-alsamixer playerctl bluez bluez-utils \
     fcitx-skk skk-jisyo fcitx-configtool \
     feh gmic w3m compton xcompmgr xorg-xkbcomp xsel \
-    rxvt-unicode rofi \
+    alacritty rxvt-unicode rofi \
     firefox chromium \
     keepassxc seahorse qpdfview \
     numix-gtk-theme \
