@@ -20,7 +20,7 @@ fi
 base=$(realpath $(dirname $0))
 
 echo "${bold}Creating directories...${ansi_reset}"
-mkdir -p ~/.vim ~/.emacs.d ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+mkdir -p ~/.vim ~/.emacs.d/straight ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
 
 echo "${bold}Creating symlinks...${ansi_reset}"
 for name in .eslintrc .gitconfig .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tmux.conf .vimrc .zshrc; do
@@ -30,6 +30,7 @@ ln -sf $base/common/home/.emacs.d/init.el ~/.emacs.d/
 ln -sf $base/common/home/.emacs.d/el ~/.emacs.d/
 ln -sf $base/common/home/.emacs.d/elisp ~/.emacs.d/
 ln -sf $base/common/home/.emacs.d/snippets ~/.emacs.d/
+ln -sf $base/common/home/.emacs.d/straight/versions ~/.emacs.d/straight/
 ln -sf $base/common/home/.config/nvim ~/.config/
 ln -sf $base/common/home/.config/alacritty/alacritty.yml ~/.config/alacritty/
 ln -sf $base/common/home/.config/cmus/rc ~/.config/cmus
