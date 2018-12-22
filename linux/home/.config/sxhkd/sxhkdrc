@@ -2,10 +2,10 @@ super + Return
 	alacritty -e /usr/bin/tmux
 
 super + r
-	j4-dmenu-desktop
+	rofi -modi drun -show drun
 
 super + shift r
-	dmenu_run
+	rofi -modi run -show run
 
 super + e
   bash ~/.config/bspwm/autostart.sh

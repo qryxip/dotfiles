@@ -104,6 +104,23 @@
 
 (use-package magit)
 (use-package evil-magit)
+(use-package smeargle)
+(use-package gitattributes-mode)
+(use-package gitconfig-mode)
+(use-package gitignore-mode)
+(use-package git-timemachine)
+(use-package diff-hl
+  :config
+  (set-face-background 'diff-hl-insert nil)
+  (set-face-background 'diff-hl-delete nil)
+  (set-face-background 'diff-hl-change nil)
+  (set-face-foreground 'diff-hl-insert "green")
+  (set-face-foreground 'diff-hl-delete "red")
+  (set-face-foreground 'diff-hl-change "yellow")
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (diff-hl-margin-mode 1)
+  (global-diff-hl-mode 1))
+
 (use-package migemo)
 (use-package swiper)
 (use-package wgrep)
@@ -246,6 +263,11 @@
 (use-package toml-mode)
 (use-package yaml-mode)
 (use-package markdown-mode)
+
+(use-package igarashi-copl-mode
+  :straight (igarashi-copl-mode :type git
+                                :host github
+                                :repo "ashiato45/igarashi-copl-mode"))
 
 (use-package init-loader
   :init (setq-default init-loader-show-log-after-init nil))

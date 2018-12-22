@@ -42,6 +42,7 @@ if [ -f /etc/arch-release ]; then
   echo -e "\n${bold}Installing packages...${ansi_reset}"
   sudo pacman -S --needed --noconfirm \
     archlinux-keyring gnome-keyring \
+    arch-audit pacman-contrib \
     dosfstools efibootmgr ntfs-3g encfs udisks2 \
     arch-install-scripts dialog \
     wpa_supplicant wpa_actiond dhclient networkmanager openssh openconnect \
@@ -61,7 +62,7 @@ if [ -f /etc/arch-release ]; then
     lightdm lightdm-gtk-greeter light-locker bspwm sxhkd \
     libmpd libmpdclient pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer gnome-alsamixer playerctl bluez bluez-utils \
     fcitx-skk skk-jisyo fcitx-configtool \
-    feh gmic w3m compton xcompmgr xorg-xkbcomp xsel \
+    feh gmic w3m compton xcompmgr xorg-xkbcomp xsel gendesk \
     alacritty rxvt-unicode rofi \
     firefox chromium \
     keepassxc seahorse qpdfview \
@@ -90,7 +91,6 @@ if [ -f /etc/arch-release ]; then
       envchain
       gitflow-avh
       intellij-jdk
-      j4-dmenu-desktop
       nerds-fonts-complete
       nkf
       nvm

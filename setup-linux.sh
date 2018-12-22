@@ -26,7 +26,7 @@ if [ "$(uname)" = Linux ]; then
   for name in xkb.sh .rtorrent.rc .xprofile .Xresources .xkb; do
     ln -sf $base/linux/home/$name ~/
   done
-  for name in bspwm compton libskk polybar sxhkd yabar; do
+  for name in bspwm compton libskk polybar rofi sxhkd yabar; do
     ln -sf $base/linux/home/.config/$name ~/.config/
   done
   ln -sf $base/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/

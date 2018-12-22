@@ -72,6 +72,9 @@
 (define-key evil-insert-state-map "\C-j" 'newline-and-indent)
 (define-key evil-insert-state-map "\C-u" 'my-keymap-evil-insert-C-u)
 
+(define-key evil-ex-completion-map "\C-j" 'exit-minibuffer)
+
+(define-key minibuffer-local-map "\C-j" 'minibuffer-complete-and-exit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
