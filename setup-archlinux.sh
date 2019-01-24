@@ -54,6 +54,7 @@ if [ -f /etc/arch-release ]; then
     sysstat htop \
     perf valgrind kcov \
     go python-pip ruby jdk10-openjdk gradle opam \
+    android-tools \
     texlive-most texlive-langjapanese poppler-data \
     ttf-junicode otf-latinmodern-math \
     cmake freetype2 fontconfig pkg-config xclip \
@@ -67,7 +68,9 @@ if [ -f /etc/arch-release ]; then
     firefox chromium \
     keepassxc seahorse qpdfview \
     numix-gtk-theme \
-    awesome-terminal-fonts otf-ipafont
+    awesome-terminal-fonts otf-ipafont ttf-liberation wqy-zenhei \
+    xf86-input-wacom krita \
+    steam lib32-mesa libidn11
 
   if [ -x /usr/bin/yay ]; then
     echo -e "\n${bold}yay already installed.${ansi_reset}"
@@ -97,7 +100,7 @@ if [ -f /etc/arch-release ]; then
       otf-ipaexfont
       peco
       polybar
-      powershell
+      powershell-bin
       pyenv
       simple-mtpfs
       spotify
