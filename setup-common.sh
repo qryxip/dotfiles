@@ -40,9 +40,9 @@ ln -sf $base/common/home/.config/ranger/colorschemes/mytheme.py ~/.config/ranger
 ln -sf $base/common/home/.vim/snippets ~/.vim/
 
 if [ -d ~/scripts/.git ]; then
-  echo "${bold}wariuni/scripts already cloned.${ansi_reset}"
+  echo "${bold}qryxip/scripts already cloned.${ansi_reset}"
 else
-  git clone 'https://github.com/wariuni/scripts' ~/scripts
+  git clone 'https://github.com/qryxip/scripts' ~/scripts
 fi
 
 if [ -d ~/.vim/dein.vim/.git ]; then

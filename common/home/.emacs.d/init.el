@@ -48,7 +48,8 @@
             (define-key helm-map "\C-w" 'evil-delete-backward-word)))
 (use-package helm-gtags)
 (use-package lsp-mode)
-(use-package lsp-ui)
+(use-package lsp-ui
+  :config (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 (use-package eglot)
 (use-package rainbow-delimiters)
 (use-package smartparens

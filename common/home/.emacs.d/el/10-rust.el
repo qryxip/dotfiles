@@ -243,9 +243,10 @@
   (self-insert-command 1))
 
 (with-eval-after-load 'rustic
-  (setq-default rustic-rls-pkg 'eglot)
+  (setq-default rustic-rls-pkg 'lsp-mode)
   (setq-default rustic-format-on-save nil)
   (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
+
   ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
@@ -270,7 +271,6 @@
                                          my-rust-insert-bar
                                          my-rust-insert-curly-brace)
                                        company-begin-commands))
-  ;; (require 'lsp-mode)
   )
 
 ;; (with-eval-after-load 'lsp-mode

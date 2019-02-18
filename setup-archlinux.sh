@@ -51,6 +51,7 @@ if [ -f /etc/arch-release ]; then
     zsh fish tmux \
     vim emacs \
     tig hub ripgrep fd bat tree jq p7zip unarchiver enca \
+    lldb \
     sysstat htop \
     perf valgrind kcov \
     go python-pip ruby jdk10-openjdk gradle opam \
@@ -70,7 +71,8 @@ if [ -f /etc/arch-release ]; then
     numix-gtk-theme \
     awesome-terminal-fonts otf-ipafont ttf-liberation wqy-zenhei \
     xf86-input-wacom krita \
-    steam lib32-mesa libidn11
+    steam lib32-mesa libidn11 \
+    figlet sl fortune cowsay cmatrix
 
   if [ -x /usr/bin/yay ]; then
     echo -e "\n${bold}yay already installed.${ansi_reset}"

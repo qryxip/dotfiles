@@ -21,5 +21,5 @@ if [ -d ~/.gem/ruby ]; then
   echo "${bold}Gems already installed.${ansi_reset}"
 else
   echo "${bold}Installing gems...${ansi_reset}"
-  /usr/bin/gem install travis
+  /usr/bin/gem install dotenv travis
 fi

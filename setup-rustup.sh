@@ -34,6 +34,7 @@ else
                      cargo-edit \
                      cargo-generate \
                      cargo-license \
+                     cargo-make \
                      cargo-outdated \
                      cargo-profiler \
                      cargo-script \

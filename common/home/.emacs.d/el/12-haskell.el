@@ -2,24 +2,30 @@
   :config
   (add-hook 'haskell-mode-hook 'intero-mode)
   (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+; (use-package lsp-haskell)
 
 (defun my-haskell-init ()
   (interactive)
-  (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
-    (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-non-operator))
-  (dolist (c (string-to-list ":!#$%&*+./<=>?@^|-~"))
-    (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-operator))
-  (dolist (c (string-to-list "\"'`(["))
-    (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-pair))
-  (evil-define-key 'insert haskell-mode-map "," 'my-haskell/insert-commna)
-  (evil-define-key 'insert haskell-mode-map "." 'my-haskell/insert-dot)
-  (setq company-begin-commands (append '(my-haskell/insert-non-operator
-                                         my-haskell/insert-operator
-                                         my-haskell/insert-pair
-                                         my-haskell/insert-commna
-                                         my-haskell/insert-dot)
-                                       company-begin-commands))
-  (evil-define-key 'normal haskell-mode-map "\M-r" 'my-haskell-run))
+  (lsp-define-stdio-client lsp-haskell "haskell" #'lsp-haskell--get-root
+                           ;; '("hie" "--lsp" "-d" "-l" "/tmp/hie.log"))
+                           ;; '("hie" "--lsp" "-d" "-l" "/tmp/hie.log" "--vomit"))
+                           (funcall lsp-haskell-process-wrapper-function (lsp--haskell-hie-command)))
+  ; (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
+  ;   (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-non-operator))
+  ; (dolist (c (string-to-list ":!#$%&*+./<=>?@^|-~"))
+  ;   (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-operator))
+  ; (dolist (c (string-to-list "\"'`(["))
+  ;   (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-pair))
+  ; (evil-define-key 'insert haskell-mode-map "," 'my-haskell/insert-commna)
+  ; (evil-define-key 'insert haskell-mode-map "." 'my-haskell/insert-dot)
+  ; (setq company-begin-commands (append '(my-haskell/insert-non-operator
+  ;                                        my-haskell/insert-operator
+  ;                                        my-haskell/insert-pair
+  ;                                        my-haskell/insert-commna
+  ;                                        my-haskell/insert-dot)
+  ;                                      company-begin-commands))
+  ; (evil-define-key 'normal haskell-mode-map "\M-r" 'my-haskell-run)
+  )
 
 (defun my-haskell-run ()
   (interactive)
@@ -143,4 +149,7 @@
          (and (equal (preceding-char) 46)
               (my-haskell--behind-module-dot? (- (point) 1))))))
 
-(add-hook 'haskell-mode-hook 'my-haskell-init)
+;; (add-hook haskell-mode-hook #'lsp)
+(add-hook haskell-mode-hook 'intero-mode)
+(add-hook haskell-mode-hook 'my-haskell-init)
+

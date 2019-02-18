@@ -5,11 +5,12 @@ export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=/usr/bin/vim
 
 export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/venvs/oj/bin:$PATH
 export PATH=$HOME/venvs/http/bin:$PATH
 export PATH=$HOME/venvs/pygmentize/bin:$PATH
 export PATH=$HOME/venvs/ranger/bin:$PATH
 export PATH=$HOME/venvs/playground/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.5.0/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
 export PATH=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
