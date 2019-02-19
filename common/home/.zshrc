@@ -42,6 +42,10 @@ function +vi-git-config-user() {
   hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
 }
 
+if [ -f /usr/bin/apt ]; then
+  alias awk='/usr/bin/gawk'
+fi
+
 if [ -f ~/.zplug/init.zsh ]; then
   source ~/.zplug/init.zsh
   zplug "zsh-users/zsh-history-substring-search"

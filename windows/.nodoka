@@ -83,6 +83,16 @@ key C-N = C-N
 key C-P = C-P
 key C-B = C-B
 key C-F = C-F
+window WINDOW /alacritty\.exe/: Global
+key C-D = C-D
+key C-J = C-M
+key C-M = C-J
+key C-H = C-H
+key C-W = C-W
+key C-N = C-N
+key C-P = C-P
+key C-B = C-B
+key C-F = C-F
 window KINDLE /Kindle\.exe/: Global
 key J = Down
 key K = Up
