@@ -47,7 +47,8 @@
             (define-key helm-map "\C-h" 'delete-backward-char)
             (define-key helm-map "\C-w" 'evil-delete-backward-word)))
 (use-package helm-gtags)
-(use-package lsp-mode)
+(use-package lsp-mode
+  :custom (lsp-prefer-flymake :none))
 (use-package lsp-ui
   :config (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 (use-package eglot)
@@ -161,6 +162,14 @@
 (global-flycheck-mode 1)
 (setq flycheck-pos-tip-timeout 0)
 
+(with-eval-after-load 'flymake
+  (custom-set-variables '(flymake-error-bitmap nil)
+                        '(flymake-note-bitmap nil)
+                        '(flymake-warning-bitmap nil))
+  (set-face-underline 'flymake-error nil)
+  (set-face-underline 'flymake-note nil)
+  (set-face-underline 'flymake-warning nil))
+
 (yas-global-mode 1)
 (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
 (add-hook 'yas-before-expand-snippet-hook (lambda () (smartparens-mode -1)))
@@ -263,7 +272,11 @@
 
 (use-package toml-mode)
 (use-package yaml-mode)
+
 (use-package markdown-mode)
+(use-package websocket)
+(use-package web-server)
+(use-package markdown-preview-mode)
 
 (use-package igarashi-copl-mode
   :straight (igarashi-copl-mode :type git

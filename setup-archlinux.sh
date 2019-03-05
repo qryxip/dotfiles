@@ -52,6 +52,7 @@ if [ -f /etc/arch-release ]; then
     vim emacs \
     tig hub ripgrep fd bat tree jq p7zip unarchiver enca \
     lldb \
+    tk \
     sysstat htop \
     perf valgrind kcov \
     go python-pip ruby jdk10-openjdk gradle opam \
