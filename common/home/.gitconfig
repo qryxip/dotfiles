@@ -1,5 +1,7 @@
 [url "git@github.com:"]
-  pushInsteadOf = https://github.com
+	pushinsteadof = https://github.com
+[url "git@bitbucket.org:"]
+	pushinsteadof = https://bitbucket.org
 [user]
 	name = Ryo Yamashita
 	email = qryxip@gmail.com

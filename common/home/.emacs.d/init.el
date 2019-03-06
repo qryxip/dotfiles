@@ -83,27 +83,6 @@
   (flycheck-status-emoji-indicator-suspicious ?❗)
   :config (flycheck-status-emoji-mode 1))
 
-(flycheck-define-checker textlint
-  "textlint"
-  :command ("textlint" "--format" "unix" source-inplace)
-  :error-patterns
-  ((error line-start (file-name) ":" line ":" column ": "
-          (message (one-or-more (not (any "["))))
-          "[Error/"
-          (id (one-or-more not-newline)
-              (zero-or-more "\n" (any " ") (one-or-more not-newline)))
-          "]"
-          line-end)
-   (warning line-start (file-name) ":" line ":" column ": "
-            (message (one-or-more (not (any "["))))
-            "[Warning/"
-            (id (one-or-more not-newline)
-                (zero-or-more "\n" (any " ") (one-or-more not-newline)))
-            "]"
-            line-end))
-  :modes (text-mode markdown-mode latex-mode))
-(add-to-list 'flycheck-checkers 'textlint)
-
 (use-package magit)
 (use-package evil-magit)
 (use-package smeargle)
