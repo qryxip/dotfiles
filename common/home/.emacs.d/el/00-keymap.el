@@ -37,6 +37,8 @@
 
 (define-key evil-normal-state-map [escape] 'my-keymap-save-if-file-buffer)
 
+(define-key evil-motion-state-map "\\" nil)
+
 (define-key evil-insert-state-map "\M-r" 'quickrun)
 (define-key evil-normal-state-map "\M-r" 'quickrun)
 (define-key evil-insert-state-map "\M-v" 'helm-imenu)

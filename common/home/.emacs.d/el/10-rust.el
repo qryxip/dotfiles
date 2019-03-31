@@ -250,6 +250,7 @@
   ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
   (define-key company-active-map "\C-q" 'racer-describe)
   (define-key company-search-map "\C-q" 'racer-describe)
+  (evil-define-key 'normal rustic-mode-map "\\r" 'lsp-rename)
   (evil-define-key 'insert rustic-mode-map "\C-j" 'my-rust-insert-ret)
   (evil-define-key 'insert rustic-mode-map "\C-m" 'my-rust-insert-ret)
   (evil-define-key 'insert rustic-mode-map "\C-q" 'racer-describe)

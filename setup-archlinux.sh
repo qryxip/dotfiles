@@ -40,40 +40,7 @@ if [ -f /etc/arch-release ]; then
   echo "${bold}Copied files.${ansi_reset}"
 
   echo -e "\n${bold}Installing packages...${ansi_reset}"
-  sudo pacman -S --needed --noconfirm \
-    archlinux-keyring gnome-keyring \
-    arch-audit pacman-contrib \
-    dosfstools efibootmgr ntfs-3g encfs udisks2 \
-    arch-install-scripts dialog \
-    wpa_supplicant wpa_actiond dhclient networkmanager openssh openconnect \
-    wget rtorrent \
-    ntp \
-    zsh fish tmux \
-    vim emacs \
-    tig hub ripgrep fd bat tree jq p7zip unarchiver enca \
-    lldb \
-    tk \
-    sysstat htop \
-    perf valgrind kcov \
-    go python-pip ruby jdk10-openjdk gradle opam \
-    android-tools \
-    texlive-most texlive-langjapanese poppler-data \
-    ttf-junicode otf-latinmodern-math \
-    cmake freetype2 fontconfig pkg-config xclip \
-    postgresql mariadb \
-    xf86-video-intel mesa xorg \
-    lightdm lightdm-gtk-greeter light-locker bspwm sxhkd \
-    libmpd libmpdclient pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol pamixer gnome-alsamixer playerctl bluez bluez-utils \
-    fcitx-skk skk-jisyo fcitx-configtool \
-    feh gmic w3m compton xcompmgr xorg-xkbcomp xsel gendesk \
-    alacritty rxvt-unicode rofi \
-    firefox chromium \
-    keepassxc seahorse qpdfview \
-    numix-gtk-theme \
-    awesome-terminal-fonts otf-ipafont ttf-liberation wqy-zenhei \
-    xf86-input-wacom krita \
-    steam lib32-mesa libidn11 \
-    figlet sl fortune cowsay cmatrix
+  cat "$base/archlinux/native.txt" | xargs sudo pacman -S --needed --noconfirm
 
   if [ -x /usr/bin/yay ]; then
     echo -e "\n${bold}yay already installed.${ansi_reset}"
@@ -89,36 +56,20 @@ if [ -f /etc/arch-release ]; then
     rm -rf /tmp/yay_installation
   fi
 
-  packages=$(bash -c '
-    PACKAGES="
-      cmigemo-git
-      cmus-git
-      dropbox
-      envchain
-      gitflow-avh
-      intellij-jdk
-      nerds-fonts-complete
-      nkf
-      nvm
-      otf-ipaexfont
-      peco
-      polybar
-      powershell-bin
-      pyenv
-      simple-mtpfs
-      spotify
-      ttf-cica-git
-      ttf-genshin-gothic
-      ttf-myricam
-    "
-    comm -23 <(printf "%s\n" $PACKAGES | sort) <(pacman -Qqm | sort)
-  ')
+  packages=$(bash -c 'comm -23 "$base/archlinux/foreign.txt" <(pacman -Qmq | sort)')
   if [ -z "$packages" ]; then
     echo -e "\n${bold}No AUR packages to install.${ansi_reset}"
   else
     echo -e "\n${bold}Installing AUR packages...${ansi_reset}"
     yay -S --noconfirm $packages
   fi
+
+  if [ -d ~/.dropbox-dist ]; then
+    rm -rf ~/.dropbox-dist
+  fi
+  install -dm0 ~/.dropbox-dist # A hack to prevent automatic updates
+  echo "${bold}Sealed `~/.dropbox-dist`.${ansi_reset}"
+  systemctl --user disable dropbox
 
   echo ''
   sudo systemctl enable ntpd

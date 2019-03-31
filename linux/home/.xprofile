@@ -13,7 +13,7 @@ if [ -x /opt/xkeysnail/bin/xkeysnail ]; then
   xhost +SI:localuser:xkeysnail
   systemctl --user start xkeysnail
 fi
-fcitx-autostart
+dex -a
 if which emacs > /dev/null 2>&1; then
   if ! pidof emacs > /dev/null; then
     SHELL=/bin/bash LANG=ja_JP.UTF-8 LANGUAGE=ja_JP.UTF-8 emacs --daemon || true &
