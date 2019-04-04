@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euE -o pipefail
 
@@ -22,4 +22,5 @@ if [ -d ~/.gem/ruby ]; then
 else
   echo "${bold}Installing gems...${ansi_reset}"
   /usr/bin/gem install dotenv travis
+  /usr/bin/gem update
 fi

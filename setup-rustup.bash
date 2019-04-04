@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euE -o pipefail
 
@@ -24,8 +24,8 @@ else
   wget https://sh.rustup.rs -O /tmp/rustup-init
   sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable
   ~/.cargo/bin/rustup install 1.15.1 nightly
-  ~/.cargo/bin/rustup component add rust-src rust-analysis rls-preview clippy-preview rustfmt-preview --toolchain stable
-  ~/.cargo/bin/rustup component add clippy-preview rustfmt-preview --toolchain nightly
+  ~/.cargo/bin/rustup component add rust-src rust-analysis rls clippy rustfmt --toolchain stable
+  # ~/.cargo/bin/rustup component add clippy rustfmt --toolchain nightly
   ~/.cargo/bin/cargo +stable install \
                      cargo-asm \
                      cargo-bloat \
@@ -40,11 +40,11 @@ else
                      cargo-script \
                      cargo-tree\
                      cargo-update \
-                     exa \
                      diesel_cli \
+                     exa \
                      fselect \
                      tokei
   # ~/.cargo/bin/cargo +stable install cargo-local-registry
   # ~/.cargo/bin/cargo +nightly install cargo-modules
-  ~/.cargo/bin/cargo +nightly install racer
+  ~/.cargo/bin/cargo +nightly install cargo-tarpaulin racer
 fi

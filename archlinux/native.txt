@@ -160,7 +160,6 @@ glib-networking
 glu
 gmic
 gmp
-gnome-alsamixer
 gnome-keyring
 gnupg
 gnustep-base
@@ -384,6 +383,7 @@ libatomic_ops
 libavc1394
 libblockdev
 libbluray
+libbs2b
 libbsd
 libbytesize
 libcaca
@@ -448,6 +448,7 @@ libmp4v2
 libmpc
 libmpd
 libmpdclient
+libmpeg2
 libmtp
 libndp
 libnet
@@ -704,12 +705,15 @@ python2-six
 python2-urllib3
 python2-webencodings
 python-appdirs
+python-asn1crypto
+python-bcrypt
 python-cachecontrol
 python-cached-property
 python-certifi
 python-cffi
 python-chardet
 python-colorama
+python-cryptography
 python-distlib
 python-distro
 python-docker
@@ -722,13 +726,16 @@ python-jsonschema
 python-lockfile
 python-msgpack
 python-packaging
+python-paramiko
 python-pep517
 python-pew
 python-pip
 python-pipenv
 python-ply
 python-progress
+python-pyasn1
 python-pycparser
+python-pynacl
 python-pyparsing
 python-pytoml
 python-requests
@@ -856,7 +863,6 @@ wine-mono
 winetricks
 wireless_tools
 woff2
-wpa_actiond
 wpa_supplicant
 wqy-zenhei
 x264

@@ -4,19 +4,20 @@
 all: toolchains
 
 common:
-	sh $$(pwd)/setup-common.sh
+	sh $$(pwd)/setup-common.bash
 
 linux: common
-	sh $$(pwd)/setup-linux.sh
+	sh $$(pwd)/setup-linux.bash
 
 archlinux: linux
-	sh $$(pwd)/setup-archlinux.sh
+	sh $$(pwd)/setup-archlinux.bash
 
 toolchains: archlinux
-	@sh $$(pwd)/setup-xkeysnail.sh
-	@sh $$(pwd)/setup-venvs.sh
-	@sh $$(pwd)/setup-gems.sh
-	@sh $$(pwd)/setup-rustup.sh
+	@sh $$(pwd)/setup-xkeysnail.bash
+	@sh $$(pwd)/setup-gems.bash
+	@sh $$(pwd)/setup-opam.bash
+	@sh $$(pwd)/setup-rustup.bash
+	@sh $$(pwd)/setup-venvs.bash
 
 envchain:
-	@sh $$(pwd)/setup-envchain.sh
+	@sh $$(pwd)/setup-envchain.bash

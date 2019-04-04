@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$TERM" = dumb ]; then
   yellow=''
@@ -17,9 +17,12 @@ fi
 
 if [ -d /opt/xkeysnail ]; then
   echo "${bold}xkeysnail is already installed.${ansi_reset}"
-else
+elif [ -f /etc/arch-release ]; then
   echo "${bold}Installing xkeysnail...${ansi_reset}"
-  sudo /usr/bin/python3.7 -m venv /opt/xkeysnail
-  sudo /opt/xkeysnail/bin/pip3.7 install xkeysnail
+  sudo /usr/bin/python3 -m venv /opt/xkeysnail
+  sudo /opt/xkeysnail/bin/pip3 install -U pip
+  sudo /opt/xkeysnail/bin/pip3 install xkeysnail
   sudo cp $(realpath $(dirname $0))/linux/opt/xkeysnail/config.py /opt/xkeysnail/
+else
+  echo "${bold}Skipping installing xkeysnail...${ansi_reset}"
 fi

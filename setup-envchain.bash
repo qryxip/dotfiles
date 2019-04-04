@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euE -o pipefail
 
@@ -24,6 +24,8 @@ envchain --set wi2-300 WI2_300_USERNAME \
                        WI2_300_PASSWORD
 envchain --set snowchains ATCODER_USERNAME \
                           ATCODER_PASSWORD \
-                          HACKERRANK_USERNAME \
-                          HACKERRANK_PASSWORD \
+                          CODEFORCES_USERNAME \
+                          CODEFORCES_PASSWORD \
+                          CODEFORCES_API_KEY \
+                          CODEFORCES_API_SECRET \
                           YUKICODER_REVEL_SESSION

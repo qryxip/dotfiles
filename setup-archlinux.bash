@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euE -o pipefail
 
@@ -39,11 +39,19 @@ if [ -f /etc/arch-release ]; then
   sudo cp $base/archlinux/etc/sudoers.d/10-installer  /etc/sudoers.d/
   echo "${bold}Copied files.${ansi_reset}"
 
+  sudo pacman -Sy
+
   echo -e "\n${bold}Installing packages...${ansi_reset}"
-  cat "$base/archlinux/native.txt" | xargs sudo pacman -S --needed --noconfirm
+  packages=$(comm -23 "$base/archlinux/native.txt" <(pacman -Qnq | sort))
+  if [ -z "$packages" ]; then
+    echo -e "${bold}No native packages to install.${ansi_reset}"
+  else
+    echo -e "${bold}Installing native packages...${ansi_reset}"
+    sudo pacman -Su --needed --noconfirm $packages
+  fi
 
   if [ -x /usr/bin/yay ]; then
-    echo -e "\n${bold}yay already installed.${ansi_reset}"
+    echo -e "\n${bold}"'`yay` already installed.'"${ansi_reset}"
   else
     echo -e "\n${bold}Installing yay...${ansi_reset}"
     mkdir /tmp/yay_installation
@@ -56,7 +64,7 @@ if [ -f /etc/arch-release ]; then
     rm -rf /tmp/yay_installation
   fi
 
-  packages=$(bash -c 'comm -23 "$base/archlinux/foreign.txt" <(pacman -Qmq | sort)')
+  packages=$(comm -23 "$base/archlinux/foreign.txt" <(pacman -Qmq | sort))
   if [ -z "$packages" ]; then
     echo -e "\n${bold}No AUR packages to install.${ansi_reset}"
   else
@@ -67,8 +75,9 @@ if [ -f /etc/arch-release ]; then
   if [ -d ~/.dropbox-dist ]; then
     rm -rf ~/.dropbox-dist
   fi
-  install -dm0 ~/.dropbox-dist # A hack to prevent automatic updates
-  echo "${bold}Sealed `~/.dropbox-dist`.${ansi_reset}"
+  install -dm0 ~/.dropbox-dist # Prevent automatic updates
+
+  echo "${bold}"'Sealed `~/.dropbox-dist`.'"${ansi_reset}"
   systemctl --user disable dropbox
 
   echo ''
