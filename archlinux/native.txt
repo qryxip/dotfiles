@@ -606,6 +606,9 @@ networkmanager
 node-gyp
 nodejs-lts-carbon
 noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
 npm
 npth
 nspr

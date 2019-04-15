@@ -1,6 +1,28 @@
+;; https://github.com/raxod502/straight.el/issues/274
+(add-to-list 'load-path (expand-file-name "straight/repos/rust-analyzer/editors/emacs" user-emacs-directory))
+
 (use-package racer)
-(use-package lsp-rust)
-(use-package rustic)
+(use-package ra-emacs-lsp
+  :straight (:host github
+             :repo "rust-analyzer/rust-analyzer"
+             :no-build t))
+(use-package rustic
+  ;; :straight (:host github :repo "qryxip/rustic" :branch "use-lsp-rust-for-rls")
+  ;; :custom (rustic-lsp-server 'rust-analyzer)
+  )
+
+(defun lsp-buffer-language ()
+  "Return \"rust\"."
+  "rust")
+
+;; (lsp-register-client
+;;  (make-lsp-client
+;;   :new-connection (lsp-stdio-connection (lambda () rust-analyzer-command))
+;;   :notification-handlers (ht<-alist rust-analyzer--notification-handlers)
+;;   :action-handlers (ht<-alist rust-analyzer--action-handlers)
+;;   :major-modes '(rustic-mode)
+;;   :ignore-messages nil
+;;   :server-id 'rust-analyzer))
 
 (sp-with-modes '(rustic-mode)
   (sp-local-pair "'" "'"
@@ -81,7 +103,8 @@
   (when (and (eolp)
              (not (or (nth 3 (syntax-ppss))
                       (nth 5 (syntax-ppss)))))
-    (rust-format-buffer)))
+    (when rustic-format-on-save
+      (rustic-format-buffer))))
 
 (defun my-rust-insert-equal ()
   (interactive)
@@ -244,7 +267,7 @@
 
 (with-eval-after-load 'rustic
   (setq-default rustic-rls-pkg 'lsp-mode)
-  (setq-default rustic-format-on-save nil)
+  (setq-default rustic-format-on-save t)
   (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
 
   ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")

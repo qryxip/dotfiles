@@ -23,7 +23,6 @@
     (when (string-equal major-mode "c++-mode")
       (clang-format-buffer))
     (when (string-equal major-mode "rustic-mode")
-      (rust-format-buffer)
       (set-buffer-modified-p t))
     (save-buffer)))
 

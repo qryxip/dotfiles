@@ -46,6 +46,10 @@ if [ -f /usr/bin/apt ]; then
   alias awk='/usr/bin/gawk'
 fi
 
+if [ -f /usr/bin/envchain ] && [ -f /usr/bin/hub ]; then
+  alias hub='/usr/bin/envchain github /usr/bin/hub'
+fi
+
 if [ -f ~/.zplug/init.zsh ]; then
   source ~/.zplug/init.zsh
   zplug "zsh-users/zsh-history-substring-search"

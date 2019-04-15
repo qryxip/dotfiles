@@ -242,7 +242,9 @@
 (use-package irony)
 (use-package company-irony)
 (use-package flycheck-irony)
-(use-package clang-format)
+(use-package clang-format
+  :straight (:host github
+             :repo "emacsmirror/clang-format"))
 
 (use-package web-mode
   :custom (web-mode-markup-indent-offset 2))

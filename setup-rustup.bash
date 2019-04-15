@@ -44,7 +44,9 @@ else
                      exa \
                      fselect \
                      tokei
+  ~/.cargo/bin/cargo +stable install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server
   # ~/.cargo/bin/cargo +stable install cargo-local-registry
   # ~/.cargo/bin/cargo +nightly install cargo-modules
-  ~/.cargo/bin/cargo +nightly install cargo-tarpaulin racer
+  ~/.cargo/bin/cargo +nightly install racer
+  RUSTFLAGS="--cfg procmacro2_semver_exempt" ~/.cargo/bin/cargo +nightly install cargo-tarpaulin
 fi
