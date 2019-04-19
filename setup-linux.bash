@@ -21,19 +21,29 @@ base=$(realpath $(dirname $0))
 
 if [ "$(uname)" = Linux ]; then
   echo "${bold}Creating symlinks...${ansi_reset}"
-  mkdir -p ~/.config/systemd/user ~/.local/share/applications
-  sudo mkdir -p /etc/X11/xorg.conf.d
+  mkdir -p ~/.config/fcitx/skk ~/.config/qpdfview ~/.config/systemd/user ~/.local/share/applications
   for name in xkb.sh .rtorrent.rc .xprofile .Xresources .xkb; do
     ln -sf $base/linux/home/$name ~/
   done
-  for name in bspwm compton libskk polybar rofi sxhkd yabar; do
+  for name in bspwm compton dolphinrc libskk polybar rofi sxhkd yabar; do
     ln -sf $base/linux/home/.config/$name ~/.config/
   done
-  ln -sf $base/linux/home/.local/share/applications/cmus.desktop ~/.local/share/applications/
-  ln -sf $base/linux/home/.local/share/applications/firefox.desktop ~/.local/share/applications/
-  cp $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
-  sudo cp ./linux/etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
-  sudo cp ./linux/etc/X11/xorg.conf.d/50-mouse.conf /etc/X11/xorg.conf.d/
+  for name in config conf; do
+    ln -sf "$base/linux/home/.config/fcitx/$name" ~/.config/fcitx/
+  done
+  for name in dictionary_list rule; do
+    ln -sf "$base/linux/home/.config/fcitx/skk/$name" ~/.config/fcitx/skk/
+  done
+  ln -sf $base/linux/home/.config/qpdfview/shortcuts.conf ~/.config/qpdfview/
+  ln -sf $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
+  for name in cmus firefox seahorse; do
+    ln -sf $base/linux/home/.local/share/applications/$name.desktop ~/.local/share/applications/
+  done
+
+  echo "${bold}Copying files...${ansi_reset}"
+  sudo mkdir -p /etc/X11/xorg.conf.d
+  sudo cp "$base/linux/etc/X11/xorg.conf.d/30-touchpad.conf" /etc/X11/xorg.conf.d/
+  sudo cp "$base/linux/etc/X11/xorg.conf.d/50-mouse.conf" /etc/X11/xorg.conf.d/
 else
   echo "${yellow}This OS is not Linux.${ansi_reset}"
 fi

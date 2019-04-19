@@ -1,0 +1,39 @@
+[CompactMode]
+FontFamily=Noto Sans
+FontSize=10
+FontWeight=50
+UseSystemFont=false
+
+[DetailsMode]
+FontFamily=Noto Sans
+FontSize=10
+FontWeight=50
+UseSystemFont=false
+
+[General]
+GlobalViewProps=true
+Version=200
+ViewPropsTimestamp=2019,4,19,5,4,0
+
+[IconsMode]
+FontFamily=Noto Sans
+FontWeight=50
+UseSystemFont=false
+
+[KPropertiesDialog]
+Height 1080=454
+Width 1920=497
+
+[MainWindow]
+Height 1080=1027
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAAC0AAAD2/wCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAoBAAAD+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAAoAAAD2wAAAFoBAAADAAAAAQAAAAAAAAAA/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAAAD/////AAAACgEAAAMAAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAoBAAADAAAGrwAAA9sAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+Width 1920=1892
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,djvuthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
+
+[SettingsDialog]
+Height 1080=520
+Width 1920=684

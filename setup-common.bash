@@ -21,6 +21,10 @@ base=$(realpath $(dirname $0))
 
 echo "${bold}Creating directories...${ansi_reset}"
 mkdir -p ~/.vim ~/.emacs.d/straight ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+case "$(uname -s)" in
+  Linux*)  mkdir -p ~/".config/Code - OSS/User";;
+  Darwin*) mkdir -p ~/"Library/Application Support/Code/User";;
+esac
 
 echo "${bold}Creating symlinks...${ansi_reset}"
 for name in .eslintrc .gitconfig .gvimrc .ideavimrc .latexmkrc .profile .tern-config .tigrc .tmux.conf .vimrc .zshrc; do
@@ -38,6 +42,12 @@ ln -sf $base/common/home/.config/fish/config.fish ~/.config/fish/
 ln -sf $base/common/home/.config/ranger/rc.conf ~/.config/ranger/
 ln -sf $base/common/home/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
 ln -sf $base/common/home/.vim/snippets ~/.vim/
+for file in keybindings.json settings.json; do
+ case "$(uname -s)" in
+   Linux*)  ln -sf "$base/common/home/.config/Code - OSS/User/$file" ~/".config/Code - OSS/User/";;
+   Darwin*) ln -sf "$base/common/home/.config/Code - OSS/User/$file" ~/".config//Library/Application Support/Code/User/";;
+ esac
+done
 
 if [ -d ~/scripts/.git ]; then
   echo "${bold}qryxip/scripts already cloned.${ansi_reset}"

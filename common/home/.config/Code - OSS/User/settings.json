@@ -1,0 +1,21 @@
+{
+    "editor.tabSize": 8,
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorStyle": "block",
+    "editor.fontFamily": "Cica",
+    "editor.fontSize": 12,
+    "editor.cursorBlinking": "solid",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "bold",
+    "editor.lineHeight": 12,
+    "vim.easymotion": true,
+    "workbench.colorTheme": "Monokai Dimmed",
+    "powermode.enabled": true,
+    "powermode.enableShake": false,
+    "window.zoomLevel": 0,
+    "powermode.enableStatusBarComboCounter": false,
+    "powermode.enableStatusBarComboTimer": false,
+    "powermode.explosionOffset": 0.2,
+    "vim.cursorStylePerMode.insert": "block-outline",
+    "files.autoSave": "afterDelay"
+}

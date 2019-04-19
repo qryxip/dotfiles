@@ -1,7 +1,9 @@
 export JAVA_HOME=/usr/lib/jvm/intellij-jdk
 export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORMTHEME=kde
+# export QT_QPA_PLATFORMTHEME=kde
+export QT_QPA_PLATFORMTHEME=qt5ct
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CURRENT_DESKTOP=KDE
 export EDITOR=/usr/bin/vim
 
 export PATH=$HOME/go/bin:$PATH

@@ -7,9 +7,7 @@
              :repo "rust-analyzer/rust-analyzer"
              :no-build t))
 (use-package rustic
-  ;; :straight (:host github :repo "qryxip/rustic" :branch "use-lsp-rust-for-rls")
-  ;; :custom (rustic-lsp-server 'rust-analyzer)
-  )
+  :custom (rustic-lsp-server 'rust-analyzer))
 
 (defun lsp-buffer-language ()
   "Return \"rust\"."
@@ -100,11 +98,12 @@
 (defun my-rust-insert-semicolon ()
   (interactive)
   (self-insert-command 1)
-  (when (and (eolp)
-             (not (or (nth 3 (syntax-ppss))
-                      (nth 5 (syntax-ppss)))))
-    (when rustic-format-on-save
-      (rustic-format-buffer))))
+  ;; (when (and (eolp)
+  ;;            (not (or (nth 3 (syntax-ppss))
+  ;;                     (nth 5 (syntax-ppss)))))
+  ;;   (when rustic-format-on-save
+  ;;     (rustic-format-buffer)))
+  )
 
 (defun my-rust-insert-equal ()
   (interactive)

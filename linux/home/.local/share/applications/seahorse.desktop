@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.2
+Type=Application
+Name=Seahorse
+Comment=seahorse
+Exec=seahorse
+Icon=seahorse
+Terminal=false
+StartupNotify=false
+Categories=Application;
