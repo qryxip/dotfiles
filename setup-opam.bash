@@ -17,12 +17,13 @@ if [ "`whoami`" = root ]; then
   exit 1
 fi
 
-if [ ! -d ~/.opam ]; then
+if true; then
   opam init --comp 4.07.1
+  eval $(opam env)
   opam repository add satysfi-external https://github.com/gfngfn/satysfi-external-repo.git
   opam update
   ghq get -u https://github.com/gfngfn/SATySFi
   cd ~/.ghq/github.com/gfngfn/SATySFi
-  opam pin add satysfi
+  opam pin add satysfi .
   opam install satysfi
 fi

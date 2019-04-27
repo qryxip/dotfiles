@@ -18,10 +18,13 @@ xkeysnail.transform.define_keymap(re.compile('Firefox|Chromium'), {
     K('C-p'): Key.UP,
     K('C-b'): Key.LEFT,
     K('C-f'): Key.RIGHT,
+    K('C-e'): Key.END,
     K('C-j'): Key.ENTER,
     K('C-h'): Key.BACKSPACE,
     K('C-w'): K('C-Backspace'),
     K('C-m'): Key.ENTER,
+    K('C-o'): K('M-Left'),
+    K('C-i'): K('M-Right'),
 }, 'Firefox and Chromium')
 
 xkeysnail.transform.define_keymap(re.compile('jetbrains-idea|FocusProxy'), {

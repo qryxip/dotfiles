@@ -41,7 +41,8 @@ if [ "$(uname)" = Linux ]; then
   done
 
   echo "${bold}Copying files...${ansi_reset}"
-  sudo mkdir -p /etc/X11/xorg.conf.d
+  sudo mkdir -p /etc/sysctl.d /etc/X11/xorg.conf.d
+  sudo cp "$base/linux/etc/sysctl.d/60-my.conf" /etc/sysctl.d/
   sudo cp "$base/linux/etc/X11/xorg.conf.d/30-touchpad.conf" /etc/X11/xorg.conf.d/
   sudo cp "$base/linux/etc/X11/xorg.conf.d/50-mouse.conf" /etc/X11/xorg.conf.d/
 else

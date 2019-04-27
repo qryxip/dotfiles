@@ -1,23 +1,23 @@
 export JAVA_HOME=/usr/lib/jvm/intellij-jdk
 export _JAVA_AWT_WM_NONREPARENTING=1
-# export QT_QPA_PLATFORMTHEME=kde
-export QT_QPA_PLATFORMTHEME=qt5ct
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CURRENT_DESKTOP=KDE
 export EDITOR=/usr/bin/vim
 
 export PATH=$HOME/go/bin:$PATH
-export PATH=$HOME/venvs/oj/bin:$PATH
-export PATH=$HOME/venvs/http/bin:$PATH
-export PATH=$HOME/venvs/pygmentize/bin:$PATH
-export PATH=$HOME/venvs/ranger/bin:$PATH
-export PATH=$HOME/venvs/playground/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
-export PATH=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/scripts/local/sh:$PATH
 export PATH=$HOME/scripts/sh:$PATH
+
+if which pyenv > /dev/null 2>&1; then
+  PYTHON_VERSION=3.7.2
+  export PATH="$HOME/tools/python/$PYTHON_VERSION/ranger/bin:$PATH"
+  export PATH="$HOME/tools/python/$PYTHON_VERSION/pygmentize/bin:$PATH"
+  export PATH="$HOME/tools/python/$PYTHON_VERSION/ptpython/bin:$PATH"
+  export PATH="$HOME/tools/python/$PYTHON_VERSION/pipenv/bin:$PATH"
+  export PATH="$HOME/tools/python/$PYTHON_VERSION/oj/bin:$PATH"
+  export PATH="$HOME/tools/python/$PYTHON_VERSION/http/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
 
 p=1
 if which npm > /dev/null 2>&1; then
@@ -29,10 +29,18 @@ fi
 if [ $p = 1 -a -f /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
   nvm use --lts
-  export PATH=$HOME/node/textlint/node_modules/.bin:$PATH
-  export PATH=$HOME/node/typescript/node_modules/.bin:$PATH
+fi
+
+if which node > /dev/null 2>&1; then
+  node_version=$(node --version)
+  export PATH="$HOME/tools/node/$node_version/typescript/node_modules/.bin:$PATH"
+  export PATH="$HOME/tools/node/$node_version/textlint/node_modules/.bin:$PATH"
+fi
+
+if [ -f ~/.cargo/env ]; then
+  source ~/.cargo/env
 fi
 
 if which opam > /dev/null 2>&1; then
-  eval `opam env`
+  eval $(opam env)
 fi

@@ -72,6 +72,9 @@ if [ -f /etc/arch-release ]; then
     yay -S --noconfirm $packages
   fi
 
+  balooctl stop
+  balooctl disable
+
   if [ -d ~/.dropbox-dist ]; then
     rm -rf ~/.dropbox-dist
   fi

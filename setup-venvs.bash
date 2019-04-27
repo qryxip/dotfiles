@@ -19,35 +19,42 @@ PYTHON_VERSION=3.7.2
 
 if [ ! -d ~/.pyenv/versions/"$PYTHON_VERSION" ]; then
   pyenv install "$PYTHON_VERSION"
+  pyenv global "$PYTHON_VERSION"
 fi
 
-if [ ! -d ~/venvs/playground ]; then
-  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/venvs/playground
-  ~/venvs/playground/bin/pip3 install -U pip
-  ~/venvs/playground/bin/pip3 install click ptpython
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/oj ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/oj
+  ~/tools/python/"$PYTHON_VERSION"/oj/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/oj/bin/pip3 install online-judge-tools
 fi
 
-if [ ! -d ~/venvs/http ]; then
-  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/venvs/http
-  ~/venvs/http/bin/pip3 install -U pip
-  ~/venvs/http/bin/pip3 install httpie
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/http ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/http
+  ~/tools/python/"$PYTHON_VERSION"/http/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/http/bin/pip3 install httpie
 fi
 
-if [ ! -d ~/venvs/oj ]; then
-  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/venvs/oj
-  ~/venvs/http/bin/pip3 install -U pip
-  ~/venvs/http/bin/pip3 install online-judge-tools
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/pipenv ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION"/bin/python3 -m venv ~/tools/python/"$PYTHON_VERSION"/pipenv
+  ~/tools/python/"$PYTHON_VERSION"/pipenv/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/pipenv/bin/pip3 install pipenv
 fi
 
-if [ ! -d ~/venvs/pygmentize ]; then
-  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/venvs/pygmentize
-  ~/venvs/pygmentize/bin/pip3 install -U pip
-  ~/venvs/pygmentize/bin/pip3 install tw2.pygmentize
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/ptpython ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/ptpython
+  ~/tools/python/"$PYTHON_VERSION"/ptpython/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/ptpython/bin/pip3 install ptpython
 fi
 
-if [ ! -d ~/venvs/ranger ]; then
-  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/venvs/ranger
-  ~/venvs/ranger/bin/pip3 install -U pip
-  ~/venvs/ranger/bin/pip3 install ranger-fm
-  ~/venvs/ranger/bin/ranger --copy-config=all
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/pygmentize ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/pygmentize
+  ~/tools/python/"$PYTHON_VERSION"/pygmentize/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/pygmentize/bin/pip3 install tw2.pygmentize
+fi
+
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/ranger ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/ranger
+  ~/tools/python/"$PYTHON_VERSION"/ranger/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/ranger/bin/pip3 install ranger-fm
+  ~/tools/python/"$PYTHON_VERSION"/ranger/bin/ranger --copy-config=all
 fi
