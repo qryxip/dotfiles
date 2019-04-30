@@ -29,6 +29,22 @@ key *RCtrl = RWin
 mod control -= RCtrl
 mod windows += !!RCtrl
 
+key ESC = GraveAccent
+key S-ESC = S-GraveAccent
+key C-ESC = C-GraveAccent
+key A-ESC = A-GraveAccent
+key S-C-ESC = S-C-GraveAccent
+key C-A-ESC = C-A-GraveAccent
+key A-S-ESC = A-S-GraveAccent
+key S-C-A-ESC = S-C-A-GraveAccent
+key IC-S-ESC = S-GraveAccent
+key IC-C-ESC = C-GraveAccent
+key IC-A-ESC = A-GraveAccent
+key IC-S-C-ESC = S-C-GraveAccent
+key IC-C-A-ESC = C-A-GraveAccent
+key IC-A-S-ESC = A-S-GraveAccent
+key IC-S-C-A-ESC = S-C-A-GraveAccent
+
 key W-S-C = &WindowClose
 key W-R = W-BackSlash # Run Launchy.
 key W-T = &WindowMaximize
