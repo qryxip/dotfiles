@@ -37,6 +37,7 @@ if [ -f /etc/arch-release ]; then
   sudo cp $base/archlinux/etc/udev/rules.d/40-udev-xkeysnail.rules /etc/udev/rules.d/
   sudo cp $base/archlinux/etc/modules-load.d/uinput.conf /etc/modules-load.d/
   sudo cp $base/archlinux/etc/sudoers.d/10-installer  /etc/sudoers.d/
+  sudo cp $base/archlinux/etc/sysctl.d/60-my.conf /etc/sysctl.d/
   echo "${bold}Copied files.${ansi_reset}"
 
   sudo pacman -Sy
@@ -83,10 +84,27 @@ if [ -f /etc/arch-release ]; then
   echo "${bold}"'Sealed `~/.dropbox-dist`.'"${ansi_reset}"
   systemctl --user disable dropbox
 
+  echo "${bold}"'Installing `nix`...'"${ansi_reset}"
+  if [ ! -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
+    sudo sysctl kernel.unprivileged_userns_clone=1
+    curl https://nixos.org/nix/install | sh
+    source ~/.nix-profile/etc/profile.d/nix.sh
+    nix-env -iA cachix -f https://cachix.org/api/v1/install
+  fi
+
+  # sudo mkdir -m 0755 /nix
+  # sudo chown "$(whoami)" /nix
+
+  # sudo systemctl enable --now nix-daemon.socket
+  # nix-channel --add https://nixos.org/channels/nixos-19.03
+  # nix-channel --update
+
   echo ''
-  sudo systemctl enable ntpd
-  sudo systemctl enable lightdm
-  sudo systemctl enable bluetooth
+  sudo systemctl enable --now bluetooth
+  sudo systemctl enable --now lightdm
+  sudo systemctl enable --now ntpd
+  sudo systemctl enable --now systemd-swap
+
   echo "${bold}Enabled systemd units.${ansi_reset}"
 else
   echo '${yellow}This OS is not Arch Linux.${ansi_reset}'

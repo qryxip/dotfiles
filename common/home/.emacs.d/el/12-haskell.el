@@ -1,15 +1,16 @@
-(use-package intero
-  :config
-  (add-hook 'haskell-mode-hook 'intero-mode)
-  (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
-; (use-package lsp-haskell)
+; (use-package intero
+;   :config
+;   (add-hook 'haskell-mode-hook 'intero-mode)
+;   (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+
+(use-package lsp-haskell
+  :config (add-hook 'haskell-mode-hook #'my-haskell-init))
 
 (defun my-haskell-init ()
   (interactive)
-  (lsp-define-stdio-client lsp-haskell "haskell" #'lsp-haskell--get-root
-                           ;; '("hie" "--lsp" "-d" "-l" "/tmp/hie.log"))
-                           ;; '("hie" "--lsp" "-d" "-l" "/tmp/hie.log" "--vomit"))
-                           (funcall lsp-haskell-process-wrapper-function (lsp--haskell-hie-command)))
+  (setq-local tab-width 2) ;; ?????
+  (lsp-workspace-folders-add (lsp-haskell--get-root))
+  (lsp)
   ; (dolist (c (string-to-list "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
   ;   (evil-define-key 'insert haskell-mode-map (char-to-string c) 'my-haskell/insert-non-operator))
   ; (dolist (c (string-to-list ":!#$%&*+./<=>?@^|-~"))
@@ -150,6 +151,6 @@
               (my-haskell--behind-module-dot? (- (point) 1))))))
 
 ;; (add-hook haskell-mode-hook #'lsp)
-(add-hook haskell-mode-hook 'intero-mode)
-(add-hook haskell-mode-hook 'my-haskell-init)
+;; (add-hook haskell-mode-hook 'intero-mode)
+;; (add-hook haskell-mode-hook 'my-haskell-init)
 

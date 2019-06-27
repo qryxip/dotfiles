@@ -7,7 +7,8 @@
              :repo "rust-analyzer/rust-analyzer"
              :no-build t))
 (use-package rustic
-  :custom (rustic-lsp-server 'rust-analyzer))
+  :custom (rustic-lsp-server 'rust-analyzer)
+          (rustic-analyzer-command '("nice" "ra_lsp_server")))
 
 (defun lsp-buffer-language ()
   "Return \"rust\"."
@@ -229,17 +230,19 @@
 
 (defun my-rust-insert-ret ()
   (interactive)
-  (let ((p (and (not (nth 3 (syntax-ppss)))
-                (or (and (eq (preceding-char) (string-to-char "("))
-                         (eq (char-before (+ 1 (point))) (string-to-char ")")))
-                    (and (eq (preceding-char) (string-to-char "["))
-                         (eq (char-before (+ 1 (point))) (string-to-char "]")))
-                    (and (eq (preceding-char) (string-to-char "{"))
-                         (eq (char-before (+ 1 (point))) (string-to-char "}")))))))
-    (newline-and-indent)
-    (when p
-      (evil-open-above 1))))
-
+  (if (company--active-p)
+      ;; when using `company-lsp`, `company-active-map` is sometimes ignored.
+      (company-complete-selection)
+    (let ((p (and (not (nth 3 (syntax-ppss)))
+                  (or (and (eq (preceding-char) (string-to-char "("))
+                           (eq (char-before (+ 1 (point))) (string-to-char ")")))
+                      (and (eq (preceding-char) (string-to-char "["))
+                           (eq (char-before (+ 1 (point))) (string-to-char "]")))
+                      (and (eq (preceding-char) (string-to-char "{"))
+                           (eq (char-before (+ 1 (point))) (string-to-char "}")))))))
+      (newline-and-indent)
+      (when p
+        (evil-open-above 1)))))
 
 (defun my-rust-insert-operator ()
   (interactive)
@@ -266,7 +269,7 @@
 
 (with-eval-after-load 'rustic
   (setq-default rustic-rls-pkg 'lsp-mode)
-  (setq-default rustic-format-on-save t)
+  (setq-default rustic-format-on-save nil)
   (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
 
   ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
@@ -311,8 +314,7 @@
     (read-only-mode 1))
   ;; (racer-mode 1)
   (smartparens-mode 1)
-  (rainbow-delimiters-mode 1)
-  (rust-enable-format-on-save))
+  (rainbow-delimiters-mode 1))
 
 (add-hook 'rust-mode-hook 'rustic-mode)
 (add-hook 'rustic-mode-hook 'my-rust-init)

@@ -36,13 +36,14 @@ if [ "$(uname)" = Linux ]; then
   done
   ln -sf $base/linux/home/.config/qpdfview/shortcuts.conf ~/.config/qpdfview/
   ln -sf $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
-  for name in cmus firefox seahorse; do
-    ln -sf $base/linux/home/.local/share/applications/$name.desktop ~/.local/share/applications/
+  for name in cmus.desktop firefox.desktop org.kde.dolphin.desktop org.keepassxc.KeePassXC.desktop seahorse.desktop; do
+    ln -sf "$base/linux/home/.local/share/applications/$name" ~/.local/share/applications/
   done
 
   echo "${bold}Copying files...${ansi_reset}"
-  sudo mkdir -p /etc/sysctl.d /etc/X11/xorg.conf.d
+  sudo mkdir -p /etc/sysctl.d /etc/systemd/swap.conf.d /etc/X11/xorg.conf.d
   sudo cp "$base/linux/etc/sysctl.d/60-my.conf" /etc/sysctl.d/
+  sudo cp "$base/linux/etc/systemd/swap.conf.d/my.conf" /etc/systemd/swap.conf.d/
   sudo cp "$base/linux/etc/X11/xorg.conf.d/30-touchpad.conf" /etc/X11/xorg.conf.d/
   sudo cp "$base/linux/etc/X11/xorg.conf.d/50-mouse.conf" /etc/X11/xorg.conf.d/
 else

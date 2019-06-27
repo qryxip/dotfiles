@@ -36,7 +36,12 @@ if [ ! -d "$dir" ]; then
   mkdir -p "$dir"
   cd "$dir"
   echo '{"private":true}' > ./package.json
-  npm i textlint textlint-rule-proofdict
+  npm i \
+    textlint \
+    textlint-rule-proofdict \
+    textlint-rule-ginger \
+    textlint-rule-preset-ja-technical-writing \
+    textlint-rule-proofdict
 fi
 
 dir=~/tools/node/"$node_version"/typescript

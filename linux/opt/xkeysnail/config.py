@@ -32,7 +32,7 @@ xkeysnail.transform.define_keymap(re.compile('Firefox|Chromium'), {
     K('C-i'): K('M-Right'),
 }, 'Firefox and Chromium')
 
-xkeysnail.transform.define_keymap(re.compile('jetbrains-idea|FocusProxy'), {
+xkeysnail.transform.define_keymap(re.compile('jetbrains-.+|FocusProxy'), {
     K('C-n'): Key.DOWN,
     K('C-p'): Key.UP,
     K('C-b'): Key.LEFT,
@@ -40,6 +40,7 @@ xkeysnail.transform.define_keymap(re.compile('jetbrains-idea|FocusProxy'), {
     K('C-j'): Key.ENTER,
     K('C-m'): Key.ENTER,
     K('C-h'): Key.BACKSPACE,
+    Key.SPACE: K('Shift-Space'),
 }, 'IntelliJ IDEA')
 
 xkeysnail.transform.define_keymap(re.compile('code'), {

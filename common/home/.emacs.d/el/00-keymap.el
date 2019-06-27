@@ -20,11 +20,20 @@
   (when (not (or (string-match "\\*.+\\*" (buffer-name))
                  (string-match "intero:backend:.*" (buffer-name))
                  (eq major-mode 'dired-mode)))
-    (when (string-equal major-mode "c++-mode")
-      (clang-format-buffer))
+    ;; (when (string-equal major-mode "c++-mode")
+    ;;   (clang-format-buffer))
+    (when (and lsp-mode my-keymap-format-on-save)
+      (lsp-format-buffer))
     (when (string-equal major-mode "rustic-mode")
       (set-buffer-modified-p t))
     (save-buffer)))
+
+(defun my-keymap-toggle-format-on-save ()
+  (interactive)
+  (setq my-keymap-format-on-save (not my-keymap-format-on-save))
+  (message "Set my-keymap-format-on-save %s" my-keymap-format-on-save))
+
+(setq my-keymap-format-on-save t)
 
 (defun my-keymap-toggle-flycheck-error-buffer ()
   (interactive)

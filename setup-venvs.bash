@@ -22,16 +22,22 @@ if [ ! -d ~/.pyenv/versions/"$PYTHON_VERSION" ]; then
   pyenv global "$PYTHON_VERSION"
 fi
 
-if [ ! -d ~/tools/python/"$PYTHON_VERSION"/oj ]; then
-  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/oj
-  ~/tools/python/"$PYTHON_VERSION"/oj/bin/pip3 install -U pip
-  ~/tools/python/"$PYTHON_VERSION"/oj/bin/pip3 install online-judge-tools
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/aws ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/aws
+  ~/tools/python/"$PYTHON_VERSION"/aws/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/aws/bin/pip3 install awscli
 fi
 
 if [ ! -d ~/tools/python/"$PYTHON_VERSION"/http ]; then
   ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/http
   ~/tools/python/"$PYTHON_VERSION"/http/bin/pip3 install -U pip
   ~/tools/python/"$PYTHON_VERSION"/http/bin/pip3 install httpie
+fi
+
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/oj ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/oj
+  ~/tools/python/"$PYTHON_VERSION"/oj/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/oj/bin/pip3 install online-judge-tools
 fi
 
 if [ ! -d ~/tools/python/"$PYTHON_VERSION"/pipenv ]; then

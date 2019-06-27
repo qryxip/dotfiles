@@ -1,4 +1,4 @@
-export JAVA_HOME=/usr/lib/jvm/intellij-jdk
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export _JAVA_AWT_WM_NONREPARENTING=1
 export EDITOR=/usr/bin/vim
 
@@ -8,14 +8,15 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/scripts/local/sh:$PATH
 export PATH=$HOME/scripts/sh:$PATH
 
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+  source ~/.nix-profile/etc/profile.d/nix.sh
+fi
+
 if which pyenv > /dev/null 2>&1; then
   PYTHON_VERSION=3.7.2
-  export PATH="$HOME/tools/python/$PYTHON_VERSION/ranger/bin:$PATH"
-  export PATH="$HOME/tools/python/$PYTHON_VERSION/pygmentize/bin:$PATH"
-  export PATH="$HOME/tools/python/$PYTHON_VERSION/ptpython/bin:$PATH"
-  export PATH="$HOME/tools/python/$PYTHON_VERSION/pipenv/bin:$PATH"
-  export PATH="$HOME/tools/python/$PYTHON_VERSION/oj/bin:$PATH"
-  export PATH="$HOME/tools/python/$PYTHON_VERSION/http/bin:$PATH"
+  for dir in ~/tools/python/$PYTHON_VERSION/*/bin; do
+    export PATH="$dir:$PATH"
+  done
   eval "$(pyenv init -)"
 fi
 

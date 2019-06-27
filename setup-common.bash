@@ -42,6 +42,7 @@ ln -sf $base/common/home/.config/fish/config.fish ~/.config/fish/
 ln -sf $base/common/home/.config/ranger/rc.conf ~/.config/ranger/
 ln -sf $base/common/home/.config/ranger/colorschemes/mytheme.py ~/.config/ranger/colorschemes/
 ln -sf $base/common/home/.vim/snippets ~/.vim/
+ln -sf $base/unix/home/.config/nix ~/.config/
 for file in keybindings.json settings.json; do
  case "$(uname -s)" in
    Linux*)  ln -sf "$base/common/home/.config/Code - OSS/User/$file" ~/".config/Code - OSS/User/";;

@@ -3,7 +3,7 @@ Description=xkeysnail
 
 [Service]
 KillMode=process
-ExecStart=/bin/sh -c 'sudo -u xkeysnail /opt/xkeysnail/bin/xkeysnail /opt/xkeysnail/config.py > /dev/null'
+ExecStart=/usr/bin/sudo -u xkeysnail /opt/xkeysnail/bin/xkeysnail /opt/xkeysnail/config.py --watch --quiet
 Type=simple
 Restart=always
 RestartSec=1

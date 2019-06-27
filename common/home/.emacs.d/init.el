@@ -106,7 +106,10 @@
 (use-package swiper)
 (use-package wgrep)
 (use-package avy)
+
 (use-package avy-migemo
+  ;; https://github.com/momomo5717/avy-migemo/pull/8
+  :straight (:host github :repo "tam17aki/avy-migemo")
   :config (require 'avy-migemo-e.g.swiper))
 
 (use-package monokai-theme

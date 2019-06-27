@@ -5,3 +5,6 @@
 [user]
 	name = Ryo Yamashita
 	email = qryxip@gmail.com
+	singingkey = 0684D679E49A4291
+[commit]
+	gpgsign = true

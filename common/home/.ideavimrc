@@ -13,6 +13,11 @@ inoremap <C-p> <C-o>:action CodeCompletion<CR>
 "inoremap <Up> <C-o>:action CodeCompletion<CR>
 inoremap <A-d> <C-DEL>
 
+inoremap <S-Space> <Space>
+nnoremap <S-Space>f :action ReformatCode<CR>
+nnoremap <S-Space>o :action OptimizeImports<CR>
+nnoremap <S-Space>r :action RenameElement<CR>
+
 nnoremap \f :action ReformatCode<CR>
 nnoremap \o :action OptimizeImports<CR>
 nnoremap \r :action RenameElement<CR>

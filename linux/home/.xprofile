@@ -5,7 +5,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export QT_QPA_PLATFORMTHEME=qt5ct
 export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CURRENT_DESKTOP=KDE
+# export XDG_CURRENT_DESKTOP=KDE
 if [ -d ~/.xkb ]; then
   xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
 fi
