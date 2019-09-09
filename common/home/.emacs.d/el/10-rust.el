@@ -7,12 +7,16 @@
              :repo "rust-analyzer/rust-analyzer"
              :no-build t))
 (use-package rustic
-  :custom (rustic-lsp-server 'rust-analyzer)
-          (rustic-analyzer-command '("nice" "ra_lsp_server")))
+  ;; :custom (rustic-lsp-server 'rust-analyzer)
+  ;;         (rustic-analyzer-command nil)
+  ;; :custom (rustic-lsp-server 'rust-analyzer)
+  ;;         (rustic-analyzer-command '("nice" "ra_lsp_server"))
+  :custom (rustic-lsp-server 'rls)
+  )
 
-(defun lsp-buffer-language ()
-  "Return \"rust\"."
-  "rust")
+;;(defun lsp-buffer-language ()
+;;  "Return \"rust\"."
+;;  "rust")
 
 ;; (lsp-register-client
 ;;  (make-lsp-client
@@ -268,7 +272,29 @@
   (self-insert-command 1))
 
 (with-eval-after-load 'rustic
-  (setq-default rustic-rls-pkg 'lsp-mode)
+  (defun rustic-setup-rls ()
+    "Start the rls client's process.
+If client isn't installed, offer to install it."
+    (unless noninteractive ;; TODO: fix tests to work with eglot/lsp-mode activated
+      (let ((client-p (lambda (client)
+                        (or (package-installed-p client)
+                            (featurep client)
+                            (require client))))
+            (rls-pkg rustic-rls-pkg))
+        (cond ((eq rls-pkg nil)
+               nil)
+              ((funcall client-p rls-pkg)
+               (if (eq rls-pkg 'eglot)
+                   (eglot-ensure)
+                 ;; No!!!!!!!!!!!!!!!!!!!!!
+                 ;; (lsp-workspace-folders-add (rustic-buffer-workspace))
+                 (when (and (eq rustic-lsp-server 'rust-analyzer)
+                            (not (featurep 'rustic-lsp)))
+                   (require 'rustic-lsp))
+                 (lsp)))
+              (t
+               (rustic-install-rls-client-p rls-pkg))))))
+
   (setq-default rustic-format-on-save nil)
   (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
 

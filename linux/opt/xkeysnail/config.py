@@ -18,7 +18,7 @@ xkeysnail.transform.define_modmap({
     Key.ESC: Key.GRAVE,
 })
 
-xkeysnail.transform.define_keymap(re.compile('Firefox|Chromium'), {
+xkeysnail.transform.define_keymap(re.compile('firefox|Chromium'), {
     K('C-n'): Key.DOWN,
     K('C-p'): Key.UP,
     K('C-b'): Key.LEFT,

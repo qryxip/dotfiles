@@ -43,6 +43,7 @@ else
                      diesel_cli \
                      exa \
                      fselect \
+                     starship \
                      tokei
   ~/.cargo/bin/cargo +stable install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server
   # ~/.cargo/bin/cargo +stable install cargo-local-registry

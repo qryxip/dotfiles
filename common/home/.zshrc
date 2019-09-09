@@ -15,6 +15,7 @@ setopt auto_list
 setopt auto_menu
 setopt correct
 setopt hist_ignore_dups
+setopt inc_append_history
 setopt interactivecomments
 setopt list_packed
 setopt list_types
@@ -23,24 +24,27 @@ setopt no_beep
 setopt no_flow_control
 setopt notify
 setopt prompt_subst
+setopt share_history
 
 bindkey -e
 
 select-word-style bash
 
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{011}'
-zstyle ':vcs_info:git:*' unstagedstr '%F{009}'
-zstyle ':vcs_info:*' formats '%F{010}%c%u(%s)[%b] %m'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-_vcs_precmd () { vcs_info }
-add-zsh-hook precmd _vcs_precmd
-export RPROMPT='%{${reset_color}%}${vcs_info_msg_0_}'
-zstyle ':vcs_info:*git+set-message:*' hooks git-config-user
+eval "$(starship init zsh)"
 
-function +vi-git-config-user() {
-  hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
-}
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' stagedstr '%F{011}'
+# zstyle ':vcs_info:git:*' unstagedstr '%F{009}'
+# zstyle ':vcs_info:*' formats '%F{010}%c%u(%s)[%b] %m'
+# zstyle ':vcs_info:*' actionformats '[%b|%a]'
+# _vcs_precmd () { vcs_info }
+# add-zsh-hook precmd _vcs_precmd
+# export RPROMPT='%{${reset_color}%}${vcs_info_msg_0_}'
+# zstyle ':vcs_info:*git+set-message:*' hooks git-config-user
+
+# function +vi-git-config-user() {
+#   hook_com[misc]+=`printf '%s(%s)' "$(git config user.name)" "$(git config user.email)"`
+# }
 
 if [ -f /usr/bin/apt ]; then
   alias awk='/usr/bin/gawk'
