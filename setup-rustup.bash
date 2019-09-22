@@ -40,6 +40,7 @@ else
                      cargo-script \
                      cargo-tree\
                      cargo-update \
+                     cross \
                      diesel_cli \
                      exa \
                      fselect \
