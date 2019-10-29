@@ -36,8 +36,8 @@ if [ "$(uname)" = Linux ]; then
   done
   ln -sf $base/linux/home/.config/qpdfview/shortcuts.conf ~/.config/qpdfview/
   ln -sf $base/linux/home/.config/systemd/user/xkeysnail.service ~/.config/systemd/user/
-  for name in cmus.desktop firefox.desktop org.kde.dolphin.desktop org.keepassxc.KeePassXC.desktop seahorse.desktop; do
-    ln -sf "$base/linux/home/.local/share/applications/$name" ~/.local/share/applications/
+  for path in "$base"/linux/home/.local/share/applications/*; do
+    ln -sf "$path" ~/.local/share/applications/
   done
 
   echo "${bold}Copying files...${ansi_reset}"

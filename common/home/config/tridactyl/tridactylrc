@@ -1,0 +1,14 @@
+set historyresults 0
+set bmarkweight 1
+set findresults 0
+set editorcmd emacsclient -c %f
+
+bind <ArrowUp> tabprev
+bind <ArrowDown> tabnext_gt
+bind <ArrowRight> scrollpage 1
+bind <ArrowLeft> scrollpage -1
+
+bind o fillcmdline open_quiet
+bind t composite fillcmdline_nofocus open | fillcmdline_nofocus
+
+bind <A-z> tabclose

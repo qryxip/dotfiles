@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Icon=kdeconnect
+Terminal=false
+Exec=/usr/bin/env XDG_CURRENT_DESKTOP=KDE kcmshell5 kcm_kdeconnect
+Name=KDE Connect Settings
+Name[ja]=KDE Connect Settings
+GenericName=Connect and sync your devices
+GenericName[ja]=Connect and sync your devices
+Categories=Qt;KDE;Settings;HardwareSettings;
+NotShowIn=KDE;

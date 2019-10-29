@@ -1,5 +1,8 @@
 super + Return
-	alacritty -e /usr/bin/tmux
+    bash -c 'id="$(cat /tmp/scratchid)"; bspc node "$id" --flag hidden && bspc node -f "$id"'
+
+super + shift + Return
+	bash ~/.config/bspwm/terminal.bash
 
 super + r
 	rofi -modi drun -show drun

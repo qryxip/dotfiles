@@ -11,7 +11,7 @@
   ;;         (rustic-analyzer-command nil)
   ;; :custom (rustic-lsp-server 'rust-analyzer)
   ;;         (rustic-analyzer-command '("nice" "ra_lsp_server"))
-  :custom (rustic-lsp-server 'rls)
+  :custom (rustic-lsp-server 'rust-analyzer)
   )
 
 ;;(defun lsp-buffer-language ()
@@ -340,7 +340,9 @@ If client isn't installed, offer to install it."
     (read-only-mode 1))
   ;; (racer-mode 1)
   (smartparens-mode 1)
-  (rainbow-delimiters-mode 1))
+  (rainbow-delimiters-mode 1)
+  (lsp)
+  )
 
 (add-hook 'rust-mode-hook 'rustic-mode)
 (add-hook 'rustic-mode-hook 'my-rust-init)

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KDE Connect Phone URL Handler
+Name[ja]=KDE Connect Phone URL Handler
+Exec=/usr/bin/env XDG_CURRENT_DESKTOP=KDE kdeconnect-handler %U
+Icon=kdeconnect
+Type=Application
+NoDisplay=true
+
+MimeType=x-scheme-handler/tel

@@ -1,5 +1,8 @@
 [directory]
 truncation_length = 0
 
+[python]
+pyenv_version_name = true
+
 [rust]
-symbol = "Rust "
+symbol = "⚙ "

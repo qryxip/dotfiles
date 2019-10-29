@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=KDE Connect Indicator
+Name[ja]=KDE Connect Indicator
+Comment=Display information about your devices
+Comment[ja]=Display information about your devices
+Exec=/usr/bin/env XDG_CURRENT_DESKTOP=KDE kdeconnect-indicator
+Icon=kdeconnect
+Type=Application
+Terminal=false
+Categories=Qt;KDE;Network;
+NotShowIn=KDE;

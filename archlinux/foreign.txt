@@ -7,9 +7,11 @@ crfpp
 dropbox
 envchain
 escrotum-git
+firefox-tridactyl-native
 gamin
 ghq
 gitflow-avh
+hadolint-bin
 haskell-ide-engine-git
 intellij-jdk
 mecab
@@ -17,8 +19,10 @@ mecab-ipadic
 ncurses5-compat-libs
 nerd-fonts-complete
 nkf
+numix-gtk-theme
 nvm
 peco
+pixivdeck-bin
 polybar
 powershell-bin
 roswell

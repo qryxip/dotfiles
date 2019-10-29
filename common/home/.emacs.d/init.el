@@ -11,6 +11,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default scroll-conservatively 1)
 
+(setq-default tab-width 4) ;; somehow necessary here and there
+
+(setq default-frame-alist (append (list '(width . 180) '(height . 60)) default-frame-alist))
+
 (setq straight-use-package-by-default t)
 
 (defvar bootstrap-version)
@@ -48,7 +52,8 @@
             (define-key helm-map "\C-w" 'evil-delete-backward-word)))
 (use-package helm-gtags)
 (use-package lsp-mode
-  :custom (lsp-prefer-flymake :none))
+  :custom (lsp-prefer-flymake :none)
+          (lsp-auto-guess-root t))
 (use-package lsp-ui
   :config (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 (use-package eglot)
@@ -184,8 +189,18 @@
 (tool-bar-mode 0)
 (scroll-bar-mode -1)
 
-(use-package crosshairs)
+;;(use-package crosshairs)
 (use-package powerline)
+(use-package sky-color-clock
+  :straight (sky-color-clock :repo "https://github.com/zk-phi/sky-color-clock")
+  :custom (sky-color-clock-enable-emoji-icon t)
+          (sky-color-clock-enable-temperature-indicator t)
+  :config (sky-color-clock-initialize 35)
+          (let ((path (expand-file-name "apikeys/sky-color-clock.txt" user-emacs-directory)))
+            (when (file-exists-p path)
+              (with-temp-buffer
+                (insert-file-contents path)
+                (sky-color-clock-initialize-openweathermap-client (buffer-string) 1850144)))))
 
 (defun init--create-face (name fg bg weight)
   (make-face name)
@@ -242,8 +257,9 @@
                                                     (list (powerline-raw (format "%s " buffer-file-coding-system) 'mode-line-non-utf-8-unix 'r)))
                                                   (list (powerline-raw "%l:%c  %6p" nil 'r)))))
                                 (concat (powerline-render lhs)
-                                        (powerline-fill nil (powerline-width rhs))
-                                        (powerline-render rhs)))))))
+                                        (powerline-fill nil (+ (powerline-width rhs) (string-width (sky-color-clock))))
+                                        (powerline-render rhs)
+                                        (sky-color-clock)))))))
 
 
 (setq-default display-line-numbers-type 'relative)

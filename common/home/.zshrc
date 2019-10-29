@@ -4,8 +4,6 @@ autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
 autoload -Uz select-word-style
 
-export PROMPT='[%F{198}%~%f]%(?.. %B%F{009}(%?%)%f%b) %B$%b '
-
 export HISTFILE=${HOME}/.zsh-history
 export HISTSIZE=100000
 export SAVEHIST=100000
@@ -30,7 +28,11 @@ bindkey -e
 
 select-word-style bash
 
-eval "$(starship init zsh)"
+if type starship > /dev/null; then
+  eval "$(starship init zsh)"
+else
+  export PROMPT='[%F{198}%~%f]%(?.. %B%F{009}(%?%)%f%b) %B$%b '
+fi
 
 # zstyle ':vcs_info:git:*' check-for-changes true
 # zstyle ':vcs_info:git:*' stagedstr '%F{011}'
@@ -62,6 +64,9 @@ if [ -f ~/.zplug/init.zsh ]; then
   zplug load
 fi
 
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
+
 function check-zplug() {
   if zplug check --verbose; then
     echo 'Up to date.'
@@ -72,6 +77,18 @@ function check-zplug() {
     fi
   fi
 }
+
+function ghqcd() {
+  local target="$(ghq list -p | sk -b ctrl-j:accept --layout reverse -q "$LBUFFER")"
+  if [ -n "$target" ]; then
+    BUFFER="cd $target"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+
+zle -N ghqcd
+bindkey '^]' ghqcd
 
 source ~/.profile
 

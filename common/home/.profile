@@ -45,3 +45,5 @@ fi
 if which opam > /dev/null 2>&1; then
   eval $(opam env)
 fi
+
+echo '{"rules":{}}' > /tmp/.textlintrc

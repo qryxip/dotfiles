@@ -31,6 +31,7 @@ else
                      cargo-bloat \
                      cargo-clone \
                      cargo-count \
+                     cargo-deny \
                      cargo-edit \
                      cargo-generate \
                      cargo-license \

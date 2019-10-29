@@ -8,3 +8,8 @@
 	singingkey = 0684D679E49A4291
 [commit]
 	gpgsign = true
+[ghq]
+	root = ~/src
+[mkrepo]
+	service = github.com
+	username = qryxip

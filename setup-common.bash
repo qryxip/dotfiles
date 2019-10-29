@@ -20,7 +20,7 @@ fi
 base=$(realpath $(dirname $0))
 
 echo "${bold}Creating directories...${ansi_reset}"
-mkdir -p ~/.vim ~/.emacs.d/straight ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes
+mkdir -p ~/.vim ~/.emacs.d/straight ~/.config/alacritty ~/.config/cmus ~/.config/fish ~/.config/ranger/colorschemes ~/.config/tridactyl
 case "$(uname -s)" in
   Linux*)  mkdir -p ~/".config/Code - OSS/User";;
   Darwin*) mkdir -p ~/"Library/Application Support/Code/User";;
@@ -50,6 +50,8 @@ for file in keybindings.json settings.json; do
    Darwin*) ln -sf "$base/common/home/.config/Code - OSS/User/$file" ~/".config//Library/Application Support/Code/User/";;
  esac
 done
+
+ln -sf "$base/common/home/config/tridactyl/tridactylrc" ~/.config/tridactyl/
 
 if [ -d ~/scripts/.git ]; then
   echo "${bold}qryxip/scripts already cloned.${ansi_reset}"
