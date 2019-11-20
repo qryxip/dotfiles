@@ -28,10 +28,13 @@ else
   # ~/.cargo/bin/rustup component add clippy rustfmt --toolchain nightly
   ~/.cargo/bin/cargo +stable install \
                      cargo-asm \
+                     cargo-audit \
                      cargo-bloat \
                      cargo-clone \
                      cargo-count \
+                     cargo-crev \
                      cargo-deny \
+                     cargo-deps \
                      cargo-edit \
                      cargo-generate \
                      cargo-license \

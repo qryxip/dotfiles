@@ -15,7 +15,7 @@ if [ "`whoami`" = root ]; then
   exit 1
 fi
 
-PYTHON_VERSION=3.7.2
+PYTHON_VERSION=3.8.0
 
 if [ ! -d ~/.pyenv/versions/"$PYTHON_VERSION" ]; then
   pyenv install "$PYTHON_VERSION"

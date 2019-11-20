@@ -53,6 +53,7 @@
 (use-package helm-gtags)
 (use-package lsp-mode
   :custom (lsp-prefer-flymake :none)
+          (lsp-rust-server 'rust-analyzer)
           (lsp-auto-guess-root t))
 (use-package lsp-ui
   :config (add-hook 'lsp-mode-hook 'lsp-ui-mode))

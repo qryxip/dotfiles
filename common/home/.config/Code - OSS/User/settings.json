@@ -39,5 +39,6 @@
   "rust-analyzer.lruCapacity": 4096,
   "rust-analyzer.enableEnhancedTyping": false,
   "rust-analyzer.highlightingOn": true,
-  "rust-analyzer.displayInlayHints": false
+  "rust-analyzer.displayInlayHints": false,
+  "python.jediEnabled": false
 }
