@@ -6,3 +6,4 @@ pyenv_version_name = true
 
 [rust]
 symbol = "⚙ "
+toolchain = true

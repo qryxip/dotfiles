@@ -23,7 +23,7 @@ else
   echo "${bold}Installing rustup and Rust tools...${ansi_reset}"
   wget https://sh.rustup.rs -O /tmp/rustup-init
   sh /tmp/rustup-init -y --no-modify-path --default-toolchain stable
-  ~/.cargo/bin/rustup install 1.15.1 nightly
+  ~/.cargo/bin/rustup install 1.15.1 1.38.0 nightly
   ~/.cargo/bin/rustup component add rust-src rust-analysis rls clippy rustfmt --toolchain stable
   # ~/.cargo/bin/rustup component add clippy rustfmt --toolchain nightly
   ~/.cargo/bin/cargo +stable install \
@@ -48,6 +48,9 @@ else
                      diesel_cli \
                      exa \
                      fselect \
+                     mdbook \
+                     onefetch \
+                     pix-image-viewer \
                      starship \
                      tokei
   ~/.cargo/bin/cargo +stable install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server
