@@ -6,6 +6,7 @@ export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/scripts/local/sh:$PATH
+export PATH=$HOME/scripts/bash:$PATH
 export PATH=$HOME/scripts/sh:$PATH
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then

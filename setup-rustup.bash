@@ -50,10 +50,10 @@ else
                      fselect \
                      mdbook \
                      onefetch \
-                     pix-image-viewer \
                      starship \
                      tokei
   ~/.cargo/bin/cargo +stable install --git https://github.com/rust-analyzer/rust-analyzer ra_lsp_server
+  ~/.cargo/bin/cargo +stable install --git https://github.com/google/pix-image-viewer
   # ~/.cargo/bin/cargo +stable install cargo-local-registry
   # ~/.cargo/bin/cargo +nightly install cargo-modules
   ~/.cargo/bin/cargo +nightly install racer

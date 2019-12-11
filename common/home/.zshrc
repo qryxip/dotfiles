@@ -28,8 +28,8 @@ bindkey -e
 
 select-word-style bash
 
-if type starship > /dev/null; then
-  eval "$(starship init zsh)"
+if [ -f ~/.cargo/bin/starship ]; then
+  eval "$(~/.cargo/bin/starship init zsh)"
 else
   export PROMPT='[%F{198}%~%f]%(?.. %B%F{009}(%?%)%f%b) %B$%b '
 fi
