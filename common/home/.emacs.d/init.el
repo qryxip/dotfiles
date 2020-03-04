@@ -56,7 +56,8 @@
           (lsp-rust-server 'rust-analyzer)
           (lsp-auto-guess-root t))
 (use-package lsp-ui
-  :config (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  ;; :config (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  )
 (use-package eglot)
 (use-package rainbow-delimiters)
 (use-package smartparens

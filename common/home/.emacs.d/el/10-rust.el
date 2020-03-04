@@ -1,17 +1,15 @@
 ;; https://github.com/raxod502/straight.el/issues/274
-(add-to-list 'load-path (expand-file-name "straight/repos/rust-analyzer/editors/emacs" user-emacs-directory))
+;; (add-to-list 'load-path (expand-file-name "straight/repos/rust-analyzer/editors/emacs" user-emacs-directory))
 
 (use-package racer)
-(use-package ra-emacs-lsp
-  :straight (:host github
-             :repo "rust-analyzer/rust-analyzer"
-             :no-build t))
 (use-package rustic
   ;; :custom (rustic-lsp-server 'rust-analyzer)
   ;;         (rustic-analyzer-command nil)
   ;; :custom (rustic-lsp-server 'rust-analyzer)
   ;;         (rustic-analyzer-command '("nice" "ra_lsp_server"))
   :custom (rustic-lsp-server 'rust-analyzer)
+          ;;(rustic-lsp-client nil)
+          (rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
   )
 
 ;;(defun lsp-buffer-language ()
@@ -272,31 +270,51 @@
   (self-insert-command 1))
 
 (with-eval-after-load 'rustic
-  (defun rustic-setup-rls ()
-    "Start the rls client's process.
-If client isn't installed, offer to install it."
-    (unless noninteractive ;; TODO: fix tests to work with eglot/lsp-mode activated
-      (let ((client-p (lambda (client)
-                        (or (package-installed-p client)
-                            (featurep client)
-                            (require client))))
-            (rls-pkg rustic-rls-pkg))
-        (cond ((eq rls-pkg nil)
-               nil)
-              ((funcall client-p rls-pkg)
-               (if (eq rls-pkg 'eglot)
-                   (eglot-ensure)
-                 ;; No!!!!!!!!!!!!!!!!!!!!!
-                 ;; (lsp-workspace-folders-add (rustic-buffer-workspace))
-                 (when (and (eq rustic-lsp-server 'rust-analyzer)
-                            (not (featurep 'rustic-lsp)))
-                   (require 'rustic-lsp))
-                 (lsp)))
-              (t
-               (rustic-install-rls-client-p rls-pkg))))))
+;;  (defun rustic-setup-rls ()
+;;    "Start the rls client's process.
+;;If client isn't installed, offer to install it."
+;;    (unless noninteractive ;; TODO: fix tests to work with eglot/lsp-mode activated
+;;      (let ((client-p (lambda (client)
+;;                        (or (package-installed-p client)
+;;                            (featurep client)
+;;                            (require client))))
+;;            (rls-pkg rustic-rls-pkg))
+;;        (cond ((eq rls-pkg nil)
+;;               nil)
+;;              ((funcall client-p rls-pkg)
+;;               (if (eq rls-pkg 'eglot)
+;;                   (eglot-ensure)
+;;                 ;; No!!!!!!!!!!!!!!!!!!!!!
+;;                 ;; (lsp-workspace-folders-add (rustic-buffer-workspace))
+;;                 (when (and (eq rustic-lsp-server 'rust-analyzer)
+;;                            (not (featurep 'rustic-lsp)))
+;;                   (require 'rustic-lsp))
+;;                 (lsp)))
+;;              (t
+;;               (rustic-install-rls-client-p rls-pkg))))))
+
+
+;;  (defun rustic-lsp-mode-setup ()
+;;    "When changing the `lsp-rust-server', it's also necessary to update the priorities
+;;with `lsp-rust-switch-server'."
+;;    ;; we need to require lsp-clients for the call to `lsp--client-priority'
+;;    (require 'lsp-clients)
+;;    (require 'lsp-rust)
+;;    ;; No!!!!!!!!!!!!!!!
+;;    ;; (lsp-workspace-folders-add (rustic-buffer-workspace))
+;;    (setq lsp-rust-server rustic-lsp-server)
+;;    (setq lsp-rust-analyzer-server-command rustic-analyzer-command)
+;;    (let ((priority (lsp--client-priority (gethash rustic-lsp-server lsp-clients))))
+;;      (when (< priority 0)
+;;        (lsp-rust-switch-server))))
+
+  (push 'rustic-clippy flycheck-checkers)
 
   (setq-default rustic-format-on-save nil)
   (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
+  (setq-default lsp-rust-clippy-preference "on")
+  (setq-default lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq-default lsp-rust-analyzer-cargo-watch-args ["--all-targets" "--profile" "test"])
 
   ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
   (define-key company-active-map "\C-q" 'racer-describe)
@@ -341,7 +359,7 @@ If client isn't installed, offer to install it."
   ;; (racer-mode 1)
   (smartparens-mode 1)
   (rainbow-delimiters-mode 1)
-  (lsp)
+  ;;(lsp)
   )
 
 (add-hook 'rust-mode-hook 'rustic-mode)

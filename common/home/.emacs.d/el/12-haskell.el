@@ -3,8 +3,8 @@
 ;   (add-hook 'haskell-mode-hook 'intero-mode)
 ;   (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
 
-(use-package lsp-haskell
-  :config (add-hook 'haskell-mode-hook #'my-haskell-init))
+;;(use-package lsp-haskell
+;;  :config (add-hook 'haskell-mode-hook #'my-haskell-init))
 
 (defun my-haskell-init ()
   (interactive)

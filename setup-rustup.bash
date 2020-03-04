@@ -27,6 +27,7 @@ else
   ~/.cargo/bin/rustup component add rust-src rust-analysis rls clippy rustfmt --toolchain stable
   # ~/.cargo/bin/rustup component add clippy rustfmt --toolchain nightly
   ~/.cargo/bin/cargo +stable install \
+                     bandwhich \
                      cargo-asm \
                      cargo-audit \
                      cargo-bloat \
@@ -46,8 +47,10 @@ else
                      cargo-update \
                      cross \
                      diesel_cli \
+                     du-dust \
                      exa \
                      fselect \
+                     lsd \
                      mdbook \
                      onefetch \
                      starship \

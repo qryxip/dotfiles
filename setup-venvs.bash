@@ -64,3 +64,9 @@ if [ ! -d ~/tools/python/"$PYTHON_VERSION"/ranger ]; then
   ~/tools/python/"$PYTHON_VERSION"/ranger/bin/pip3 install ranger-fm
   ~/tools/python/"$PYTHON_VERSION"/ranger/bin/ranger --copy-config=all
 fi
+
+if [ ! -d ~/tools/python/"$PYTHON_VERSION"/remarshal ]; then
+  ~/.pyenv/versions/"$PYTHON_VERSION/bin/python3" -m venv ~/tools/python/"$PYTHON_VERSION"/remarhsal
+  ~/tools/python/"$PYTHON_VERSION"/remarhsal/bin/pip3 install -U pip
+  ~/tools/python/"$PYTHON_VERSION"/remarhsal/bin/pip3 install remarshal
+fi
