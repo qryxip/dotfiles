@@ -36,8 +36,9 @@ fi
 
 if command -v node > /dev/null 2>&1; then
   node_version=$(node --version)
-  export PATH="$HOME/tools/node/$node_version/typescript/node_modules/.bin:$PATH"
-  export PATH="$HOME/tools/node/$node_version/textlint/node_modules/.bin:$PATH"
+  for dir in ~/tools/node/"$node_version"/*/node_modules/.bin; do
+    export PATH="$dir:$PATH"
+  done
 fi
 
 if [ -f ~/.cargo/env ]; then

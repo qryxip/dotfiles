@@ -59,6 +59,6 @@ else
   ~/.cargo/bin/cargo +stable install --git https://github.com/google/pix-image-viewer
   # ~/.cargo/bin/cargo +stable install cargo-local-registry
   # ~/.cargo/bin/cargo +nightly install cargo-modules
-  ~/.cargo/bin/cargo +nightly install racer
+  ~/.cargo/bin/cargo +nightly install racer papyrus
   RUSTFLAGS="--cfg procmacro2_semver_exempt" ~/.cargo/bin/cargo +nightly install cargo-tarpaulin
 fi
