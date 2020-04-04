@@ -37,6 +37,7 @@ else
                      cargo-deny \
                      cargo-deps \
                      cargo-edit \
+                     cargo-feature \
                      cargo-generate \
                      cargo-license \
                      cargo-make \
