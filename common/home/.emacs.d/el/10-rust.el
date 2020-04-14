@@ -1,6 +1,3 @@
-;; https://github.com/raxod502/straight.el/issues/274
-;; (add-to-list 'load-path (expand-file-name "straight/repos/rust-analyzer/editors/emacs" user-emacs-directory))
-
 (use-package racer)
 (use-package rustic
   ;; :custom (rustic-lsp-server 'rust-analyzer)
@@ -11,19 +8,6 @@
           ;;(rustic-lsp-client nil)
           (rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
   )
-
-;;(defun lsp-buffer-language ()
-;;  "Return \"rust\"."
-;;  "rust")
-
-;; (lsp-register-client
-;;  (make-lsp-client
-;;   :new-connection (lsp-stdio-connection (lambda () rust-analyzer-command))
-;;   :notification-handlers (ht<-alist rust-analyzer--notification-handlers)
-;;   :action-handlers (ht<-alist rust-analyzer--action-handlers)
-;;   :major-modes '(rustic-mode)
-;;   :ignore-messages nil
-;;   :server-id 'rust-analyzer))
 
 (sp-with-modes '(rustic-mode)
   (sp-local-pair "'" "'"
@@ -270,44 +254,6 @@
   (self-insert-command 1))
 
 (with-eval-after-load 'rustic
-;;  (defun rustic-setup-rls ()
-;;    "Start the rls client's process.
-;;If client isn't installed, offer to install it."
-;;    (unless noninteractive ;; TODO: fix tests to work with eglot/lsp-mode activated
-;;      (let ((client-p (lambda (client)
-;;                        (or (package-installed-p client)
-;;                            (featurep client)
-;;                            (require client))))
-;;            (rls-pkg rustic-rls-pkg))
-;;        (cond ((eq rls-pkg nil)
-;;               nil)
-;;              ((funcall client-p rls-pkg)
-;;               (if (eq rls-pkg 'eglot)
-;;                   (eglot-ensure)
-;;                 ;; No!!!!!!!!!!!!!!!!!!!!!
-;;                 ;; (lsp-workspace-folders-add (rustic-buffer-workspace))
-;;                 (when (and (eq rustic-lsp-server 'rust-analyzer)
-;;                            (not (featurep 'rustic-lsp)))
-;;                   (require 'rustic-lsp))
-;;                 (lsp)))
-;;              (t
-;;               (rustic-install-rls-client-p rls-pkg))))))
-
-
-;;  (defun rustic-lsp-mode-setup ()
-;;    "When changing the `lsp-rust-server', it's also necessary to update the priorities
-;;with `lsp-rust-switch-server'."
-;;    ;; we need to require lsp-clients for the call to `lsp--client-priority'
-;;    (require 'lsp-clients)
-;;    (require 'lsp-rust)
-;;    ;; No!!!!!!!!!!!!!!!
-;;    ;; (lsp-workspace-folders-add (rustic-buffer-workspace))
-;;    (setq lsp-rust-server rustic-lsp-server)
-;;    (setq lsp-rust-analyzer-server-command rustic-analyzer-command)
-;;    (let ((priority (lsp--client-priority (gethash rustic-lsp-server lsp-clients))))
-;;      (when (< priority 0)
-;;        (lsp-rust-switch-server))))
-
   (push 'rustic-clippy flycheck-checkers)
 
   (setq-default rustic-format-on-save nil)
@@ -342,10 +288,6 @@
                                          my-rust-insert-curly-brace)
                                        company-begin-commands))
   )
-
-;; (with-eval-after-load 'lsp-mode
-;;   (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls-preview"))
-;;   (require 'lsp-rust))
 
 (with-eval-after-load 'smartparens
   (require 'smartparens-rust))
