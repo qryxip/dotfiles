@@ -5,6 +5,7 @@ cmigemo-git
 cmus-git
 crfpp
 dropbox
+electron2
 envchain
 escrotum-git
 evrouter
@@ -17,6 +18,7 @@ gitflow-avh
 github-cli
 hadolint-bin
 intellij-jdk
+jdim-git
 libxkbui
 mecab
 mecab-ipadic
@@ -30,6 +32,7 @@ peco
 pixivdeck-bin
 polybar
 powershell-bin
+pygtk
 qjoypad
 roswell
 simple-mtpfs

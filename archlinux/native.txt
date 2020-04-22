@@ -27,6 +27,7 @@ attica
 attr
 audit
 autoconf
+autoconf-archive
 automake
 avahi
 awesome-terminal-fonts
@@ -116,9 +117,9 @@ ebook-tools
 efibootmgr
 efivar
 electron
-electron2
 electron4
 electron6
+electron7
 elfutils
 emacs
 enca
@@ -147,6 +148,7 @@ firefox
 firefox-tridactyl
 fish
 flac
+flameshot
 flex
 fontconfig
 fontforge
@@ -994,7 +996,6 @@ pulseaudio-qt
 purpose
 pyenv
 pygobject-devel
-pygtk
 python
 python2
 python2-appdirs
