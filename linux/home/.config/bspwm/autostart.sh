@@ -36,7 +36,7 @@ sleep 0.2
 bspc config bottom_padding 0
 bspc config left_padding 0
 bspc config right_padding 0
-compton -b --config ~/.config/compton/compton.conf
+picom -b --config ~/.config/compton/compton.conf
 
 if type sky-color-wallpaper >/dev/null 2>/dev/null; then
   sky-color-wallpaper
