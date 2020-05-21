@@ -11,6 +11,7 @@ alsa-plugins
 alsa-topology-conf
 alsa-ucm-conf
 alsa-utils
+amdvlk
 android-tools
 aom
 arch-audit
@@ -68,6 +69,7 @@ cantarell-fonts
 c-ares
 cblas
 cdparanoia
+ceph-libs
 cfitsio
 chromium
 cifs-utils
@@ -112,7 +114,6 @@ dosfstools
 double-conversion
 dunst
 e2fsprogs
-easystroke
 ebook-tools
 efibootmgr
 efivar
@@ -193,11 +194,14 @@ gnustep-base
 gnutls
 go
 gobject-introspection-runtime
+gparted
+gperf
 gpgme
 gpm
 gptfdisk
 gradle
 graphene
+graphicsmagick
 graphite
 graphviz
 grep
@@ -237,6 +241,7 @@ haskell-auto-update
 haskell-base16-bytestring
 haskell-base64-bytestring
 haskell-base-compat
+haskell-base-compat-batteries
 haskell-basement
 haskell-base-orphans
 haskell-base-prelude
@@ -278,7 +283,6 @@ haskell-edit-distance
 haskell-either
 haskell-enclosed-exceptions
 haskell-erf
-haskell-exceptions
 haskell-extra
 haskell-fast-logger
 haskell-file-embed
@@ -491,6 +495,8 @@ kded
 kdelibs4support
 kdesu
 kdnssd
+kdsoap
+kdsoap-ws-discovery-client
 keditbookmarks
 keepassxc
 kemoticons
@@ -538,6 +544,7 @@ less
 lib32-acl
 lib32-alsa-lib
 lib32-alsa-plugins
+lib32-amdvlk
 lib32-atk
 lib32-attr
 lib32-bzip2
@@ -730,6 +737,7 @@ liblqr
 libmad
 libmagick6
 libmfx
+libmicrohttpd
 libmm-glib
 libmng
 libmnl
@@ -796,10 +804,10 @@ libtiff
 libtirpc
 libtool
 libtorrent
-libunicodenames
 libuninameslist
 libunistring
 libunwind
+liburcu
 libusb
 libusb-compat
 libusbmuxd
@@ -813,7 +821,6 @@ libvoikko
 libvorbis
 libvpx
 libwacom
-libwbclient
 libwebp
 libwpe
 libx11
@@ -861,7 +868,9 @@ linux-firmware
 linux-lts
 linux-lts-headers
 lirc
+lld
 lldb
+llvm
 llvm-libs
 lmdb
 lm_sensors
@@ -870,6 +879,7 @@ lsb-release
 lshw
 l-smash
 lsof
+lttng-ust
 lua
 luajit
 lvm2
@@ -921,6 +931,7 @@ nss
 ntfs-3g
 ntp
 numactl
+oath-toolkit
 ocaml
 ocaml-compiler-libs
 ocl-icd
@@ -1018,6 +1029,7 @@ python2-ipaddress
 python2-lockfile
 python2-more-itertools
 python2-msgpack
+python2-numpy
 python2-ordered-set
 python2-packaging
 python2-pathlib2
@@ -1059,6 +1071,7 @@ python-dockerpty
 python-docker-pycreds
 python-docopt
 python-docutils
+python-filelock
 python-gobject
 python-html5lib
 python-idna
@@ -1126,6 +1139,7 @@ qt5-sensors
 qt5-speech
 qt5-svg
 qt5-tools
+qt5-wayland
 qt5-webchannel
 qt5-webengine
 qt5-webkit
@@ -1145,6 +1159,8 @@ rtmpdump
 rtorrent
 ruby
 rubygems
+ruby-irb
+ruby-reline
 runc
 run-parts
 rxvt-unicode
@@ -1184,6 +1200,7 @@ speex
 speexdsp
 spirv-tools
 sqlite
+srt
 stack
 startup-notification
 steam
@@ -1249,6 +1266,7 @@ valgrind
 vi
 vid.stab
 vim-runtime
+vmaf
 volume_key
 vpnc
 vulkan-headers
@@ -1273,7 +1291,6 @@ wqy-zenhei
 x264
 x265
 xaw3d
-xbindkeys
 xcb-proto
 xcb-util
 xcb-util-cursor
@@ -1297,6 +1314,7 @@ xine-lib
 xine-ui
 xkeyboard-config
 xmlrpc-c
+xmlsec
 xorg-bdftopcf
 xorg-docs
 xorg-fonts-100dpi
@@ -1356,6 +1374,7 @@ xvidcore
 xz
 yajl
 yarn
+yasm
 yubico-c
 yubico-c-client
 yubikey-personalization
