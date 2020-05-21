@@ -15,7 +15,7 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
 fi
 
 if command -v pyenv > /dev/null 2>&1; then
-  PYTHON_VERSION=3.8.0
+  PYTHON_VERSION=3.8.2
   for dir in ~/tools/python/$PYTHON_VERSION/*/bin; do
     export PATH="$dir:$PATH"
   done
