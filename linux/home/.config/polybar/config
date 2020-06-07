@@ -66,7 +66,7 @@ modules-right = wlan cpu alsa battery date
 
 tray-position = center
 tray-padding = 2
-tray-offset-x = 390
+tray-offset-x = 370
 ;tray-transparent = true
 ;tray-background = #0063ff
 
