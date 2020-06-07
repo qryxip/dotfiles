@@ -494,6 +494,11 @@ def rust() -> None:
 
 
 def ocaml() -> None:
+    # TODO: opam init --comp ocaml-system.4.10.0
+    # TODO: eval $(opam env)
+    # TODO: opam repository add satysfi-external https://github.com/gfngfn/satysfi-external-repo.git
+    # TODO: opam repository add satyrographos https://github.com/na4zagin3/satyrographos-repo.git
+    # TODO: opam update
     raise NotImplementedError()
 
 
