@@ -11,6 +11,8 @@
   "window.zoomLevel": 0,
   "window.menuBarVisibility": "toggle",
   "files.autoSave": "afterDelay",
+  "terminal.integrated.fontFamily": "Cica",
+  "terminal.integrated.fontSize": 12,
   "vim.easymotion": true,
   "vim.cursorStylePerMode.insert": "line",
   "vim.normalModeKeyBindingsNonRecursive": [
