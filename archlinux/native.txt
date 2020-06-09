@@ -234,6 +234,7 @@ haskell-ansi-wl-pprint
 haskell-asn1-encoding
 haskell-asn1-parse
 haskell-asn1-types
+haskell-assoc
 haskell-async
 haskell-attoparsec
 haskell-attoparsec-iso8601
@@ -321,6 +322,7 @@ haskell-lukko
 haskell-megaparsec
 haskell-memory
 haskell-microlens
+haskell-microlens-mtl
 haskell-microlens-th
 haskell-mime-types
 haskell-mintty
@@ -392,6 +394,7 @@ haskell-terminal-size
 haskell-text-metrics
 haskell-tf-random
 haskell-th-abstraction
+haskell-these
 haskell-th-expand-syns
 haskell-th-lift
 haskell-th-lift-instances
@@ -455,13 +458,10 @@ jasper
 java-environment-common
 java-runtime-common
 jbig2dec
-jdk10-openjdk
 jdk8-openjdk
 jemalloc
 jfsutils
 jq
-jre10-openjdk
-jre10-openjdk-headless
 jre8-openjdk
 jre8-openjdk-headless
 js52
@@ -693,6 +693,7 @@ libdbusmenu-gtk2
 libdbusmenu-qt5
 libdc1394
 libdca
+libdiscid
 libdrm
 libdvdnav
 libdvdread
@@ -802,6 +803,7 @@ libthai
 libtheora
 libtiff
 libtirpc
+libtommath
 libtool
 libtorrent
 libuninameslist
@@ -905,6 +907,7 @@ minizip
 mkinitcpio
 mkinitcpio-busybox
 mobile-broadband-provider-info
+mosh
 mozilla-common
 mpfr
 mpg123
@@ -914,6 +917,7 @@ musl
 nano
 ncurses
 ndctl
+neofetch
 netctl
 netpbm
 nettle
@@ -976,6 +980,7 @@ perf
 perl
 perl-error
 perl-file-which
+perl-io-tty
 perl-mailtools
 perl-parse-yapp
 perl-timedate
