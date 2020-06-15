@@ -1,11 +1,11 @@
-super + Return
-    bash -c 'id="$(cat /tmp/scratchid)"; bspc node "$id" --flag hidden && bspc node -f "$id"'
+#super + Return
+#	#bash -c 'id="$(cat /tmp/scratchid)"; bspc node "$id" --flag hidden && bspc node -f "$id"'
 
-super + shift + Return
-	bash ~/.config/bspwm/terminal.bash
+#super + shift + Return
+#	bash ~/.config/bspwm/terminal.bash
 
-super + ;
-    bash -c 'id="$(cat /tmp/scratchid)"; bspc node "$id" --flag hidden && bspc node -f "$id"'
+super + semicolon
+	alacritty -e ~/.config/sxhkd/tmux.bash
 
 super + r
 	rofi -modi drun -show drun
