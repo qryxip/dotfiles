@@ -118,7 +118,6 @@ ebook-tools
 efibootmgr
 efivar
 electron
-electron4
 electron6
 electron7
 elfutils
@@ -440,6 +439,7 @@ iana-etc
 icu
 ijs
 imagemagick
+imake
 imlib2
 inetutils
 iniparser
@@ -589,6 +589,7 @@ lib32-libglvnd
 lib32-libgpg-error
 lib32-libice
 lib32-libidn
+lib32-libidn2
 lib32-libindicator-gtk2
 lib32-libjpeg-turbo
 lib32-libldap
@@ -604,6 +605,7 @@ lib32-libsndfile
 lib32-libtasn1
 lib32-libthai
 lib32-libtiff
+lib32-libunistring
 lib32-libunwind
 lib32-libusb
 lib32-libvorbis
@@ -955,7 +957,6 @@ openssl
 openssl-1.0
 opus
 orc
-otf-fira-code
 otf-ipafont
 otf-latinmodern-math
 p11-kit
@@ -1064,6 +1065,7 @@ python-cached-property
 python-certifi
 python-cffi
 python-chardet
+python-click
 python-colorama
 python-contextlib2
 python-cryptography
@@ -1076,6 +1078,7 @@ python-dockerpty
 python-docker-pycreds
 python-docopt
 python-docutils
+python-dotenv
 python-filelock
 python-gobject
 python-html5lib
