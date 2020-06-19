@@ -7,6 +7,7 @@ crfpp
 dropbox
 easystroke
 electron2
+electron4
 envchain
 evrouter
 firefox-tridactyl-native
@@ -32,6 +33,7 @@ nkf
 nodejs-lts-carbon
 numix-gtk-theme
 nvm
+otf-fira-code
 peco
 pixivdeck-bin
 polybar
