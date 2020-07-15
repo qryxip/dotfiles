@@ -282,6 +282,9 @@
 (use-package toml-mode)
 (use-package yaml-mode)
 
+(use-package dhall-mode
+  :custom (dhall-use-header-line nil))
+
 (use-package markdown-mode)
 (use-package websocket)
 (use-package web-server)
