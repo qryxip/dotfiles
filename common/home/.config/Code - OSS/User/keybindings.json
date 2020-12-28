@@ -1577,6 +1577,11 @@
     "when": "editorTextFocus"
   },
   {
+    "key": "alt+r",
+    "command": "workbench.action.tasks.runTask",
+    "when": "editorTextFocus"
+  },
+  {
     "key": "left",
     "command": "cursorPageUp",
     "when": "editorTextFocus && vim.mode == 'Normal'"
