@@ -1,5 +1,5 @@
 Xft.dpi: 120
-URxvt.font: xft:Utatane:size=9:weight=120
+URxvt.font: xft:FiraCode Nerd Font Mono:size=12:weight=120
 URxvt.depth: 32
 URxvt.scrollBar: False
 URxvt.foreground: White
