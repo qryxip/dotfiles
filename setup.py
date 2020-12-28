@@ -67,6 +67,7 @@ def common() -> None:
     symlink(*args([], '.tigrc'))
     symlink(*args([], '.tmux.conf'))
     symlink(*args([], '.vimrc'))
+    symlink(*args([], '.zprofile'))
     symlink(*args([], '.zshrc'))
     symlink(*args(['.config'], 'nvim'))
     symlink(*args(['.config', 'alacritty'], 'alacritty.yml'))
@@ -258,14 +259,15 @@ def archlinux() -> None:
         packages = set(packages.splitlines())
         packages.difference_update(installed.splitlines())
         if packages:
-            subprocess.run([*install, packages])
+            subprocess.run([*install, *packages], check=True)
         else:
             eprint_colored(on_empty, bold=True)
 
     install_packages(
         base.joinpath('archlinux', 'native.txt'),
         ['pacman', '-Qnq'],
-        ['sudo', 'pacman', '-Su', '--needed', '--noconfirm'],
+        # ['sudo', 'pacman', '-Su', '--needed', '--noconfirm'],
+        ['sudo', 'pacman', '-Su', '--needed'],
         '[archlinux] No native packages to install',
     )
 
@@ -284,7 +286,8 @@ def archlinux() -> None:
     install_packages(
         base.joinpath('archlinux', 'foreign.txt'),
         ['pacman', '-Qmq'],
-        ['yay', '-S', '--noconfirm'],
+        #['yay', '-S', '--noconfirm'],
+        ['yay', '-S'],
         '[archlinux] No AUR packages to install',
     )
 
@@ -303,9 +306,10 @@ def archlinux() -> None:
 
     eprint_colored('[archlinux] Enabling systemd units...', bold=True)
 
-    for service in ['bluetooth', 'lightdm', 'ntpd', 'systemd-swap']:
+    for service in ['bluetooth', 'ntpd', 'systemd-swap']:
         subprocess.run(['sudo', 'systemctl', 'enable', '--now', service],
                        check=True)
+    subprocess.run(['sudo', 'systemctl', 'enable', 'lightdm'], check=True)
 
 
 def nix() -> None:
@@ -439,7 +443,7 @@ def rust() -> None:
     rustup_init = retrieve('https://sh.rustup.rs', 'rust')
     with TemporaryDirectory(prefix='rustup-init') as path:
         path = Path(path, 'rustup-init')
-        with open(path) as file:
+        with open(path, mode='w') as file:
             file.write(rustup_init)
         subprocess.run(
             ['sh', path, '-vy', '--no-modify-path', '-c', 'rls',
@@ -537,7 +541,7 @@ def symlink(src: Path, dst: Path, section: str) -> None:
         dst.symlink_to(src)
         eprint_colored(f'[{section}] Updated {src} -> {dst}', bold=True)
     elif not dst.exists():
-        dst.parent.mkdir(parents=True)
+        dst.parent.mkdir(parents=True, exist_ok=True)
         dst.symlink_to(src)
         eprint_colored(f'[{section}] Created {src} -> {dst}', bold=True)
 
