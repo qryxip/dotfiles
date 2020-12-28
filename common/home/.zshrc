@@ -62,10 +62,10 @@ if [ -f ~/.zplug/init.zsh ]; then
   zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug "zsh-users/zsh-autosuggestions", defer:2
   zplug load
-fi
 
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
+fi
 
 function check-zplug() {
   if zplug check --verbose; then
@@ -89,8 +89,6 @@ function ghqcd() {
 
 zle -N ghqcd
 bindkey '^]' ghqcd
-
-source ~/.profile
 
 if [ -f ~/.travis/travis.sh ]; then
   source ~/.travis/travis.sh

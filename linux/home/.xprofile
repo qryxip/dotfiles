@@ -12,6 +12,7 @@ if [ -d ~/.xkb ]; then
   xkbcomp -I${HOME}/.xkb ${HOME}/.xkb/keymap/mykbd $DISPLAY
 fi
 xset r rate 200 50
+xset -dpms
 xset -b
 light-locker --lock-on-suspend &
 if [ -x /opt/xkeysnail/bin/xkeysnail ]; then
