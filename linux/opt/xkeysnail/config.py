@@ -14,7 +14,7 @@ xkeysnail.transform.define_modmap({
     Key.RIGHT_CTRL: Key.RIGHT_META,
     Key.RO: Key.RIGHT_SHIFT,
     Key.YEN: Key.BACKSLASH,
-    Key.LEFT: Key.LEFT_META,
+    #Key.LEFT: Key.LEFT_META,
     Key.ESC: Key.GRAVE,
 })
 
