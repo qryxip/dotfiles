@@ -62,6 +62,8 @@
 (define-key evil-insert-state-map "\M-x" 'helm-M-x)
 (define-key evil-normal-state-map "\M-x" 'helm-M-x)
 
+(define-key evil-normal-state-map "\M-q" 'lsp-ui-sideline-apply-code-actions)
+
 (define-key evil-visual-state-map "s" 'evil-surround-region)
 
 (define-key evil-normal-state-map "\M-f" 'avy-migemo-goto-char-2)
@@ -73,6 +75,10 @@
 (define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
 ;; evil-leader
 ;; (define-key evil-normal-state-map "\\c" 'toggle-truncate-lines)
+
+(define-key evil-normal-state-map "\C-q" 'lsp-ui-doc-glance)
+(define-key company-mode-map "\C-q" 'lsp-ui-doc-glance)
+(define-key company-mode-map "\C-q" 'lsp-ui-doc-glance)
 
 (define-key evil-insert-state-map "\C-a" 'evil-insert-line)
 (define-key evil-insert-state-map "\C-e" 'move-end-of-line)

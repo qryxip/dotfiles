@@ -54,11 +54,19 @@
 (use-package lsp-mode
   :custom (lsp-prefer-flymake :none)
           (lsp-rust-server 'rust-analyzer)
-          (lsp-auto-guess-root t))
+          (lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
+          (lsp-rust-clippy-preference "on")
+          (lsp-rust-analyzer-cargo-watch-command "clippy")
+          (lsp-rust-analyzer-cargo-watch-args ["--profile" "test"])
+          (lsp-rust-analyzer-proc-macro-enable t)
+          (lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
+          ;(lsp-auto-guess-root t)
+          )
 (use-package lsp-ui
   ;; :config (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  :custom (lsp-ui-doc-enable nil)
   )
-(use-package eglot)
+;;(use-package eglot)
 (use-package rainbow-delimiters)
 (use-package smartparens
   :config (progn
@@ -120,7 +128,8 @@
   :config (require 'avy-migemo-e.g.swiper))
 
 (use-package monokai-theme
-  :config (progn (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
+  :config (progn (load-theme 'monokai t)
+                 (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
                  (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
                  (dolist (face '("default" "fringe"))
                    (set-face-foreground (intern face) "#ebdbb2")

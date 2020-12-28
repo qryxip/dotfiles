@@ -1,4 +1,8 @@
 (use-package racer)
+
+
+
+
 (use-package rustic
   ;; :custom (rustic-lsp-server 'rust-analyzer)
   ;;         (rustic-analyzer-command nil)
@@ -257,19 +261,12 @@
   (push 'rustic-clippy flycheck-checkers)
 
   (setq-default rustic-format-on-save nil)
-  (setq-default lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
-  (setq-default lsp-rust-clippy-preference "on")
-  (setq-default lsp-rust-analyzer-cargo-watch-command "clippy")
-  (setq-default lsp-rust-analyzer-cargo-watch-args ["--all-targets" "--profile" "test"])
+  (setq-default rustic-flycheck-clippy-params "--message-format=json")
 
   ;; (setq-default rust-rustfmt-bin "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustfmt")
-  (define-key company-active-map "\C-q" 'racer-describe)
-  (define-key company-search-map "\C-q" 'racer-describe)
   (evil-define-key 'normal rustic-mode-map "\\r" 'lsp-rename)
   (evil-define-key 'insert rustic-mode-map "\C-j" 'my-rust-insert-ret)
   (evil-define-key 'insert rustic-mode-map "\C-m" 'my-rust-insert-ret)
-  (evil-define-key 'insert rustic-mode-map "\C-q" 'racer-describe)
-  (evil-define-key 'normal rustic-mode-map "\C-q" 'racer-describe)
   (evil-define-key 'normal rustic-mode-map "\C-]" 'racer-find-definition)
   (evil-define-key 'normal rustic-mode-map "\M-r" 'my-rust-run)
   (evil-define-key 'normal rustic-mode-map "\M-t" 'my-rust-test)
@@ -301,6 +298,8 @@
   ;; (racer-mode 1)
   (smartparens-mode 1)
   (rainbow-delimiters-mode 1)
+
+  (flycheck-select-checker 'rustic-clippy)
   ;;(lsp)
   )
 
