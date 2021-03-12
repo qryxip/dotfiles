@@ -55,8 +55,6 @@
 (define-key evil-normal-state-map "\M-l" 'my-keymap-toggle-flycheck-error-buffer)
 (define-key evil-insert-state-map "\M-g" 'magit-status)
 (define-key evil-normal-state-map "\M-g" 'magit-status)
-(define-key evil-insert-state-map "\M-z" 'kill-this-buffer)
-(define-key evil-normal-state-map "\M-z" 'kill-this-buffer)
 (define-key evil-insert-state-map "\M-c" 'delete-other-windows)
 (define-key evil-normal-state-map "\M-c" 'delete-other-windows)
 (define-key evil-insert-state-map "\M-x" 'helm-M-x)
@@ -71,8 +69,8 @@
 (define-key evil-normal-state-map "\M-w" 'helm-find-files)
 (define-key evil-normal-state-map "\C-h" 'evil-backward-char)
 (define-key evil-normal-state-map "\C-k" 'my-keymap-evil-normal-c$)
-(define-key evil-normal-state-map "\C-n" 'tabbar-forward-tab)
-(define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
+;;(define-key evil-normal-state-map "\C-n" 'tabbar-forward-tab)
+;;(define-key evil-normal-state-map "\C-p" 'tabbar-backward-tab)
 ;; evil-leader
 ;; (define-key evil-normal-state-map "\\c" 'toggle-truncate-lines)
 

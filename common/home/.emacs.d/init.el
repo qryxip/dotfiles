@@ -35,6 +35,12 @@
 (use-package evil
   :custom (evil-want-C-i-jump t)
   :config (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config (evil-collection-init))
+
 (use-package evil-cleverparens)
 (use-package evil-commentary)
 (use-package evil-matchit)
@@ -99,7 +105,6 @@
   :config (flycheck-status-emoji-mode 1))
 
 (use-package magit)
-(use-package evil-magit)
 (use-package smeargle)
 (use-package gitattributes-mode)
 (use-package gitconfig-mode)
