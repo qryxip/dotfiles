@@ -15,6 +15,8 @@ alsa-utils
 amdvlk
 android-tools
 aom
+apr
+apr-util
 arch-audit
 arch-install-scripts
 archlinux-keyring
@@ -52,6 +54,7 @@ boost-libs
 breeze
 breeze-gtk
 breeze-icons
+breezy
 bridge-utils
 brotli
 bspwm
@@ -75,6 +78,7 @@ cdparanoia
 ceph-libs
 cfitsio
 chromium
+chrpath
 cifs-utils
 clang
 cmake
@@ -103,6 +107,7 @@ dconf
 ddrescue
 desktop-file-utils
 device-mapper
+devtools
 dex
 dhclient
 dhcpcd
@@ -127,7 +132,6 @@ efibootmgr
 efivar
 electron
 electron6
-electron9
 elfutils
 emacs
 enca
@@ -159,6 +163,7 @@ fish
 flac
 flameshot
 flex
+fmt
 fontconfig
 fontforge
 fortune-mod
@@ -178,6 +183,7 @@ gcr
 gd
 gdbm
 gdk-pixbuf2
+gdl
 gegl
 gendesk
 geoclue
@@ -185,7 +191,9 @@ geocode-glib
 gettext
 ghc
 ghc-libs
+ghostpcl
 ghostscript
+ghostxps
 giblib
 giflib
 gimp
@@ -236,6 +244,7 @@ gtk3
 gtk-doc
 gtk-engine-murrine
 gtkmm3
+gtkspell3
 gtk-update-icon-cache
 gts
 guile
@@ -463,7 +472,6 @@ hwloc
 hyphen
 i3-wm
 iana-etc
-icon-naming-utils
 icu
 ijs
 imagemagick
@@ -471,6 +479,7 @@ imake
 imlib2
 inetutils
 iniparser
+inkscape
 intel-gmmlib
 intel-media-driver
 intel-media-sdk
@@ -487,13 +496,13 @@ jasper
 java-environment-common
 java-runtime-common
 jbig2dec
+jbigkit
 jdk8-openjdk
 jemalloc
 jfsutils
 jq
 jre8-openjdk
 jre8-openjdk-headless
-js68
 js78
 jshon
 json-c
@@ -698,6 +707,7 @@ lib32-nss
 lib32-ocl-icd
 lib32-openal
 lib32-openssl
+lib32-opus
 lib32-orc
 lib32-p11-kit
 lib32-pam
@@ -728,6 +738,7 @@ libasyncns
 libatasmart
 libatomic_ops
 libavc1394
+libavif
 libblockdev
 libbluray
 libbs2b
@@ -741,6 +752,7 @@ libcap-ng
 libcddb
 libcdio
 libcdio-paranoia
+libcdr
 libcloudproviders
 libconfig
 libcroco
@@ -782,7 +794,6 @@ libgphoto2
 libgudev
 libgusb
 libhandy
-libhandy0
 libheif
 libibus
 libical
@@ -794,6 +805,7 @@ libidn2
 libiec61883
 libimobiledevice
 libindicator-gtk2
+libinih
 libinput
 libjpeg-turbo
 libkdcraw
@@ -804,7 +816,6 @@ libldac
 libldap
 liblqr
 libmad
-libmagick6
 libmfx
 libmicrohttpd
 libmm-glib
@@ -850,6 +861,7 @@ libpwquality
 libraqm
 libraw
 libraw1394
+librevenge
 librsvg
 libsamplerate
 libsasl
@@ -888,9 +900,11 @@ libusb
 libusb-compat
 libusbmuxd
 libutempter
+libutf8proc
 libuv
 libva
 libvdpau
+libvisio
 libvisual
 libvoikko
 libvorbis
@@ -898,8 +912,9 @@ libvpx
 libwacom
 libwebp
 libwmf
-libwnck3
+libwpd
 libwpe
+libwpg
 libx11
 libxau
 libxaw
@@ -926,7 +941,6 @@ libxp
 libxpm
 libxrandr
 libxrender
-libxres
 libxshmfence
 libxslt
 libxss
@@ -936,6 +950,7 @@ libxv
 libxvmc
 libxxf86vm
 libyaml
+libyuv
 libzip
 licenses
 lightdm
@@ -960,6 +975,7 @@ l-smash
 lsof
 lttng-ust
 lua
+lua52
 luajit
 luit
 lvm2
@@ -980,6 +996,7 @@ mariadb-libs
 md4c
 mdadm
 media-player-info
+mercurial
 mesa
 metis
 minizip
@@ -991,7 +1008,9 @@ mozilla-common
 mpfr
 mpg123
 mplayer
+mpv
 mtdev
+mujs
 musl
 mypaint-brushes1
 nano
@@ -1057,7 +1076,6 @@ pcre
 pcre2
 pcsclite
 peek
-pepper-flash
 perf
 perl
 perl-clone
@@ -1083,12 +1101,7 @@ perl-timedate
 perl-try-tiny
 perl-uri
 perl-www-robotrules
-perl-xml-namespacesupport
 perl-xml-parser
-perl-xml-sax
-perl-xml-sax-base
-perl-xml-sax-expat
-perl-xml-simple
 phonon-qt5
 phonon-qt5-gstreamer
 picom
@@ -1120,7 +1133,6 @@ pyenv
 python
 python2
 python2-cairo
-python2-gobject2
 python-anytree
 python-appdirs
 python-asn1crypto
@@ -1130,19 +1142,18 @@ python-bcrypt
 python-beaker
 python-cachecontrol
 python-cached-property
-python-cairo
 python-certifi
 python-cffi
 python-chardet
 python-click
 python-colorama
+python-configobj
 python-contextlib2
 python-cryptography
 python-dbus
 python-dbus-common
 python-distlib
 python-distro
-python-distutils-extra
 python-docker
 python-dockerpty
 python-docker-pycreds
@@ -1167,12 +1178,14 @@ python-msgpack
 python-ordered-set
 python-packaging
 python-paramiko
+python-patiencediff
 python-pep517
 python-pew
 python-pip
 python-pipenv
 python-ply
 python-progress
+python-psutil
 python-pyasn1
 python-pycparser
 python-pygments
@@ -1183,7 +1196,6 @@ python-pyrsistent
 python-pytoml
 python-pytz
 python-pyudev
-python-pyxdg
 python-requests
 python-resolvelib
 python-retrying
@@ -1208,6 +1220,7 @@ python-virtualenv-clone
 python-webencodings
 python-websocket-client
 python-xcffib
+python-xlib
 python-yaml
 python-zipp
 qca
@@ -1244,9 +1257,11 @@ rest
 rhash
 ripgrep
 rofi
+rsync
 rtkit
 rtmpdump
 rtorrent
+rubberband
 ruby
 ruby-bundler
 rubygems
@@ -1267,6 +1282,7 @@ sdl2
 seahorse
 sed
 semver
+serf
 shaderc
 shadow
 shared-mime-info
@@ -1279,7 +1295,6 @@ simplescreenrecorder
 skim
 skk-jisyo
 skktools
-skopeo
 sl
 slang
 slirp4netns
@@ -1301,10 +1316,13 @@ startup-notification
 steam
 stoken
 strace
+subversion
 sudo
 suitesparse
+svt-av1
 sxhkd
 syntax-highlighting
+sysbench
 sysfsutils
 syslinux
 sysstat
@@ -1344,6 +1362,7 @@ tmux
 tracker3
 tree
 tslib
+ttf-dejavu
 ttf-fantasque-sans-mono
 ttf-fira-code
 ttf-junicode
@@ -1351,6 +1370,7 @@ ttf-liberation
 ttf-ubuntu-font-family
 twolame
 tzdata
+uchardet
 ucl
 udisks2
 unarchiver
@@ -1363,6 +1383,7 @@ util-linux
 util-linux-libs
 v4l-utils
 valgrind
+vamp-plugin-sdk
 vi
 vid.stab
 vim-runtime
@@ -1427,6 +1448,7 @@ xorg-fonts-75dpi
 xorg-fonts-alias-100dpi
 xorg-fonts-alias-75dpi
 xorg-fonts-encodings
+xorg-font-util
 xorg-iceauth
 xorg-mkfontscale
 xorgproto
@@ -1474,6 +1496,7 @@ xorg-xwininfo
 xorg-xwud
 xsel
 xvidcore
+xxhash
 xz
 yajl
 yarn

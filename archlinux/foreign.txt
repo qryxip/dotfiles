@@ -7,6 +7,7 @@ dropbox
 easystroke
 editline
 electron7
+electron9
 envchain
 firefox-tridactyl-native
 gamepad-tool-bin
@@ -17,7 +18,8 @@ hadolint
 humanity-icon-theme
 jdim-git
 js52
-js60
+libgmp-static
+libmagick6
 mrwriter-git
 ncurses5-compat-libs
 nerd-fonts-complete
@@ -26,10 +28,12 @@ nkf
 numix-gtk-theme
 openboard
 peco
+pepper-flash
 pixivdeck-bin
 polybar
 powershell-bin
 pygtk
+python2-gobject2
 qjoypad
 roswell
 simple-mtpfs
