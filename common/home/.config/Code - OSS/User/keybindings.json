@@ -1605,5 +1605,10 @@
     "key": "space f",
     "command": "editor.action.formatDocument",
     "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus && vim.active && vim.use<C-q> && !inDebugRepl"
   }
 ]

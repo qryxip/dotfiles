@@ -8,7 +8,7 @@
   "editor.lineHeight": 12,
   "editor.lineNumbers": "relative",
   "workbench.colorTheme": "Monokai",
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "window.menuBarVisibility": "toggle",
   "files.autoSave": "afterDelay",
   "terminal.integrated.fontFamily": "Cica",
@@ -47,7 +47,6 @@
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.inlayHints.enable": false,
   "rust-analyzer.diagnostics.disabled": [
     "unresolved-import"
   ]
