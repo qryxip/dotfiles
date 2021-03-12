@@ -4,6 +4,8 @@
 	diffFilter = delta --color-only
 [url "git@github.com:"]
 	pushinsteadof = https://github.com
+[url "git@gitlab.com:"]
+	pushinsteadof = https://gitlab.com
 [url "git@bitbucket.org:"]
 	pushinsteadof = https://bitbucket.org
 [user]
