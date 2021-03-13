@@ -286,7 +286,7 @@ def archlinux() -> None:
     install_packages(
         base.joinpath('archlinux', 'foreign.txt'),
         ['pacman', '-Qmq'],
-        #['yay', '-S', '--noconfirm'],
+        # ['yay', '-S', '--noconfirm'],
         ['yay', '-S'],
         '[archlinux] No AUR packages to install',
     )
@@ -428,7 +428,14 @@ def python() -> None:
 
 
 def node() -> None:
-    raise NotImplementedError()
+    if shutil.which('volta'):
+        eprint_colored('[node] volta is already installed', bold=True)
+        return
+    with TemporaryDirectory(prefix='dotfiles-setup-node') as tempdir:
+        path = f'{tempdir}/volta-install'
+        subprocess.run(['curl', 'https://get.volta.sh', '-o', path],
+                       check=True)
+        subprocess.run([path], check=True)
 
 
 def rust() -> None:
