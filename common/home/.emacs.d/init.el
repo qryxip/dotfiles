@@ -32,6 +32,10 @@
 
 (straight-use-package 'use-package)
 
+; https://github.com/emacs-evil/evil-collection/issues/60
+(setq evil-want-integration t)
+(setq evil-want-keybinding nil)
+
 (use-package evil
   :custom (evil-want-C-i-jump t)
   :config (evil-mode 1))

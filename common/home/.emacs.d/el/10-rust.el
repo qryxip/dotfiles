@@ -1,8 +1,5 @@
 (use-package racer)
 
-
-
-
 (use-package rustic
   ;; :custom (rustic-lsp-server 'rust-analyzer)
   ;;         (rustic-analyzer-command nil)
@@ -258,8 +255,6 @@
   (self-insert-command 1))
 
 (with-eval-after-load 'rustic
-  (push 'rustic-clippy flycheck-checkers)
-
   (setq-default rustic-format-on-save nil)
   (setq-default rustic-flycheck-clippy-params "--message-format=json")
 
