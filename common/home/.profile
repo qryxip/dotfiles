@@ -25,7 +25,7 @@ if command -v pyenv > /dev/null 2>&1; then
       export PATH="$dir:$PATH"
     done
   fi
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
 fi
 
 if command -v node >/dev/null 2>&1; then
