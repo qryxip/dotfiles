@@ -184,10 +184,11 @@
 (setq helm-buffers-fuzzy-matching t
       helm-M-x-fuzzy-match t)
 
-(set-face-attribute 'default nil :family "Cica" :height 85 :weight 'bold)
-(set-face-attribute 'link nil :family "Cica" :height 85 :weight 'bold)
-(set-face-attribute 'font-lock-type-face nil :family "Cica" :height 85 :weight 'bold)
-(set-face-attribute 'fixed-pitch nil :family "Cica" :height 85 :weight 'bold)
+(set-face-attribute 'default nil :family "Cica" :height 95 :weight 'bold)
+(set-face-attribute 'link nil :family "Cica" :height 95 :weight 'bold)
+(set-face-attribute 'font-lock-type-face nil :family "Cica" :height 95 :weight 'bold)
+(set-face-attribute 'fixed-pitch nil :family "Cica" :height 95 :weight 'bold)
+
 (with-eval-after-load 'tex-mode
   (set-face-attribute 'tex-verbatim nil :inherit 'link))
 (with-eval-after-load 'markdown-mode
