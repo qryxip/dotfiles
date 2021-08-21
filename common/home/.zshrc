@@ -93,3 +93,5 @@ bindkey '^]' ghqcd
 if [ -f ~/.travis/travis.sh ]; then
   source ~/.travis/travis.sh
 fi
+
+eval "$(frum init)"
