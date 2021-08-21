@@ -30,10 +30,11 @@ alert = #bd2c40
 [bar/main]
 monitor = ${env:MONITOR:eDP1}
 width = 100%
-height = 20
+height = 22
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 3.0
+;radius = 8.0
+radius = 12.0
 fixed-center = true
 
 background = ${colors.background}
@@ -43,30 +44,30 @@ line-size = 3
 line-color = #f00
 
 ; border-size = 12
-border-left-size = 12
-border-right-size = 12
-border-top-size = 0
+border-left-size = 152
+border-right-size = 152
+border-top-size = 12
 border-color = #00000000
 
-padding-left = 0
+padding-left = 1
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = "Cica:pixelsize=11:bold;1"
+font-0 = "Cica:pixelsize=12:bold;1"
 font-1 = "Iosevka Nerd Font:pixelsize=12;2"
 ; font-1 = NotoSans Nerd Font Mono:pixelsize=9:bold;0
 ; font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 ; font-3 = FontAwesome:pixelsize=10;1
 
 modules-left = bspwm xwindow
-modules-center =
-modules-right = wlan cpu alsa battery date
+modules-center = date
+modules-right = wlan cpu alsa battery
 
-tray-position = center
-tray-padding = 2
-tray-offset-x = 370
+tray-position = right
+tray-padding = 1
+;tray-offset-x = 370
 ;tray-transparent = true
 ;tray-background = #0063ff
 
@@ -135,9 +136,84 @@ tray-padding = 2
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[bar/main-leftwm]
+monitor = ${env:MONITOR:eDP1}
+width = 100%
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+radius = 3.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+; border-size = 12
+border-left-size = 12
+border-right-size = 12
+border-top-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "Cica:pixelsize=11:bold;1"
+font-1 = "Iosevka Nerd Font:pixelsize=12;2"
+; font-1 = NotoSans Nerd Font Mono:pixelsize=9:bold;0
+; font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+; font-3 = FontAwesome:pixelsize=10;1
+
+modules-left = ewmh xwindow
+modules-center =
+modules-right = wlan cpu alsa battery date
+
+tray-position = center
+tray-padding = 2
+tray-offset-x = 370
+;tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/ewmh]
+type = internal/xworkspaces
+label-active = ""
+label-active-padding = 0
+;label-active-foreground = ${colors.foreground-alt}
+;label-active-background = ${colors.background-alt}
+;label-active-underline = ${colors.primary}
+label-occupied = ""
+label-occupied-padding = 0
+;label-occupied-underline = ${colors.secondary}
+label-urgent = ""
+label-urgent-padding = 0
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background}
+;label-urgent-underline  = ${colors.alert}
+label-empty = "sssssssssddsadsa
+;label-empty-foreground = ${colors.foreground}
+
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:140:...%
+label = %title:0:40:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -278,7 +354,8 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp1s0
+; interface = wlp1s0
+interface = wlp0s20f3
 interval = 1.0
 
 format-connected = <label-connected>
@@ -319,7 +396,7 @@ interval = 5
 date = "%a %b %e"
 date-alt = "%Y-%m-%d"
 
-time = %l:%M %p
+time = %k:%M
 time-alt = %H:%M:%S
 
 ; format-prefix = 
