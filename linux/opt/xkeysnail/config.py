@@ -18,6 +18,29 @@ xkeysnail.transform.define_modmap({
     Key.ESC: Key.GRAVE,
 })
 
+xkeysnail.transform.define_conditional_modmap(re.compile('Funkin', re.IGNORECASE), {
+    Key.KEY_1: Key.LEFT,
+    Key.KEY_3: Key.DOWN,
+    Key.SEMICOLON: Key.UP,
+    Key.APOSTROPHE: Key.RIGHT,
+
+    Key.Z: Key.LEFT,
+    Key.X: Key.DOWN,
+    Key.DOT: Key.UP,
+    Key.SLASH: Key.RIGHT,
+
+    Key.CAPSLOCK: Key.LEFT_CTRL,
+    Key.LEFT_ALT: Key.LEFT_META,
+    Key.MUHENKAN: Key.ESC,
+    Key.HENKAN: Key.RIGHT_ALT,
+    Key.KATAKANAHIRAGANA: Key.RIGHT_META,
+    Key.RIGHT_ALT: Key.RIGHT_META,
+    Key.RIGHT_CTRL: Key.RIGHT_META,
+    Key.RO: Key.RIGHT_SHIFT,
+    Key.YEN: Key.BACKSLASH,
+    Key.ESC: Key.GRAVE,
+})
+
 xkeysnail.transform.define_keymap(re.compile('firefox|Chromium'), {
     K('C-n'): Key.DOWN,
     K('C-p'): Key.UP,
