@@ -77,6 +77,8 @@
 (define-key evil-normal-state-map "\C-q" 'lsp-ui-doc-glance)
 (define-key company-mode-map "\C-q" 'lsp-ui-doc-glance)
 (define-key company-mode-map "\C-q" 'lsp-ui-doc-glance)
+(define-key company-active-map "\C-j" 'company-complete-selection)
+(define-key company-active-map "\C-i" 'company-complete-selection)
 
 (define-key evil-insert-state-map "\C-a" 'evil-insert-line)
 (define-key evil-insert-state-map "\C-e" 'move-end-of-line)
