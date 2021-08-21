@@ -25,6 +25,10 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
+bspc rule -a Funkin state=floating
+
+bspc rule -a Matlab-GLEE state=floating
+
 bspc rule -a Alacritty:scratchpad sticky=on layer=above state=tiled hidden=on
 
 #bspc rule -a astroblasto state=floating
