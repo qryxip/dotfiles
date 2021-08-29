@@ -6,15 +6,13 @@ from xkeysnail.transform import K, Key
 
 xkeysnail.transform.define_modmap({
     Key.CAPSLOCK: Key.LEFT_CTRL,
-    Key.LEFT_ALT: Key.LEFT_META,
+    Key.LEFT_ALT: Key.ESC,
     Key.MUHENKAN: Key.ESC,
     Key.HENKAN: Key.RIGHT_ALT,
     Key.KATAKANAHIRAGANA: Key.RIGHT_META,
-    Key.RIGHT_ALT: Key.RIGHT_META,
     Key.RIGHT_CTRL: Key.RIGHT_META,
     Key.RO: Key.RIGHT_SHIFT,
     Key.YEN: Key.BACKSLASH,
-    #Key.LEFT: Key.LEFT_META,
     Key.ESC: Key.GRAVE,
 })
 
