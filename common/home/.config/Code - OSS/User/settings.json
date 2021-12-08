@@ -8,7 +8,6 @@
   "editor.lineHeight": 12,
   "editor.lineNumbers": "relative",
   "workbench.colorTheme": "Monokai",
-  "window.zoomLevel": 1,
   "window.menuBarVisibility": "toggle",
   "files.autoSave": "afterDelay",
   "terminal.integrated.fontFamily": "Cica",
@@ -47,7 +46,21 @@
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.diagnostics.disabled": [
-    "unresolved-import"
-  ]
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 1,
+  "rust-analyzer.experimental.procAttrMacros": true,
+  "rust-analyzer.procMacro.server": null,
+  "rust-analyzer.diagnostics.warningsAsHint": [
+    "unresolved-proc-macro"
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "python.analysis.logLevel": "Warning",
+  "python.formatting.provider": "black",
+  "python.analysis.typeCheckingMode": "strict",
+  "python.linting.flake8CategorySeverity.E": "Warning",
+  "python.linting.flake8Enabled": true,
+  "python.languageServer": "Pylance"
 }
