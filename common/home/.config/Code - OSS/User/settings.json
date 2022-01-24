@@ -33,6 +33,9 @@
   "powermode.explosionSize": 10,
   "powermode.presets": "simple-rift",
   "powermode.enableShake": false,
+  "code-runner.executorMap": {
+    "rust": "cd $dir && md=\"$(cargo metadata --format-version 1)\" && target=\"$(jq --arg src_path $dir$fileName '.resolve.root as $root | .packages[] | select(.id == $root) | .targets | map(select(.src_path == $src_path))' <<<\"$md\")\" && [ \"$(jq length <<<\"$target\")\" == 1 ] && cargo run --\"$(jq -r '.[0].kind[0]' <<<\"$target\")\" \"$(jq -r '.[0].name' <<<\"$target\")\""
+  },
   "rust.clippy_preference": "on",
   "editor.minimap.enabled": false,
   "rust-analyzer.cargo-watch.command": "clippy",
@@ -62,5 +65,5 @@
   "python.analysis.typeCheckingMode": "strict",
   "python.linting.flake8CategorySeverity.E": "Warning",
   "python.linting.flake8Enabled": true,
-  "python.languageServer": "Pylance"
+  "python.languageServer": "Jedi"
 }
