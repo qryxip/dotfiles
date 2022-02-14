@@ -70,11 +70,12 @@
           (lsp-rust-analyzer-cargo-watch-args ["--profile" "test"])
           (lsp-rust-analyzer-proc-macro-enable t)
           (lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
+          (evil-define-key 'normal lsp-mode-map "\C-]" 'lsp-find-definition)
           ;(lsp-auto-guess-root t)
           )
 (use-package lsp-ui
   ;; :config (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  :custom (lsp-ui-doc-enable nil)
+  :custom (lsp-ui-sideline-show-code-actions t)
   )
 ;;(use-package eglot)
 (use-package rainbow-delimiters)
@@ -110,9 +111,9 @@
 
 (use-package magit)
 (use-package smeargle)
-(use-package gitattributes-mode)
-(use-package gitconfig-mode)
-(use-package gitignore-mode)
+;(use-package gitattributes-mode)
+;(use-package gitconfig-mode)
+;(use-package gitignore-mode)
 (use-package git-timemachine)
 (use-package diff-hl
   :config

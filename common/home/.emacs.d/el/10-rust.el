@@ -5,9 +5,9 @@
   ;;         (rustic-analyzer-command nil)
   ;; :custom (rustic-lsp-server 'rust-analyzer)
   ;;         (rustic-analyzer-command '("nice" "ra_lsp_server"))
-  :custom (rustic-lsp-server 'rust-analyzer)
-          ;;(rustic-lsp-client nil)
-          (rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
+  ;;:custom (rustic-lsp-server 'rust-analyzer)
+  ;;        ;;(rustic-lsp-client nil)
+  ;;        (rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
   )
 
 (sp-with-modes '(rustic-mode)
@@ -262,7 +262,6 @@
   (evil-define-key 'normal rustic-mode-map "\\r" 'lsp-rename)
   (evil-define-key 'insert rustic-mode-map "\C-j" 'my-rust-insert-ret)
   (evil-define-key 'insert rustic-mode-map "\C-m" 'my-rust-insert-ret)
-  (evil-define-key 'normal rustic-mode-map "\C-]" 'racer-find-definition)
   (evil-define-key 'normal rustic-mode-map "\M-r" 'my-rust-run)
   (evil-define-key 'normal rustic-mode-map "\M-t" 'my-rust-test)
   (evil-define-key 'insert rustic-mode-map "," 'my-rust-insert-comma)
@@ -298,5 +297,5 @@
   ;;(lsp)
   )
 
-(add-hook 'rust-mode-hook 'rustic-mode)
+;(add-hook 'rust-mode-hook 'rustic-mode)
 (add-hook 'rustic-mode-hook 'my-rust-init)
