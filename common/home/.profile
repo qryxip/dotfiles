@@ -14,6 +14,10 @@ export PATH=$HOME/scripts/sh:$PATH
 export PATH=$HOME/scripts/py:$PATH
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+if [ -e /usr/share/vulkan/icd.d/intel_icd.x86_64.json ]; then
+  export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
+fi
+
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
   . ~/.nix-profile/etc/profile.d/nix.sh
 fi
