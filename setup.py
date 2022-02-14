@@ -52,12 +52,11 @@ def common() -> None:
 
     def args(dir_paths: List[str],
              filename: str) -> (Path, Path, str):
-        src = base.joinpath('common', 'home', *dir_paths, filename)
+        src = base.joinpath('common', 'ln', 'homedir', *dir_paths, filename)
         dst = home.joinpath(*dir_paths, filename)
         section = 'common'
         return src, dst, section
 
-    symlink(*args([], '.eslintrc'))
     symlink(*args([], '.gitconfig'))
     symlink(*args([], '.gvimrc'))
     symlink(*args([], '.ideavimrc'))
@@ -83,7 +82,7 @@ def common() -> None:
 
     def args(dir_paths: List[str],
              filename: str) -> (Path, Path, str):
-        src = base.joinpath('unix', 'home', *dir_paths, filename)
+        src = base.joinpath('unix', 'ln', 'homedir', *dir_paths, filename)
         dst = home.joinpath(*dir_paths, filename)
         section = 'common'
         return src, dst, section
@@ -94,7 +93,7 @@ def common() -> None:
     def args(src_dir_paths: List[str],
              dst_dir_paths: List[str],
              filename: str) -> (Path, Path, str):
-        src = base.joinpath('common', 'home', *src_dir_paths, filename)
+        src = base.joinpath('common', 'ln', 'homedir', *src_dir_paths, filename)
         dst = home.joinpath(*dst_dir_paths, filename)
         section = 'common'
         return src, dst, section
@@ -106,7 +105,7 @@ def common() -> None:
         raise NotImplementedError()
     elif system == 'Darwin':
         def args(filename: str) -> (Path, Path, str):
-            src = base.joinpath('common', 'home', '.config', 'Code - OSS',
+            src = base.joinpath('common', 'ln', 'homedir', '.config', 'Code - OSS',
                                 'User', filename)
             dst = home.joinpath('Library', 'Application Support', 'Code',
                                 'User', filename)
@@ -114,7 +113,7 @@ def common() -> None:
             return src, dst, section
     elif system == 'Linux':
         def args(filename: str) -> (Path, Path, str):
-            src = base.joinpath('common', 'home', '.config', 'Code - OSS',
+            src = base.joinpath('common', 'ln', 'homedir', '.config', 'Code - OSS',
                                 'User', filename)
             dst = home.joinpath('.config', 'Code - OSS', 'User', filename)
             section = 'common'
@@ -159,7 +158,7 @@ def linux() -> None:
 
     def args(dir_paths: List[str],
              filename: str) -> (Path, Path, str):
-        src = base.joinpath('linux', 'home', *dir_paths, filename)
+        src = base.joinpath('linux', 'ln', 'homedir', *dir_paths, filename)
         dst = home.joinpath(*dir_paths, filename)
         section = 'linux'
         return src, dst, section
@@ -183,9 +182,9 @@ def linux() -> None:
     symlink(*args(['.config', 'fcitx', 'skk'], 'dictionary_list'))
     symlink(*args(['.config', 'fcitx', 'skk'], 'rule'))
     symlink(*args(['.config', 'qpdfview'], 'shortcuts.conf'))
-    symlink(*args(['.config', 'systemd', 'user'], 'xkeysnail.service'))
+    # symlink(*args(['.config', 'systemd', 'user'], 'xkeysnail.service'))
 
-    applications = base.joinpath('linux', 'home', '.local', 'share',
+    applications = base.joinpath('linux', 'ln', 'homedir', '.local', 'share',
                                  'applications')
 
     def args(filename: str) -> (Path, Path, str):
@@ -200,7 +199,7 @@ def linux() -> None:
     eprint_colored(f'[linux] Copying files...', bold=True)
 
     def args(dir_paths: List[str], filename: str) -> (Path, Path, str):
-        src = base.joinpath('linux', 'etc', *dir_paths, filename)
+        src = base.joinpath('linux', 'cp', 'etc', *dir_paths, filename)
         dst = Path('/').joinpath('etc', *dir_paths, filename)
         section = 'linux'
         return src, dst, section
@@ -217,22 +216,22 @@ def archlinux() -> None:
     home = Path.home()
     base = Path(__file__).resolve().parent
 
-    # https://qiita.com/miy4/items/dd0e2aec388138f803c5
-    try:
-        pwd.getpwnam('xkeysnail')
-        eprint_colored(f'[archlinux] `xkeysnail` already exists', bold=True)
-    except KeyError:
-        subprocess.run(['sudo', 'groupadd', 'uinput'], check=False)
-        subprocess.run(
-            ['sudo', 'useradd', '-G', 'input,uinput', '-s', '/sbin/nologin',
-             'xkeysnail'], check=True)
-        eprint_colored(f'[archlinux] Added `xkeysnail` and `uinput`',
-                       bold=True)
+    # # https://qiita.com/miy4/items/dd0e2aec388138f803c5
+    # try:
+    #     pwd.getpwnam('xkeysnail')
+    #     eprint_colored(f'[archlinux] `xkeysnail` already exists', bold=True)
+    # except KeyError:
+    #     subprocess.run(['sudo', 'groupadd', 'uinput'], check=False)
+    #     subprocess.run(
+    #         ['sudo', 'useradd', '-G', 'input,uinput', '-s', '/sbin/nologin',
+    #          'xkeysnail'], check=True)
+    #     eprint_colored(f'[archlinux] Added `xkeysnail` and `uinput`',
+    #                    bold=True)
 
     eprint_colored('[archlinux] Copying files...', bold=True)
 
     def args(dir_paths: List[str], filename: str) -> (Path, Path, str):
-        src = base.joinpath('archlinux', *dir_paths, filename)
+        src = base.joinpath('archlinux', 'cp', *dir_paths, filename)
         dst = Path('/', *dir_paths, filename)
         section = 'archlinux'
         return src, dst, section
@@ -271,23 +270,23 @@ def archlinux() -> None:
         '[archlinux] No native packages to install',
     )
 
-    if Path('/usr/bin/yay').exists():
-        eprint_colored('[archlinux] `yay` is already installed', bold=True)
-    else:
-        eprint_colored('[archlinux] Installing `yay`...', bold=True)
-        with TemporaryDirectory(prefix='yay-installation-') as tempdir:
-            wd = Path(tempdir).joinpath('yay')
-            subprocess.run(
-                ['git', 'clone', 'https://aur.archlinux.org/yay.git', wd],
-                check=True,
-            )
-            subprocess.run(['makepkg', '-si'], cwd=wd, check=True)
+    # if Path('/usr/bin/yay').exists():
+    #     eprint_colored('[archlinux] `yay` is already installed', bold=True)
+    # else:
+    #     eprint_colored('[archlinux] Installing `yay`...', bold=True)
+    #     with TemporaryDirectory(prefix='yay-installation-') as tempdir:
+    #         wd = Path(tempdir).joinpath('yay')
+    #         subprocess.run(
+    #             ['git', 'clone', 'https://aur.archlinux.org/yay.git', wd],
+    #             check=True,
+    #         )
+    #         subprocess.run(['makepkg', '-si'], cwd=wd, check=True)
 
     install_packages(
         base.joinpath('archlinux', 'foreign.txt'),
         ['pacman', '-Qmq'],
         # ['yay', '-S', '--noconfirm'],
-        ['yay', '-S'],
+        ['paru', '-S'],
         '[archlinux] No AUR packages to install',
     )
 
@@ -306,10 +305,10 @@ def archlinux() -> None:
 
     eprint_colored('[archlinux] Enabling systemd units...', bold=True)
 
-    for service in ['bluetooth', 'ntpd', 'systemd-swap']:
+    for service in ['bluetooth', 'ntpd']:
         subprocess.run(['sudo', 'systemctl', 'enable', '--now', service],
                        check=True)
-    subprocess.run(['sudo', 'systemctl', 'enable', 'lightdm'], check=True)
+    # subprocess.run(['sudo', 'systemctl', 'enable', 'lightdm'], check=True)
 
 
 def nix() -> None:
@@ -549,7 +548,8 @@ def symlink(src: Path, dst: Path, section: str) -> None:
         eprint_colored(f'[{section}] Updated {src} -> {dst}', bold=True)
     elif not dst.exists():
         dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.symlink_to(src)
+        dst.unlink()
+        dst.symlink_to(src, target_is_directory=True)
         eprint_colored(f'[{section}] Created {src} -> {dst}', bold=True)
 
 
