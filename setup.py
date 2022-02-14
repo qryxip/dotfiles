@@ -548,7 +548,6 @@ def symlink(src: Path, dst: Path, section: str) -> None:
         eprint_colored(f'[{section}] Updated {src} -> {dst}', bold=True)
     elif not dst.exists():
         dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.unlink()
         dst.symlink_to(src, target_is_directory=True)
         eprint_colored(f'[{section}] Created {src} -> {dst}', bold=True)
 
