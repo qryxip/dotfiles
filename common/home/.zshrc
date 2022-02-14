@@ -5,8 +5,9 @@ autoload -Uz vcs_info
 autoload -Uz select-word-style
 
 export HISTFILE=${HOME}/.zsh-history
-export HISTSIZE=100000
-export SAVEHIST=100000
+export HISTSIZE=1000000000
+export HISTFILESIZE=1000000000
+export SAVEHIST=1000000000
 
 setopt auto_cd
 setopt auto_list
@@ -94,4 +95,4 @@ if [ -f ~/.travis/travis.sh ]; then
   source ~/.travis/travis.sh
 fi
 
-eval "$(frum init)"
+eval "$(frum init)" || true
