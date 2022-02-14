@@ -68,20 +68,29 @@ noremap! <C-f> <Right>
 noremap! <A-f> <C-Right>
 noremap! <A-b> <C-Left>
 
-set runtimepath^=~/.local/share/dein.vim
-if dein#load_state('~/.local/share/dein')
-  call dein#begin('~/.local/share/dein')
-  call dein#add('~/.local/share/dein.vim')
-  call dein#add('Lokaltog/vim-easymotion')
-  call dein#add('kana/vim-smartinput')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('tpope/vim-surround')
-  call dein#end()
-  call dein#save_state()
-endif
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'Lokaltog/vim-easymotion'
+Plug 'Shougo/deoplete.nvim'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jam1garner/vim-code-monokai'
+call plug#end()
+
+"set runtimepath^=~/.local/share/dein.vim
+"if dein#load_state('~/.local/share/dein')
+"  call dein#begin('~/.local/share/dein')
+"  call dein#add('~/.local/share/dein.vim')
+"  call dein#add('Lokaltog/vim-easymotion')
+"  call dein#add('kana/vim-smartinput')
+"  call dein#add('Shougo/deoplete.nvim')
+"  call dein#add('scrooloose/nerdtree')
+"  call dein#add('vim-airline/vim-airline')
+"  call dein#add('vim-airline/vim-airline-themes')
+"  call dein#add('tpope/vim-surround')
+"  call dein#end()
+"  call dein#save_state()
+"endif
 
 let g:deoplete#enable_at_startup = 1
 
@@ -93,9 +102,6 @@ let g:EasyMotion_startofline = 0
 filetype plugin indent on
 syntax enable
 
-if !has('gui_runnig')
-    set t_Co=256
-    colorscheme molokai-dark
-    highlight Normal ctermbg=NONE
-    highlight nonText ctermbg=NONE
-endif
+colorscheme codedark
+set guifont=Cica:h12
+
