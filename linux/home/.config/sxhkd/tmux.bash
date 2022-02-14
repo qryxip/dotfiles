@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec tmux new -As main
+exec tmux -S "/run/user/$UID/tmux" new -As main
