@@ -17,6 +17,7 @@
 [ghq]
 	root = ~/src
 [delta]
+	features = line-numbers decorations
 	syntax-theme = Monokai Extended
 [mkrepo]
 	service = github.com
