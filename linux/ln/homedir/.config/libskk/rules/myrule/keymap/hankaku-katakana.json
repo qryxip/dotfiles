@@ -11,7 +11,8 @@
       "L": "set-input-mode-wide-latin",
       "C-q": "set-input-mode-hiragana",
       "C-j": "commit",
-      "\n": "commit"
+      "\n": "commit",
+      ";": "start-preedit-no-delete"
     }
   }
 }
