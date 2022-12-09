@@ -1,0 +1,19 @@
+keymap:
+  - name: Browser-like applications
+    remap:
+      C-b: left
+      C-f: right
+      C-p: up
+      C-n: down
+      C-a: home
+      C-e: end
+      C-h: backspace
+      C-k: [Shift-end, backspace]
+      C-w: C-backspace
+      C-d: delete
+      C-j: Enter
+      Alt-b: C-left
+      Alt-f: C-right
+      Alt-d: C-delete
+    application:
+      only: [Chromium, firefox, discord, Slack, Code]

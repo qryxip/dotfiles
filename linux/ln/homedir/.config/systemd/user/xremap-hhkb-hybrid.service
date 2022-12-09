@@ -1,0 +1,15 @@
+[Unit]
+Description=xremap (only HHKB Hybrid)
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hhkb-hybrid.yml --watch --device HHKB-Hybrid
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitBurst=0
+Environment=DISPLAY=:1
+Environment=XAUTHORITY=/root/.Xauthority
+
+[Install]
+WantedBy=default.target

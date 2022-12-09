@@ -1,0 +1,29 @@
+modmap:
+  - name: Common
+    remap:
+      KEY_LEFTALT: KEY_ESC
+  - name: HHKB
+    remap:
+      KEY_ESC: KEY_GRAVE
+      KEY_GRAVE: KEY_DELETE
+      KEY_BACKSPACE: KEY_BACKSLASH
+      KEY_BACKSLASH: KEY_BACKSPACE
+keymap:
+  - name: Browser-like applications
+    remap:
+      C-b: left
+      C-f: right
+      C-p: up
+      C-n: down
+      C-a: home
+      C-e: end
+      C-h: backspace
+      C-k: [Shift-end, backspace]
+      C-w: C-backspace
+      C-d: delete
+      C-j: Enter
+      Alt-b: C-left
+      Alt-f: C-right
+      Alt-d: C-delete
+    application:
+      only: [Chromium, firefox, discord, Slack, Code]

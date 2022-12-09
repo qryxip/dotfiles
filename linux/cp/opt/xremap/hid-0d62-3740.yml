@@ -1,0 +1,28 @@
+modmap:
+  - name: Common
+    remap:
+      KEY_LEFTALT: KEY_ESC
+  - name: Alienware m15 Ryzen Edition R5
+    remap:
+      KEY_CAPSLOCK: KEY_LEFTCTRL
+      KEY_LEFTCTRL: KEY_CAPSLOCK
+      KEY_RIGHTCTRL: KEY_LEFTMETA
+keymap:
+  - name: Browser-like applications
+    remap:
+      C-b: left
+      C-f: right
+      C-p: up
+      C-n: down
+      C-a: home
+      C-e: end
+      C-h: backspace
+      C-k: [Shift-end, backspace]
+      C-w: C-backspace
+      C-d: delete
+      C-j: Enter
+      Alt-b: C-left
+      Alt-f: C-right
+      Alt-d: C-delete
+    application:
+      only: [Chromium, firefox, discord, Slack, Code]

@@ -1,0 +1,15 @@
+[Unit]
+Description=xremap (only 'HID 0d62:3740 Keyboard')
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hid-0d62-3740.yml --device 'HID 0d62:3740 Keyboard'
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitBurst=0
+Environment=DISPLAY=:1
+Environment=XAUTHORITY=/root/.Xauthority
+
+[Install]
+WantedBy=default.target

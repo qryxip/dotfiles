@@ -1,0 +1,15 @@
+[Unit]
+Description=xremap (only HHKB Professional2)
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hhkb-professional2.yml --watch --device 'Topre Corporation HHKB Professional'
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitBurst=0
+Environment=DISPLAY=:1
+Environment=XAUTHORITY=/root/.Xauthority
+
+[Install]
+WantedBy=default.target
