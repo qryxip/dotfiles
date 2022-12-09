@@ -70,6 +70,7 @@
           (lsp-rust-analyzer-cargo-watch-args ["--profile" "test"])
           (lsp-rust-analyzer-proc-macro-enable t)
           (lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
+          (lsp-rust-analyzer-diagnostics-disabled ["type-mismatch"])
           (evil-define-key 'normal lsp-mode-map "\C-]" 'lsp-find-definition)
           ;(lsp-auto-guess-root t)
           )
@@ -136,6 +137,9 @@
   ;; https://github.com/momomo5717/avy-migemo/pull/8
   :straight (:host github :repo "tam17aki/avy-migemo")
   :config (require 'avy-migemo-e.g.swiper))
+
+(use-package doom-themes
+  :config (load-theme 'doom-opera t))
 
 (use-package monokai-theme
   :config (progn (load-theme 'monokai t)
