@@ -5,5 +5,4 @@ truncation_length = 0
 pyenv_version_name = true
 
 [rust]
-symbol = "⚙ "
-toolchain = true
+format = 'via [ $version \($toolchain\)](red bold) '
