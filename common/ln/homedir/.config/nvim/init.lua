@@ -126,6 +126,7 @@ require('lazy').setup(
 
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     {
       'folke/trouble.nvim',
       dependencies = {
@@ -236,6 +237,14 @@ lspconfig.rust_analyzer.setup {
       }
     }
   }
+}
+
+require('mason').setup()
+require('mason-lspconfig').setup {
+  ensure_installed = {
+    'sumneko_lua',
+    'rust_analyzer',
+  },
 }
 
 require('trouble').setup()
