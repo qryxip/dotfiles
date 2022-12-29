@@ -77,83 +77,99 @@ augroup on_scala
 augroup END
 ]]
 
-vim.cmd('packadd packer.nvim')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.runtimepath:prepend(lazypath)
 
-require('packer').startup(function()
-  use 'sickill/vim-monokai'
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
-  use {
-    'akinsho/bufferline.nvim',
-    tag = "v2.*",
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('bufferline').setup()
-    end,
-  }
-
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  use 'andymass/vim-matchup'
-  use 'p00f/nvim-ts-rainbow'
-  use { 'yioneko/nvim-yati', requires = 'nvim-treesitter/nvim-treesitter' }
-
-  use 'ur4ltz/surround.nvim'
-  use 'windwp/nvim-autopairs'
-
-  use 'neovim/nvim-lspconfig'
-  use {
-    'folke/trouble.nvim',
-    require = 'kyazdani42/nvim-web-devicon',
-  }
-  use 'j-hui/fidget.nvim'
-  use 'kyazdani42/nvim-web-devicons'
-
-  use 'simrat39/rust-tools.nvim'
-
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-path'
-  use 'onsails/lspkind-nvim'
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      {'nvim-lua/plenary.nvim'}
+require('lazy').setup(
+  {
+    'sickill/vim-monokai',
+    {
+      'nvim-lualine/lualine.nvim',
+      dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true },
     },
-  }
+    {
+      'akinsho/bufferline.nvim',
+      version = "^2",
+      dependencies = {
+        'kyazdani42/nvim-web-devicons',
+      },
+      config = function()
+        require('bufferline').setup()
+      end,
+    },
 
-  use {
-    'chrisbra/csv.vim',
-    config = function()
-      vim.cmd [[
-      augroup on_csv
-        autocmd!
-        autocmd BufRead,BufNewFile *.csv let b:csv_arrange_align='l*'
-      augroup END
-      ]]
-    end,
-  }
+    {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+    },
+    'andymass/vim-matchup',
+    'p00f/nvim-ts-rainbow',
+    {
+      'yioneko/nvim-yati',
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+      },
+    },
 
-  use 'vmchale/dhall-vim'
+    'ur4ltz/surround.nvim',
+    'windwp/nvim-autopairs',
 
-  use 'NoahTheDuke/vim-just'
-  use 'IndianBoy42/tree-sitter-just'
-end)
+    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
+    {
+      'folke/trouble.nvim',
+      dependencies = {
+        'kyazdani42/nvim-web-devicons',
+      },
+    },
+    'j-hui/fidget.nvim',
+    'kyazdani42/nvim-web-devicons',
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+    'simrat39/rust-tools.nvim',
+
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-path',
+    'onsails/lspkind-nvim',
+
+    {
+      'nvim-telescope/telescope.nvim',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+    },
+
+    {
+      'chrisbra/csv.vim',
+      config = function()
+        vim.cmd [[
+        augroup on_csv
+          autocmd!
+          autocmd BufRead,BufNewFile *.csv let b:csv_arrange_align='l*'
+        augroup END
+        ]]
+      end,
+    },
+
+    'vmchale/dhall-vim',
+
+    'NoahTheDuke/vim-just',
+    'IndianBoy42/tree-sitter-just',
+  },
+  {}
+)
 
 require('rust-tools').setup()
 
