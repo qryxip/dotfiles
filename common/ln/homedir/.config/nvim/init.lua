@@ -217,17 +217,32 @@ require('nvim-autopairs').setup {
 require('nvim-web-devicons').setup()
 
 local lspconfig = require('lspconfig')
+
 lspconfig.bashls.setup {}
+
 lspconfig.dhall_lsp_server.setup {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
-    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
   end,
 }
+
+lspconfig.denols.setup {
+  on_attach = function(_, bufnr)
+    local opts = { noremap=true, silent=false, buffer=bufnr }
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+  end,
+}
+
+lspconfig.tsserver.setup {
+  root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+  single_file_support = false,
+}
+
 lspconfig.rust_analyzer.setup {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
-    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
   end,
   autostart = false,
   settings = {
