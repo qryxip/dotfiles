@@ -247,7 +247,7 @@ lspconfig.rust_analyzer.setup {
   autostart = false,
   settings = {
     ['rust-analyzer'] = {
-      checkOnSave = {
+      check = {
         command = "clippy",
       }
     }
