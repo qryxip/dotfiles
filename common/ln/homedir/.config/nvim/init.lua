@@ -259,6 +259,7 @@ require('mason-lspconfig').setup {
   ensure_installed = {
     'sumneko_lua',
     'rust_analyzer',
+    'tsserver',
   },
 }
 
@@ -302,3 +303,7 @@ require('telescope').setup {
 vim.cmd [[
   colorscheme monokai
 ]]
+
+if vim.g.neovide then
+  vim.opt.guifont = { "Cica", "h12" }
+end
