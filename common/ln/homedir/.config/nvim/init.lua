@@ -32,8 +32,13 @@ vim.api.nvim_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {
 vim.api.nvim_set_keymap('n', '<localleader>b', '<cmd>Telescope buffers<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>s', '<cmd>Telescope live_grep<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>x', '<cmd>Telescope commands<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting_sync, ots)
+
+vim.api.nvim_set_keymap('n', '<localleader>l', '<cmd>TroubleToggle<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader>q', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader>w', '<cmd>Telescope find_files<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader>s', '<cmd>Telescope current_buffer_fuzzy_find<CR>', {noremap = true})
 
 vim.api.nvim_set_keymap('!', '<C-f>', '<Right>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<C-b>', '<Left>', {noremap = true})
@@ -181,7 +186,7 @@ require('lualine').setup {
 }
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'bash', 'c', 'lua', 'rust' },
+  ensure_installed = { 'bash', 'c', 'rust' },
   highlight = {
       enable = true,
   },
@@ -203,6 +208,7 @@ require('nvim-treesitter.configs').setup {
   },
   yati = {
     enable = true,
+    disable = { "lua" },
   },
 }
 
@@ -257,7 +263,7 @@ lspconfig.rust_analyzer.setup {
 require('mason').setup()
 require('mason-lspconfig').setup {
   ensure_installed = {
-    'sumneko_lua',
+    'lua_ls',
     'rust_analyzer',
     'tsserver',
   },
