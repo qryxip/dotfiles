@@ -61,6 +61,7 @@ aws-crt-cpp
 aws-c-s3
 aws-c-sdkutils
 aws-sdk-cpp
+ayatana-ido
 babl
 baloo
 baloo-widgets
@@ -582,6 +583,7 @@ haskell-fgl
 haskell-file-embed
 haskell-filelock
 haskell-filtrable
+haskell-foldable1-classes-compat
 haskell-free
 haskell-fsnotify
 haskell-fsnotify0.3
@@ -1070,6 +1072,7 @@ lib32-libxau
 lib32-libxcb
 lib32-libxcomposite
 lib32-libxcrypt
+lib32-libxcrypt-compat
 lib32-libxcursor
 lib32-libxdamage
 lib32-libxdmcp
@@ -1157,6 +1160,8 @@ libatomic_ops
 libavc1394
 libavif
 libavtp
+libayatana-appindicator
+libayatana-indicator
 libb2
 libblockdev
 libbluray
@@ -1196,6 +1201,7 @@ libdatrie
 libdazzle
 libdbusmenu-glib
 libdbusmenu-gtk2
+libdbusmenu-gtk3
 libdbusmenu-qt5
 libdc1394
 libdca
@@ -1205,6 +1211,7 @@ libdeflate
 libdex
 libdiscid
 libdmapsharing
+libdovi
 libdrm
 libdv
 libdvbpsi
@@ -1342,6 +1349,7 @@ libnma-gtk4
 libnotify
 libnsl
 libnumbertext
+libnvme
 liboauth
 libodfgen
 libofa
@@ -1473,6 +1481,7 @@ libxaw
 libxcb
 libxcomposite
 libxcrypt
+libxcrypt-compat
 libxcursor
 libxcvt
 libxdamage
@@ -1662,6 +1671,7 @@ ocaml
 ocaml-compiler-libs
 ocl-icd
 onetbb
+onevpl
 oniguruma
 opam
 openal
@@ -1800,6 +1810,7 @@ python
 python-aiohttp
 python-aiosignal
 python-aniso8601
+python-annotated-types
 python-apipkg
 python-appdirs
 python-asn1crypto
@@ -1949,6 +1960,7 @@ python-pyasn1-modules
 python-pycodestyle
 python-pycparser
 python-pydantic
+python-pydantic-core
 python-pyflakes
 python-pygments
 python-pyjwt
@@ -2340,6 +2352,7 @@ tinyxml
 tinyxml2
 tk
 tmux
+toilet
 totem
 totem-pl-parser
 tpm2-tss
