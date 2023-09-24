@@ -312,4 +312,10 @@ vim.cmd [[
 
 if vim.g.neovide then
   vim.opt.guifont = { "Cica", "h12" }
+
+  for _, mode in ipairs({"n", "!"}) do
+    vim.api.nvim_set_keymap(mode, '<C-=>', '<cmd>lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1; print("neovide_scale_factor=%s", vim.g.neovide_scale_factor)<CR>', {noremap = true})
+    vim.api.nvim_set_keymap(mode, '<C-->', '<cmd>lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1; print("neovide_scale_factor=%s", vim.g.neovide_scale_factor)<CR>', {noremap = true})
+    vim.api.nvim_set_keymap(mode, '<C-0>', '<cmd>lua vim.g.neovide_scale_factor = 1.<CR>', {noremap = true})
+  end
 end
