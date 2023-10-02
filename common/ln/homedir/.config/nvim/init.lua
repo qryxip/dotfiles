@@ -57,11 +57,11 @@ augroup on_any_file
   autocmd BufRead,BufNewFile * set fileformat=unix
   autocmd BufRead,BufNewFile * set encoding=utf-8
   autocmd BufRead,BufNewFile * set textwidth=120
-  autocmd BUfRead,BufNewFile * set shiftwidth=4
+  autocmd BufRead,BufNewFile * set shiftwidth=2
   autocmd BufRead,BufNewFile * set noautowrite
   autocmd BufRead,BufNewFIle * set expandtab
-  autocmd BufRead,BufNewFIle * set shiftwidth=4
-  autocmd BufRead,BufNewFIle * set tabstop=4
+  autocmd BufRead,BufNewFIle * set shiftwidth=2
+  autocmd BufRead,BufNewFIle * set tabstop=2
 augroup END
 
 augroup on_latex
@@ -75,10 +75,19 @@ augroup on_makefile
   autocmd BufRead,BufNewFile Makefile set noexpandtab
 augroup END
 
-augroup on_scala
+augroup on_rust
   autocmd!
-  autocmd BufRead,BufNewFile *.scala set textwidth=120
-  autocmd BufRead,BufNewFile *.scala set shiftwidth=2
+  autocmd BufRead,BufNewFile *.rs set shiftwidth=4
+  autocmd BufRead,BufNewFIle *.rs set shiftwidth=4
+  autocmd BufRead,BufNewFIle *.rs set tabstop=4
+augroup END
+
+augroup on_python
+  autocmd!
+  autocmd BufRead,BufNewFile *.py set shiftwidth=4
+  autocmd BufRead,BufNewFIle *.py set shiftwidth=4
+  autocmd BufRead,BufNewFIle *.py set tabstop=4
+  autocmd BufRead,BufNewFile *.py set textwidth=79
 augroup END
 ]]
 
@@ -222,6 +231,17 @@ require('nvim-autopairs').setup {
 
 require('nvim-web-devicons').setup()
 
+require('mason').setup()
+require('mason-lspconfig').setup {
+  ensure_installed = {
+    'bashls',
+    'lua_ls',
+    'lemminx',
+    'rust_analyzer',
+    'tsserver',
+  },
+}
+
 local lspconfig = require('lspconfig')
 
 lspconfig.bashls.setup {}
@@ -234,6 +254,13 @@ lspconfig.dhall_lsp_server.setup {
 }
 
 lspconfig.denols.setup {
+  on_attach = function(_, bufnr)
+    local opts = { noremap=true, silent=false, buffer=bufnr }
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+  end,
+}
+
+lspconfig.lemminx.setup {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
@@ -258,15 +285,6 @@ lspconfig.rust_analyzer.setup {
       }
     }
   }
-}
-
-require('mason').setup()
-require('mason-lspconfig').setup {
-  ensure_installed = {
-    'lua_ls',
-    'rust_analyzer',
-    'tsserver',
-  },
 }
 
 require('trouble').setup()
