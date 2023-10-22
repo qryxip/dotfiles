@@ -178,6 +178,7 @@ require('lazy').setup(
       end,
     },
 
+    'b0o/schemastore.nvim',
     'vmchale/dhall-vim',
 
     'NoahTheDuke/vim-just',
@@ -235,6 +236,7 @@ require('mason').setup()
 require('mason-lspconfig').setup {
   ensure_installed = {
     'bashls',
+    'jsonls',
     'lua_ls',
     'lemminx',
     'rust_analyzer',
@@ -245,6 +247,15 @@ require('mason-lspconfig').setup {
 local lspconfig = require('lspconfig')
 
 lspconfig.bashls.setup {}
+
+lspconfig.jsonls.setup {
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
 
 lspconfig.dhall_lsp_server.setup {
   on_attach = function(_, bufnr)
@@ -271,6 +282,8 @@ lspconfig.tsserver.setup {
   root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   single_file_support = false,
 }
+
+lspconfig.pyright.setup {}
 
 lspconfig.rust_analyzer.setup {
   on_attach = function(_, bufnr)
