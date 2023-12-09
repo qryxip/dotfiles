@@ -127,13 +127,13 @@ require('lazy').setup(
       run = ':TSUpdate'
     },
     'andymass/vim-matchup',
-    'p00f/nvim-ts-rainbow',
-    {
-      'yioneko/nvim-yati',
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-      },
-    },
+    --'p00f/nvim-ts-rainbow',
+    --{
+    --  'yioneko/nvim-yati',
+    --  dependencies = {
+    --    'nvim-treesitter/nvim-treesitter',
+    --  },
+    --},
 
     'ur4ltz/surround.nvim',
     'windwp/nvim-autopairs',
@@ -150,6 +150,7 @@ require('lazy').setup(
     'j-hui/fidget.nvim',
     'kyazdani42/nvim-web-devicons',
 
+    'udalov/kotlin-vim',
     'simrat39/rust-tools.nvim',
 
     'hrsh7th/nvim-cmp',
@@ -182,7 +183,7 @@ require('lazy').setup(
     'vmchale/dhall-vim',
 
     'NoahTheDuke/vim-just',
-    'IndianBoy42/tree-sitter-just',
+    --'IndianBoy42/tree-sitter-just',
   },
   {}
 )
@@ -195,10 +196,12 @@ require('lualine').setup {
   }
 }
 
+--vim.opt.runtimepath:append("/home/ryo/.local/share/nvim/lazy/nvim-treesitter")
 require('nvim-treesitter.configs').setup {
+  -- parser_install_dir = "/home/ryo/.local/share/nvim/lazy/nvim-treesitter",
   ensure_installed = { 'bash', 'c', 'rust' },
   highlight = {
-      enable = true,
+      enable = false,
   },
   incremental_selection = {
       enable = true,
@@ -237,6 +240,7 @@ require('mason-lspconfig').setup {
   ensure_installed = {
     'bashls',
     'jsonls',
+    'kotlin_language_server',
     'lua_ls',
     'lemminx',
     'rust_analyzer',
@@ -271,6 +275,8 @@ lspconfig.denols.setup {
   end,
 }
 
+lspconfig.kotlin_language_server.setup {}
+
 lspconfig.lemminx.setup {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
@@ -283,7 +289,15 @@ lspconfig.tsserver.setup {
   single_file_support = false,
 }
 
-lspconfig.pyright.setup {}
+lspconfig.pyright.setup {
+  settings = {
+    python = {
+      analysis = {
+        autoImportCompletions = true,
+      },
+    },
+  }
+}
 
 lspconfig.rust_analyzer.setup {
   on_attach = function(_, bufnr)
