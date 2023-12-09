@@ -1,7 +1,7 @@
 set historyresults 0
 set bmarkweight 1
 set findresults 0
-set editorcmd emacsclient -c %f
+set editorcmd neovide %f --nofork
 
 bind <ArrowUp> tabprev
 bind <ArrowDown> tabnext_gt
