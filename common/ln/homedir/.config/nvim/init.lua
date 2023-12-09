@@ -37,6 +37,7 @@ vim.api.nvim_set_keymap('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {
 
 vim.api.nvim_set_keymap('n', '<localleader>l', '<cmd>TroubleToggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>q', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader>f', '<cmd>lua vim.lsp.buf.format()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>w', '<cmd>Telescope find_files<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>s', '<cmd>Telescope current_buffer_fuzzy_find<CR>', {noremap = true})
 
@@ -90,6 +91,18 @@ augroup on_python
   autocmd BufRead,BufNewFile *.py set textwidth=79
 augroup END
 ]]
+
+vim.api.nvim_create_augroup('on_java', { clear = true })
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = 'java',
+  group = 'on_java',
+  callback = function()
+    require('jdtls').start_or_attach {
+      cmd = {'jdtls'},
+      root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+    }
+  end,
+})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -150,7 +163,9 @@ require('lazy').setup(
     'j-hui/fidget.nvim',
     'kyazdani42/nvim-web-devicons',
 
+    'mfussenegger/nvim-jdtls',
     'udalov/kotlin-vim',
+
     'simrat39/rust-tools.nvim',
 
     'hrsh7th/nvim-cmp',
