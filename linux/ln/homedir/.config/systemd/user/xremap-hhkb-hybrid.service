@@ -3,7 +3,7 @@ Description=xremap (only HHKB Hybrid)
 
 [Service]
 KillMode=process
-ExecStart=/usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hhkb-hybrid.yml --watch --device HHKB-Hybrid
+ExecStart=/usr/bin/env RUST_LOG=xremap=info /usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hhkb-hybrid.yml --watch --device HHKB-Hybrid
 Type=simple
 Restart=always
 RestartSec=1

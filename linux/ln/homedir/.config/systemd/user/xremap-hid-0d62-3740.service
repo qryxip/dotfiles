@@ -3,7 +3,7 @@ Description=xremap (only 'HID 0d62:3740 Keyboard')
 
 [Service]
 KillMode=process
-ExecStart=/usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hid-0d62-3740.yml --device 'HID 0d62:3740 Keyboard'
+ExecStart=/usr/bin/env RUST_LOG=xremap=info /usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hid-0d62-3740.yml --device 'HID 0d62:3740 Keyboard'
 Type=simple
 Restart=always
 RestartSec=1
