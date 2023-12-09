@@ -1,10 +1,12 @@
 source ~/.profile
 
 export GTK_THEME=Numix
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
+
 # export QT_QPA_PLATFORMTHEME=kde
-export XMODIFIERS=@im=fcitx
 export QT_QPA_PLATFORMTHEME=qt5ct
 export XDG_CONFIG_HOME=$HOME/.config
 # export XDG_CURRENT_DESKTOP=KDE
@@ -14,10 +16,10 @@ fi
 xset r rate 200 50
 xset -dpms
 xset -b
-light-locker --lock-on-suspend &
-if [ -x /opt/xkeysnail/bin/xkeysnail ]; then
-  xhost +SI:localuser:xkeysnail
-  systemctl --user start xkeysnail
+#light-locker --lock-on-suspend &
+if [ -x /opt/xremap/xremap ]; then
+  xhost +SI:localuser:xremap
+  systemctl --user start xremap
 fi
 dex -a
 if which emacs > /dev/null 2>&1; then

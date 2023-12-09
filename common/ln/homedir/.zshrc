@@ -64,8 +64,8 @@ if [ -f ~/.zplug/init.zsh ]; then
   zplug "zsh-users/zsh-autosuggestions", defer:2
   zplug load
 
-  export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-  ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
+  #export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  #ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
 fi
 
 function check-zplug() {
@@ -91,8 +91,31 @@ function ghqcd() {
 zle -N ghqcd
 bindkey '^]' ghqcd
 
+function zshaddhistory() {
+  local line="${1%%$'\n'}"
+  local cmd="${line%% *}"
+  [[ "$(command -v "$cmd")" != '' && "$cmd" != (cd|type|ls|ll|cp|mv|rm) ]]
+}
+
+alias sudo='sudo '
+
+alias wine64='WINEPREFIX=~/wine64 WINEARCH=win64 LANG=ja_JP.UTF-8 /usr/bin/wine '
+alias winecfg64='WINEPREFIX=~/wine64 WINEARCH=win64 LANG=ja_JP.UTF-8 /usr/bin/winecfg '
+alias wineserver64='WINEPREFIX=~/wine64 WINEARCH=win64 LANG=ja_JP.UTF-8 /usr/bin/wineserver '
+alias winetricks64='WINEPREFIX=~/wine64 WINEARCH=win64 LANG=ja_JP.UTF-8 /usr/bin/winetricks '
+
+alias wine32='WINEPREFIX=~/wine32 WINEARCH=win32 LANG=ja_JP.UTF-8 /usr/bin/wine '
+alias winecfg32='WINEPREFIX=~/wine32 WINEARCH=win32 LANG=ja_JP.UTF-8 /usr/bin/winecfg '
+alias wineserver32='WINEPREFIX=~/wine32 WINEARCH=win32 LANG=ja_JP.UTF-8 /usr/bin/wineserver '
+alias winetricks32='WINEPREFIX=~/wine32 WINEARCH=win32 LANG=ja_JP.UTF-8 /usr/bin/winetricks '
+
+alias valve-wine='WINEPREFIX=~/wine-valve32 ~/.steam/steam/steamapps/common/Proton\ 7.0/dist/bin/wine'
+alias valve-wine64='WINEPREFIX=~/wine-valve32 ~/.steam/steam/steamapps/common/Proton\ 7.0/dist/bin/wine64'
+
 if [ -f ~/.travis/travis.sh ]; then
   source ~/.travis/travis.sh
 fi
 
 eval "$(frum init)" || true
+
+source /home/ryo/.config/broot/launcher/bash/br
