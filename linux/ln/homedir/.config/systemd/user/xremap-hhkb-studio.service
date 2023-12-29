@@ -1,0 +1,15 @@
+[Unit]
+Description=xremap (only HHKB Studio)
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/env RUST_LOG=xremap=info /usr/bin/sudo -u xremap /opt/xremap/xremap /opt/xremap/hhkb-studio.yml --watch --device 'PFU Limited HHKB-Studio' --mouse
+Type=simple
+Restart=always
+RestartSec=1
+StartLimitBurst=0
+Environment=DISPLAY=:1
+Environment=XAUTHORITY=/root/.Xauthority
+
+[Install]
+WantedBy=default.target
