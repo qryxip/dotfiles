@@ -115,6 +115,7 @@ ca-certificates
 ca-certificates-mozilla
 ca-certificates-utils
 cadaver
+cage
 cairo
 cairomm
 cairomm-1.16
@@ -274,6 +275,7 @@ eza
 faac
 faad2
 fakeroot
+fcft
 fcgi
 fcitx5
 fcitx5-configtool
@@ -325,16 +327,16 @@ fuse2
 fuse3
 fuse-common
 fuse-overlayfs
+fuzzel
 fwupd
 fwupd-efi
 fzf
+gamescope
 gavl
 gawk
 gc
 gcab
 gcc
-gcc12
-gcc12-libs
 gcc-libs
 gcr
 gcr-4
@@ -375,6 +377,7 @@ glibc
 glibmm
 glibmm-2.68
 glib-networking
+glm
 glslang
 glu
 gmic
@@ -462,6 +465,9 @@ graphene
 graphicsmagick
 graphite
 graphviz
+greetd
+greetd-agreety
+greetd-tuigreet
 grep
 grilo
 grilo-plugins
@@ -473,6 +479,7 @@ gsm
 gsound
 gspell
 gssdp
+gst-devtools-libs
 gst-editing-services
 gst-libav
 gst-plugin-gtk
@@ -482,6 +489,7 @@ gst-plugins-bad-libs
 gst-plugins-base
 gst-plugins-base-libs
 gst-plugins-good
+gst-python
 gstreamer
 gtest
 gtk2
@@ -489,6 +497,7 @@ gtk3
 gtk4
 gtk-doc
 gtk-engine-murrine
+gtk-layer-shell
 gtkmm3
 gtkmm-4.0
 gtksourceview3
@@ -1337,7 +1346,9 @@ libgdata
 libgdiplus
 libgdm
 libgedit-amtk
+libgedit-gfls
 libgedit-gtksourceview
+libgedit-tepl
 libgee
 libgepub
 libgexiv2
@@ -1400,6 +1411,7 @@ liblangtag
 liblc3
 libldac
 libldap
+libliftoff
 liblouis
 liblqr
 liblrdf
@@ -1581,6 +1593,7 @@ libvterm
 libwacom
 libwbclient
 libwebp
+libwireplumber
 libwmf
 libwnck3
 libwpd
@@ -1726,6 +1739,7 @@ moreutils
 mosh
 mpc
 mpd
+mpdecimal
 mpfr
 mpg123
 mplayer
@@ -1759,6 +1773,7 @@ networkmanager
 nftables
 nim
 ninja
+niri
 nix
 nix-busybox
 nlohmann-json
@@ -1812,6 +1827,7 @@ openssh
 openssl
 openssl-1.1
 openucx
+openvr
 opus
 opusfile
 orc
@@ -1973,7 +1989,6 @@ python-click
 python-colorama
 python-commonmark
 python-configobj
-python-contextlib2
 python-coverage
 python-cryptography
 python-cssselect
@@ -1987,7 +2002,6 @@ python-distlib
 python-distro
 python-dnspython
 python-docker
-python-dockerpty
 python-docopt
 python-docutils
 python-dotenv
@@ -2272,6 +2286,7 @@ recode
 recordmydesktop
 redland
 reiserfsprogs
+remmina
 rest
 retro-gtk
 rhash
@@ -2372,6 +2387,7 @@ sdl_mixer
 sdl_ttf
 seabios
 seahorse
+seatd
 sed
 semver
 serd
@@ -2409,6 +2425,7 @@ sound-theme-freedesktop
 soundtouch
 source-highlight
 spandsp
+spdlog
 speedtest-cli
 speex
 speexdsp
@@ -2435,6 +2452,7 @@ suitesparse
 sushi
 svt-av1
 svt-hevc
+swaylock
 swell-foop
 sxhkd
 syndication
@@ -2451,6 +2469,7 @@ systemd-libs
 systemd-sysvcompat
 t1lib
 taglib
+tailscale
 tali
 talloc
 tar
@@ -2462,7 +2481,6 @@ telepathy-idle
 telepathy-logger
 telepathy-mission-control
 template-glib
-tepl
 testdisk
 tevent
 texinfo
@@ -2575,6 +2593,7 @@ vulkan-tools
 vulkan-validation-layers
 w3m
 wavpack
+waybar
 wayland
 wayland-protocols
 webkit2gtk
@@ -2594,6 +2613,8 @@ winetricks
 wireless_tools
 wireshark-cli
 wireshark-qt
+wlroots
+wlroots0.16
 wmctrl
 woff2
 wolfssl
@@ -2610,6 +2631,7 @@ xcb-imdkit
 xcb-proto
 xcb-util
 xcb-util-cursor
+xcb-util-errors
 xcb-util-image
 xcb-util-keysyms
 xcb-util-renderutil

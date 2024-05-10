@@ -1,3 +1,4 @@
+cava
 cawbird
 cd-discid
 checkmake
@@ -7,12 +8,13 @@ compiler-rt15
 dropbox
 electron13
 electron17
-electron25
 envchain
 figlet-fonts
 figlet-fonts-extra
 firefox-tridactyl-native
 gamepad-tool-bin
+gcc12
+gcc12-libs
 gconf
 gfbgraph
 ghq
@@ -26,7 +28,6 @@ hadolint
 humanity-icon-theme
 jdtls
 kpeoplevcard
-lib32-aom
 lib32-dav1d
 lib32-http-parser
 lib32-libdav1d
@@ -42,12 +43,13 @@ llvm15-libs
 mozilla-common
 mrwriter-git
 nerd-fonts-complete
-nkf
 numix-gtk-theme
 paru-bin
 paru-bin-debug
 powershell-bin
 progsreiserfs
+python-contextlib2
+python-dockerpty
 python-docker-pycreds
 python-sysv_ipc
 qjoypad
