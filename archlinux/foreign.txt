@@ -13,7 +13,6 @@ figlet-fonts
 figlet-fonts-extra
 firefox-tridactyl-native
 gamepad-tool-bin
-gcc12
 gcc12-libs
 gconf
 gfbgraph
@@ -36,6 +35,7 @@ lib32-libexif
 lib32-libnuma
 lib32-libraqm
 lib32-x265
+libcroco
 libgweather
 libvterm01
 libzapojit
@@ -51,6 +51,7 @@ progsreiserfs
 python-contextlib2
 python-dockerpty
 python-docker-pycreds
+python-exceptiongroup
 python-sysv_ipc
 qjoypad
 qpdfview

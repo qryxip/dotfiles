@@ -190,7 +190,6 @@ dbus
 dbus-broker
 dbus-broker-units
 dbus-glib
-dbus-python
 dconf
 dconf-editor
 ddrescue
@@ -337,6 +336,8 @@ gawk
 gc
 gcab
 gcc
+gcc13
+gcc13-libs
 gcc-libs
 gcr
 gcr-4
@@ -1287,7 +1288,6 @@ libcolord
 libconfig
 libcoverart
 libcpuid
-libcroco
 libcryptui
 libcue
 libcups
@@ -1993,6 +1993,7 @@ python-coverage
 python-cryptography
 python-cssselect
 python-dateutil
+python-dbus
 python-decorator
 python-defusedxml
 python-deprecated
@@ -2008,7 +2009,6 @@ python-dotenv
 python-dulwich
 python-elasticsearch
 python-evdev
-python-exceptiongroup
 python-executing
 python-fastbencode
 python-fastjsonschema
@@ -2164,6 +2164,7 @@ python-traitlets
 python-trove-classifiers
 python-typeguard
 python-typing_extensions
+python-tzlocal
 python-uc-micro-py
 python-uritemplate
 python-urllib3
