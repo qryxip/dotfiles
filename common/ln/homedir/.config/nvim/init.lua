@@ -151,6 +151,17 @@ require('lazy').setup(
     'ur4ltz/surround.nvim',
     'windwp/nvim-autopairs',
 
+    {
+      'NeogitOrg/neogit',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'sindrets/diffview.nvim',
+        'nvim-telescope/telescope.nvim',
+      },
+      config = true,
+    },
+    'emmanueltouzery/agitator.nvim',
+
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
@@ -250,6 +261,13 @@ require('nvim-autopairs').setup {
 
 require('nvim-web-devicons').setup()
 
+require('neogit').setup {}
+
+function _G.ShowCommitAtLine()
+  local commit_sha = require'agitator'.git_blame_commit_for_line()
+  vim.cmd("DiffviewOpen " .. commit_sha .. "^.." .. commit_sha)
+end
+
 require('mason').setup()
 require('mason-lspconfig').setup {
   ensure_installed = {
@@ -282,6 +300,8 @@ lspconfig.dhall_lsp_server.setup {
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
   end,
 }
+
+lspconfig.clangd.setup {}
 
 lspconfig.denols.setup {
   on_attach = function(_, bufnr)
