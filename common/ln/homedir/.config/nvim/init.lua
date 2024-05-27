@@ -33,6 +33,8 @@ vim.api.nvim_set_keymap('n', '<localleader>b', '<cmd>Telescope buffers<CR>', {no
 vim.api.nvim_set_keymap('n', '<localleader>s', '<cmd>Telescope live_grep<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>x', '<cmd>Telescope commands<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader><C-t>', '<Cmd>Telescope lsp_workspace_symbols<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader><C-O>', '<Cmd>Telescope lsp_document_symbols<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
 
 vim.api.nvim_set_keymap('n', '<localleader>l', '<cmd>TroubleToggle<CR>', {noremap = true})
@@ -126,13 +128,9 @@ require('lazy').setup(
     },
     {
       'akinsho/bufferline.nvim',
-      version = "^2",
       dependencies = {
         'kyazdani42/nvim-web-devicons',
       },
-      config = function()
-        require('bufferline').setup()
-      end,
     },
 
     {
@@ -225,9 +223,9 @@ require('lualine').setup {
 --vim.opt.runtimepath:append("/home/ryo/.local/share/nvim/lazy/nvim-treesitter")
 require('nvim-treesitter.configs').setup {
   -- parser_install_dir = "/home/ryo/.local/share/nvim/lazy/nvim-treesitter",
-  ensure_installed = { 'bash', 'c', 'rust' },
+  ensure_installed = { 'vim', 'query', 'bash', 'c', 'rust', 'python', 'lua' },
   highlight = {
-      enable = false,
+      enable = true,
   },
   incremental_selection = {
       enable = true,
@@ -246,7 +244,7 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
   yati = {
-    enable = true,
+    enable = false,
     disable = { "lua" },
   },
 }
@@ -260,6 +258,7 @@ require('nvim-autopairs').setup {
 }
 
 require('nvim-web-devicons').setup()
+require('bufferline').setup()
 
 require('neogit').setup {}
 
