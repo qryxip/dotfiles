@@ -36,6 +36,7 @@ lib32-libnuma
 lib32-libraqm
 lib32-x265
 libcroco
+libgda
 libgweather
 libvterm01
 libzapojit
@@ -48,14 +49,16 @@ paru-bin
 paru-bin-debug
 powershell-bin
 progsreiserfs
+python-cached-property
 python-contextlib2
-python-dockerpty
 python-docker-pycreds
+python-doublex
 python-exceptiongroup
 python-sysv_ipc
 qjoypad
 qpdfview
 r8125-dkms
+savvycan
 sc-im
 simple-mtpfs
 simplescreenrecorder

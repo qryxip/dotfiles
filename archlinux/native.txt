@@ -14,6 +14,7 @@ act
 adobe-source-code-pro-fonts
 adwaita-cursors
 adwaita-icon-theme
+adwaita-icon-theme-legacy
 alacritty
 alsa-card-profiles
 alsa-lib
@@ -157,6 +158,7 @@ colord-gtk-common
 colord-sane
 compiler-rt
 compiler-rt16
+composefs
 confuse
 conmon
 containerd
@@ -409,6 +411,7 @@ gnome-disk-utility
 gnome-epub-thumbnailer
 gnome-font-viewer
 gnome-games
+gnome-keybindings
 gnome-keyring
 gnome-klotski
 gnome-logs
@@ -1341,7 +1344,6 @@ libfreehand
 libftdi
 libgcrypt
 libgcrypt15
-libgda
 libgdata
 libgdiplus
 libgdm
@@ -1683,6 +1685,7 @@ l-smash
 lsof
 lttng-ust2.12
 lua
+lua51-lpeg
 lua52
 lua53
 lua53-lpeg
@@ -1976,7 +1979,6 @@ python-blinker
 python-botocore
 python-build
 python-cachecontrol
-python-cached-property
 python-cachetools
 python-cairo
 python-certifi
@@ -1986,6 +1988,7 @@ python-charset-normalizer
 python-cheroot
 python-cherrypy
 python-click
+python-clint
 python-colorama
 python-commonmark
 python-configobj
@@ -2067,6 +2070,7 @@ python-msgpack
 python-multidict
 python-mypy_extensions
 python-nose
+python-nose2
 python-nspektr
 python-numpy
 python-oauth2client
@@ -2107,6 +2111,7 @@ python-pydantic
 python-pydantic-core
 python-pyflakes
 python-pygments
+python-pyhamcrest
 python-pyjwt
 python-pylint
 python-pynacl
@@ -2247,6 +2252,8 @@ qt5-quickcontrols2
 qt5-remoteobjects
 qt5-script
 qt5-sensors
+qt5-serialbus
+qt5-serialport
 qt5-speech
 qt5-svg
 qt5-tools
