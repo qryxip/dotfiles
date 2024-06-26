@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('n', '<C-n>', 'gt', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-p>', 'gT', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-k>', 'c$', {noremap = true})
 vim.api.nvim_set_keymap('n', '<ESC>', ':w<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>TroubleToggle<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<A-l>', '<cmd>Trouble diagnostics toggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<A-q>', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<A-w>', '<cmd>Telescope find_files<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<A-s>', '<cmd>Telescope current_buffer_fuzzy_find<CR>', {noremap = true})
@@ -37,7 +37,7 @@ vim.api.nvim_set_keymap('n', '<localleader><C-t>', '<Cmd>Telescope lsp_workspace
 vim.api.nvim_set_keymap('n', '<localleader><C-O>', '<Cmd>Telescope lsp_document_symbols<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
 
-vim.api.nvim_set_keymap('n', '<localleader>l', '<cmd>TroubleToggle<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<localleader>l', '<cmd>Trouble diagnostics toggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>q', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>f', '<cmd>lua vim.lsp.buf.format()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<localleader>w', '<cmd>Telescope find_files<CR>', {noremap = true})
@@ -50,7 +50,7 @@ vim.api.nvim_set_keymap('!', '<C-a>', '<Home>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<C-d>', '<Del>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-f>', '<C-Right>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-b>', '<C-Left>', {noremap = true})
-vim.api.nvim_set_keymap('!', '<A-l>', '<cmd>TroubleToggle<CR>', {noremap = true})
+vim.api.nvim_set_keymap('!', '<A-l>', '<cmd>Trouble diagnostics toggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-q>', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<C-q>', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
 
@@ -158,6 +158,7 @@ require('lazy').setup(
       },
       config = true,
     },
+    'lewis6991/gitsigns.nvim',
     'emmanueltouzery/agitator.nvim',
 
     'neovim/nvim-lspconfig',
@@ -261,6 +262,8 @@ require('nvim-web-devicons').setup()
 require('bufferline').setup()
 
 require('neogit').setup {}
+
+require('gitsigns').setup {}
 
 function _G.ShowCommitAtLine()
   local commit_sha = require'agitator'.git_blame_commit_for_line()
