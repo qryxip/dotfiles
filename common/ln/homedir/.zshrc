@@ -112,6 +112,8 @@ alias winetricks32='WINEPREFIX=~/wine32 WINEARCH=win32 LANG=ja_JP.UTF-8 /usr/bin
 alias valve-wine='WINEPREFIX=~/wine-valve32 ~/.steam/steam/steamapps/common/Proton\ 7.0/dist/bin/wine'
 alias valve-wine64='WINEPREFIX=~/wine-valve32 ~/.steam/steam/steamapps/common/Proton\ 7.0/dist/bin/wine64'
 
+export GPG_TTY=$(tty)
+
 if [ -f ~/.travis/travis.sh ]; then
   source ~/.travis/travis.sh
 fi
