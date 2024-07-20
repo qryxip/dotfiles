@@ -8,6 +8,8 @@
 	singingkey = 72415AFBE13F8207
 [commit]
 	gpgsign = true
+[merge]
+	conflictStyle = diff3
 [ghq]
 	root = ~/src
 [delta]
