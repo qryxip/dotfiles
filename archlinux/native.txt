@@ -4,6 +4,7 @@ aarch64-linux-gnu-binutils
 aarch64-linux-gnu-gcc
 aarch64-linux-gnu-glibc
 aarch64-linux-gnu-linux-api-headers
+aardvark-dns
 abseil-cpp
 accerciser
 accounts-qml-module
@@ -138,7 +139,6 @@ chromium
 cifs-utils
 cjson
 clang
-clang16
 clucene
 clutter
 clutter-gst
@@ -157,7 +157,6 @@ colord-gtk4
 colord-gtk-common
 colord-sane
 compiler-rt
-compiler-rt16
 composefs
 confuse
 conmon
@@ -249,6 +248,7 @@ electron
 electron28
 electron29
 electron30
+electron31
 elfutils
 emacs
 enca
@@ -362,6 +362,7 @@ ghc
 ghc-libs
 ghex
 ghostscript
+ghq
 giflib
 gimp
 git
@@ -916,7 +917,6 @@ jfsutils
 jq
 jre8-openjdk
 jre8-openjdk-headless
-js102
 js115
 js91
 jshon
@@ -1667,12 +1667,10 @@ linux-lts
 linux-lts-headers
 lirc
 lld
-lld16
 lldb
 llvm
 llvm14
 llvm14-libs
-llvm16-libs
 llvm-libs
 lmdb
 lm_sensors
@@ -1712,6 +1710,7 @@ mariadb
 mariadb-clients
 mariadb-libs
 mbedtls
+mbedtls2
 md4c
 mdadm
 media-player-info
@@ -1918,6 +1917,7 @@ pipewire
 pipewire-media-session
 pixman
 pkgconf
+plantuml
 plasma-activities
 playerctl
 podman
@@ -1960,6 +1960,7 @@ python-aiohttp
 python-aiosignal
 python-aniso8601
 python-annotated-types
+python-anyio
 python-apipkg
 python-appdirs
 python-argcomplete
@@ -2011,6 +2012,7 @@ python-docutils
 python-dotenv
 python-dulwich
 python-elasticsearch
+python-elastic-transport
 python-evdev
 python-executing
 python-fastbencode
@@ -2029,8 +2031,11 @@ python-google-auth
 python-google-auth-httplib2
 python-greenlet
 python-grpcio
+python-h11
 python-html5lib
+python-httpcore
 python-httplib2
+python-httpx
 python-idna
 python-imagesize
 python-importlib-metadata
@@ -2075,6 +2080,7 @@ python-nspektr
 python-numpy
 python-oauth2client
 python-ordered-set
+python-orjson
 python-packaging
 python-paramiko
 python-parso
@@ -2143,6 +2149,7 @@ python-scipy
 python-setuptools
 python-simplejson
 python-six
+python-sniffio
 python-snowballstemmer
 python-soupsieve
 python-sphinx
@@ -2622,7 +2629,7 @@ wireless_tools
 wireshark-cli
 wireshark-qt
 wlroots
-wlroots0.16
+wlroots0.17
 wmctrl
 woff2
 wolfssl

@@ -2,9 +2,9 @@ cava
 cawbird
 cd-discid
 checkmake
-clang15
 cmigemo-git
 compiler-rt15
+compiler-rt16
 dropbox
 electron13
 electron17
@@ -16,12 +16,9 @@ gamepad-tool-bin
 gcc12-libs
 gconf
 gfbgraph
-ghq
 giblib
 gnome-books
 gnome-code-assistance
-gnome-documents
-gnome-online-miners
 gnome-shell-extension-tray-icons
 hadolint
 humanity-icon-theme
@@ -67,8 +64,6 @@ spotify
 systemd-swap
 teams
 toilet-fonts
-tracker
-tracker-miners
 ttf-cica
 ttf-genshin-gothic
 ttf-hackgen
@@ -76,7 +71,6 @@ ubuntu-themes
 ucl
 vino
 visual-studio-code-bin
-webkit2gtk-5.0
 xf86-video-openchrome
 xvkbd
 youtube-dl
