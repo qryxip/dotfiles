@@ -218,7 +218,14 @@ require('rust-tools').setup()
 require('lualine').setup {
   options = {
     theme = 'gruvbox',
-  }
+  },
+  sections = {
+    lualine_z = {
+      function()
+        return string.format('%3d:%-2d', vim.fn.line('.'), vim.fn.virtcol('.'))
+      end,
+    },
+  },
 }
 
 --vim.opt.runtimepath:append("/home/ryo/.local/share/nvim/lazy/nvim-treesitter")
