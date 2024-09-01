@@ -53,6 +53,7 @@ vim.api.nvim_set_keymap('!', '<A-b>', '<C-Left>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-l>', '<cmd>Trouble diagnostics toggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-q>', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<C-q>', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
+vim.api.nvim_set_keymap('!', '<C-y>', '<Plug>(skkeleton-toggle)', {noremap = true})
 
 vim.cmd [[
 augroup on_any_file
@@ -160,6 +161,26 @@ require('lazy').setup(
     },
     'lewis6991/gitsigns.nvim',
     'emmanueltouzery/agitator.nvim',
+
+    {
+      'vim-skk/skkeleton',
+      dependencies = {
+        'vim-denops/denops.vim',
+      },
+      config = function()
+        vim.api.nvim_create_augroup('skkeleton-initialize-pre', { clear = true })
+        vim.api.nvim_create_autocmd({ 'User' }, {
+          pattern = 'skkeleton-initialize-pre',
+          group = 'skkeleton-initialize-pre',
+          callback = function()
+            vim.api.nvim_call_function("skkeleton#config", {{
+              globalDictionaries = {'~/.skk/SKK-JISYO.L'},
+              showCandidatesCount = 0,
+            }})
+          end,
+        })
+      end,
+    },
 
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
