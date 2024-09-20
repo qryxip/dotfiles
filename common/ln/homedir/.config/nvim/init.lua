@@ -199,6 +199,8 @@ require('lazy').setup(
 
     'simrat39/rust-tools.nvim',
 
+    'imsnif/kdl.vim',
+
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
