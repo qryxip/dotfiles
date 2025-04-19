@@ -309,7 +309,7 @@ require('mason-lspconfig').setup {
     'lua_ls',
     'lemminx',
     'rust_analyzer',
-    'tsserver',
+    'ts_ls',
   },
 }
 
