@@ -53,7 +53,7 @@ vim.api.nvim_set_keymap('!', '<A-b>', '<C-Left>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-l>', '<cmd>Trouble diagnostics toggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<A-q>', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<C-q>', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
-vim.api.nvim_set_keymap('!', '<C-y>', '<Plug>(skkeleton-toggle)', {noremap = true})
+vim.api.nvim_set_keymap('!', '<C-l>', '<Plug>(skkeleton-toggle)', {noremap = true})
 
 vim.cmd [[
 augroup on_any_file
