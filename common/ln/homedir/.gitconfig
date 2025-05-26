@@ -1,5 +1,5 @@
 [core]
-	pager = DELTA_FEATURES=$([ "$COLUMNS" -gt 200 ] && echo side-by-side) delta
+	pager = DELTA_FEATURES=$([ "$COLUMNS" -gt 200 ] && echo side-by-side || echo line-numbers) delta
 [interactive]
 	diffFilter = delta --color-only
 [user]
