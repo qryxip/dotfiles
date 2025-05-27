@@ -136,6 +136,7 @@ require('lazy').setup(
 
     {
       'nvim-treesitter/nvim-treesitter',
+      branch = 'main',
       run = ':TSUpdate'
     },
     'andymass/vim-matchup',
@@ -252,7 +253,7 @@ require('lualine').setup {
 }
 
 --vim.opt.runtimepath:append("/home/ryo/.local/share/nvim/lazy/nvim-treesitter")
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter').setup {
   -- parser_install_dir = "/home/ryo/.local/share/nvim/lazy/nvim-treesitter",
   ensure_installed = { 'vim', 'query', 'bash', 'c', 'rust', 'python', 'lua' },
   highlight = {
