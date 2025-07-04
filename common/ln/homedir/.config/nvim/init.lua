@@ -55,6 +55,15 @@ vim.api.nvim_set_keymap('!', '<A-q>', '<cmd>lua vim.lsp.buf.code_action()<CR>', 
 vim.api.nvim_set_keymap('!', '<C-q>', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
 vim.api.nvim_set_keymap('!', '<C-l>', '<Plug>(skkeleton-toggle)', {noremap = true})
 
+vim.api.nvim_create_user_command(
+  'SearchConflicts',
+  function()
+    vim.fn.setreg('/', '^\\(<\\{7\\}\\||\\{7\\}\\|=\\{7\\}\\|>\\{7\\}\\).*')
+    vim.o.hlsearch = true
+  end,
+  {}
+)
+
 vim.cmd [[
 augroup on_any_file
   autocmd!
