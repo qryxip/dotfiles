@@ -69,7 +69,6 @@ augroup on_any_file
   autocmd!
   autocmd BufRead,BufNewFile * set fileformat=unix
   autocmd BufRead,BufNewFile * set encoding=utf-8
-  autocmd BufRead,BufNewFile * set textwidth=120
   autocmd BufRead,BufNewFile * set shiftwidth=2
   autocmd BufRead,BufNewFile * set noautowrite
   autocmd BufRead,BufNewFIle * set expandtab
@@ -77,14 +76,8 @@ augroup on_any_file
   autocmd BufRead,BufNewFIle * set tabstop=2
 augroup END
 
-augroup on_latex
-  autocmd!
-  autocmd BufRead,BufNewFile *.tex set textwidth=120
-augroup END
-
 augroup on_makefile
   autocmd!
-  autocmd BufRead,BufNewFile Makefile set textwidth=79
   autocmd BufRead,BufNewFile Makefile set noexpandtab
 augroup END
 
@@ -100,7 +93,6 @@ augroup on_python
   autocmd BufRead,BufNewFile *.py set shiftwidth=4
   autocmd BufRead,BufNewFIle *.py set shiftwidth=4
   autocmd BufRead,BufNewFIle *.py set tabstop=4
-  autocmd BufRead,BufNewFile *.py set textwidth=79
 augroup END
 ]]
 
