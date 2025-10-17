@@ -199,8 +199,6 @@ require('lazy').setup(
     'mfussenegger/nvim-jdtls',
     'udalov/kotlin-vim',
 
-    'simrat39/rust-tools.nvim',
-
     'imsnif/kdl.vim',
 
     'hrsh7th/nvim-cmp',
@@ -237,8 +235,6 @@ require('lazy').setup(
   },
   {}
 )
-
-require('rust-tools').setup()
 
 require('lualine').setup {
   options = {
