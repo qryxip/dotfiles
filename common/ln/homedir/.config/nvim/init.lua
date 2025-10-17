@@ -298,63 +298,66 @@ function _G.ShowCommitAtLine()
   vim.cmd("DiffviewOpen " .. commit_sha .. "^.." .. commit_sha)
 end
 
+local ensure_installed = {
+  'bashls',
+  'jsonls',
+  'kotlin_language_server',
+  'lua_ls',
+  'lemminx',
+  'rust_analyzer',
+  'ts_ls',
+}
+
+local lsps = vim.list_extend(vim.list_slice(ensure_installed), {
+  "clangd",
+  "denols",
+  "hls",
+  "pyright",
+})
+
 require('mason').setup()
 require('mason-lspconfig').setup {
-  ensure_installed = {
-    'bashls',
-    'jsonls',
-    'kotlin_language_server',
-    'lua_ls',
-    'lemminx',
-    'rust_analyzer',
-    'ts_ls',
-  },
+  ensure_installed = ensure_installed,
 }
 
 local lspconfig = require('lspconfig')
 
-lspconfig.bashls.setup {}
-
-lspconfig.jsonls.setup {
+vim.lsp.config("jsonls", {
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
       validate = { enable = true },
     },
   },
-}
+})
 
-lspconfig.dhall_lsp_server.setup {
+vim.lsp.config("dhall_lsp_server", {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
   end,
-}
+})
 
-lspconfig.clangd.setup {}
-
-lspconfig.denols.setup {
+vim.lsp.config("denols", {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
   end,
-}
+})
 
-lspconfig.kotlin_language_server.setup {}
-
-lspconfig.lemminx.setup {
+vim.lsp.config("lemminx", {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
   end,
-}
+})
 
-lspconfig.ts_ls.setup {
+vim.lsp.config("ts_ls", {
   root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   single_file_support = false,
-}
+})
 
-lspconfig.pyright.setup {
+vim.lsp.config("pyright", {
   settings = {
     python = {
       analysis = {
@@ -362,9 +365,9 @@ lspconfig.pyright.setup {
       },
     },
   }
-}
+})
 
-lspconfig.rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
   on_attach = function(_, bufnr)
     local opts = { noremap=true, silent=false, buffer=bufnr }
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
@@ -377,7 +380,9 @@ lspconfig.rust_analyzer.setup {
       }
     }
   }
-}
+})
+
+vim.lsp.enable(lsps)
 
 require('trouble').setup()
 
