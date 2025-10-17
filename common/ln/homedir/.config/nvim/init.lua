@@ -64,6 +64,12 @@ vim.api.nvim_create_user_command(
   {}
 )
 
+vim.filetype.add({
+  extension = {
+    v = "verilog",
+  },
+})
+
 vim.cmd [[
 augroup on_any_file
   autocmd!
@@ -306,6 +312,7 @@ local ensure_installed = {
   'lemminx',
   'rust_analyzer',
   'ts_ls',
+  'svlangserver',
 }
 
 local lsps = vim.list_extend(vim.list_slice(ensure_installed), {
