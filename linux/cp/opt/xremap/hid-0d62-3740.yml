@@ -9,6 +9,7 @@ modmap:
       KEY_RIGHTCTRL: KEY_LEFTMETA
 keymap:
   - name: Browser-like applications
+    exact_match: true
     remap:
       C-b: left
       C-f: right
