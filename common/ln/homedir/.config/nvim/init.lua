@@ -214,6 +214,8 @@ require('lazy').setup(
 
     'imsnif/kdl.vim',
 
+    'veryl-lang/veryl.vim',
+
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
