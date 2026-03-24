@@ -191,6 +191,7 @@ require('lazy').setup(
             vim.api.nvim_call_function("skkeleton#config", {{
               globalDictionaries = {'~/.skk/SKK-JISYO.L'},
               showCandidatesCount = 0,
+              immediatelyDictionaryRW = false,
             }})
           end,
         })
