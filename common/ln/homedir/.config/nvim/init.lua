@@ -330,6 +330,7 @@ local lsps = vim.list_extend(vim.list_slice(ensure_installed), {
   "denols",
   "hls",
   "pyright",
+  "veryl_ls",
 })
 
 require('mason').setup()
