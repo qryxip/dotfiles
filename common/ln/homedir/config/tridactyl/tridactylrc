@@ -9,6 +9,6 @@ bind <ArrowRight> scrollpage 1
 bind <ArrowLeft> scrollpage -1
 
 bind o fillcmdline open_quiet
-bind t composite fillcmdline_nofocus open | fillcmdline_nofocus
+bind t fillcmdline t
 
 bind <A-z> tabclose
