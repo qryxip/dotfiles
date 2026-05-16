@@ -1,0 +1,36 @@
+default:
+    {{ just_executable() }} -f {{ justfile() }} -ul
+
+[confirm]
+merge-pr-without-body:
+    #!/usr/bin/env bash
+    gh pr merge --admin -dsA "$(git config user.email)"
+
+merge-pr-with-body: pr-body confirm-pr-body
+    #!/usr/bin/env bash
+    gh pr merge --admin -dsA "$(git config user.email)" -F /tmp/body.txt
+
+[confirm]
+[private]
+confirm-pr-body: pr-body
+
+[private]
+pr-body:
+    #!/usr/bin/env bash
+    set -e
+    cat <<< $'{title}\n' > /tmp/COMMIT_EDITMSG
+    gh pr view --json body -q .body >> /tmp/COMMIT_EDITMSG
+    message_bodies=$(gh pr view --json commits -q '.commits | map(.messageBody)')
+    trailers=$(
+      while IFS= read -r -d '' body; do
+        printf 'dummy\n\n%s\n' "$body" | git interpret-trailers --parse
+      done < <(jq -rj ".[] + \"\\u0000\"" <<<"$message_bodies") \
+        | grep -iE '^(assisted-by|co-authored-by):' \
+        | sort -u
+    )
+    if [ -n "$trailers" ]; then
+      cat <<< $'\n'"$trailers" >> /tmp/COMMIT_EDITMSG
+    fi
+    "$EDITOR" /tmp/COMMIT_EDITMSG
+    sed 1,2d /tmp/COMMIT_EDITMSG > /tmp/body.txt
+    bat /tmp/body.txt
